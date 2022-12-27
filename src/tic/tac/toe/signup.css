@@ -1,0 +1,21 @@
+.mainFxmlClass {
+  
+    -fx-background-size:750px 480px;
+}
+.logo{
+    -fx-background-image:url('photos/logo.png');
+}
+.signUp{
+    -fx-background-color: transparent;
+    -fx-background-size:100% 100%; 
+    -fx-text-fill: #2949AE; 
+    -fx-content-display: center;
+}
+
+.signUp:pressed{
+    -fx-background-color: #938a26;
+}
+
+.textField{
+    -fx-background-radius: 10px;
+}

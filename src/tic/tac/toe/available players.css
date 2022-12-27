@@ -1,0 +1,16 @@
+.mainFxmlClass {
+    -fx-background-size:750px 480px;
+}
+.logo{
+    -fx-background-image:url('photos/logo.png');
+}
+
+.backBtn{
+    -fx-background-position: center; 
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+}
+
+.listView{
+    -fx-background-color: #2a47ad;
+}
