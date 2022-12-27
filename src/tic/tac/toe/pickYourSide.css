@@ -1,0 +1,22 @@
+
+.xoContainer{
+    -fx-background-size:100% 100% ;
+    -fx-background-color: #2A47AD ;
+}
+.xbtn{
+    -fx-content-display: center ;
+    -fx-background-size:100% 100% ;
+    -fx-background-color:transparent;
+}
+.xbtn:pressed{
+-fx-background-color: #559dec ;
+}
+.obtn{
+    -fx-content-display: center ;
+    -fx-background-size:100% 100%;
+    -fx-background-color:transparent;
+}
+.obtn:pressed{
+ -fx-background-color: #ff7f27 ;
+}
+

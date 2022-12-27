@@ -1,0 +1,23 @@
+
+
+.Container{
+    -fx-background-size:100% 100% ;
+    -fx-background-color: #2A47AD ;
+}
+.recordbtn{
+    
+    -fx-background-size:stretch ;
+    -fx-background-color:transparent ;
+    -fx-content-display: center ;
+}
+
+.recordbtn:pressed{
+-fx-background-color:#fdf9ba ; 
+}
+.backbtn{
+    -fx-background-size:stretch ;
+    -fx-content-display: center ;
+    -fx-background-color:transparent ;
+}
+
+

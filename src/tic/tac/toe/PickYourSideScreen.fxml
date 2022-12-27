@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="pickYourSide" fx:id="PickYourSideScreen" maxHeight="480.0" maxWidth="750.0" prefHeight="480.0" prefWidth="750.0" styleClass="pickYourSide" stylesheets="@pickYourSide.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/background.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="container" arcHeight="5.0" arcWidth="5.0" fill="#2a47ad" height="229.0" layoutX="144.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 60; -fx-arc-width: 60;" width="455.0" />
+      <ImageView fx:id="vsImage" fitHeight="197.0" fitWidth="443.0" layoutX="155.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/picside.png" />
+         </image>
+      </ImageView>
+      <Button id="obtn" fx:id="oBtn" contentDisplay="CENTER" layoutX="413.0" layoutY="176.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" styleClass="obtn" stylesheets="@pickYourSide.css">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/O.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="obtn" layoutX="164.0" layoutY="176.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" styleClass="xbtn" stylesheets="@pickYourSide.css" fx:id="xBtn">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/X.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="384.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="backbtn" stylesheets="@ProfileScreen.css">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/back.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Text fill="WHITE" layoutX="216.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick Your Side">
+         <font>
+            <Font name="Serif Regular" size="48.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="57.0" fitWidth="198.0" layoutX="579.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

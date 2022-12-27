@@ -1,0 +1,15 @@
+.Container{
+    
+    -fx-background-size:100% 100% ;
+    -fx-background-color:#2A47AD ;
+    
+    
+}
+.showbtn{
+   -fx-content-display: center ;
+    -fx-background-size:100% 100% ;
+    -fx-background-color:transparent ;
+}
+.showbtn:pressed{
+-fx-background-color:#fdf9ba ;
+}

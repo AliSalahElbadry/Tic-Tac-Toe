@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="ProfileSceen" maxHeight="480.0" maxWidth="750.0" prefHeight="480.0" prefWidth="750.0" stylesheets="@ProfileScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="750.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@Photos/background.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="container" arcHeight="5.0" arcWidth="5.0" fill="#2a47ad" height="327.0" layoutX="148.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 60; -fx-arc-width: 60;" width="455.0" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="384.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="backbtn" stylesheets="@ProfileScreen.css">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/back.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="82.0" fitWidth="219.0" layoutX="266.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/logo.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dae8f5" height="127.0" layoutX="471.0" layoutY="142.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="99.0" />
+      <ImageView fitHeight="63.0" fitWidth="114.0" layoutX="180.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/Figame_Titile_Back.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="emailText" fill="WHITE" layoutX="313.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font name="Serif Regular" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#2949ae" layoutX="188.0" layoutY="212.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="CENTER" wrappingWidth="98.9999994635582">
+         <font>
+            <Font name="Serif Regular" size="17.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="63.0" fitWidth="114.0" layoutX="180.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/Figame_Titile_Back.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="userNameText" fill="WHITE" layoutX="313.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font name="Serif Regular" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#2949ae" layoutX="195.0" layoutY="165.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" wrappingWidth="98.9999994635582">
+         <font>
+            <Font name="Serif Regular" size="17.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="63.0" fitWidth="114.0" layoutX="180.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/Figame_Titile_Back.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="playedGamesText" fill="WHITE" layoutX="313.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PlayedGames">
+         <font>
+            <Font name="Serif Regular" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#2949ae" layoutX="195.0" layoutY="251.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Played Games" wrappingWidth="98.9999994635582">
+         <font>
+            <Font name="Serif Regular" size="15.0" />
+         </font>
+      </Text>
+      <Button fx:id="gamesRecordBtn" accessibleRole="IMAGE_VIEW" layoutX="307.0" layoutY="323.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="118.0" snapToPixel="false" styleClass="recordbtn" stylesheets="@ProfileScreen.css" text="Games Record" textFill="#2949ae" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="323.0">
+         <font>
+            <Font name="Serif Regular" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/buttonbackground.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="103.0" fitWidth="122.0" layoutX="460.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/profile.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

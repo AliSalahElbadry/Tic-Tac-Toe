@@ -1,0 +1,18 @@
+
+
+.returnbtn{
+   -fx-content-display: center;
+    -fx-background-size:100% 100%;
+    -fx-background-color:transparent;
+}
+.returnbtn:pressed{
+-fx-background-color: #fdf9ba;
+}
+.playagainbtn{
+    -fx-content-display: center;
+    -fx-background-size:100% 100%;
+    -fx-background-color:transparent;
+}
+.playagain:pressed{
+-fx-background-color:#fdf9ba;
+}
