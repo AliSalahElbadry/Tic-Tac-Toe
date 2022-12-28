@@ -3,6 +3,9 @@ package tic.tac.toe;
 import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class LoginFXMLBase extends AnchorPane {
 
@@ -96,6 +100,11 @@ public class LoginFXMLBase extends AnchorPane {
         imageView1.setPreserveRatio(true);
         imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         loginBtn.setGraphic(imageView1);
+        loginBtn.setOnAction((event)->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+        
+        });
 
         dontHaveAnAccountText.setFill(javafx.scene.paint.Color.WHITE);
         dontHaveAnAccountText.setLayoutX(253.0);
@@ -104,6 +113,11 @@ public class LoginFXMLBase extends AnchorPane {
         dontHaveAnAccountText.setStrokeWidth(0.0);
         dontHaveAnAccountText.setText("Don't have an account?");
         dontHaveAnAccountText.setFont(new Font("Serif Regular", 25.0));
+        dontHaveAnAccountText.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new SignUpBase());
+            
+        });
        
 
         getChildren().add(imageView);

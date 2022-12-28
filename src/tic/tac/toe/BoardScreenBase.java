@@ -1,5 +1,9 @@
 package tic.tac.toe;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -106,6 +110,23 @@ public  class BoardScreenBase extends AnchorPane {
         backButton.setPickOnBounds(true);
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
+        backButton.setOnMouseClicked(event ->{
+           
+            if (GamesRecordItemSceenBase.flag == false ){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
+                alert.setTitle("Attention");
+                alert.setContentText("If you leave ,you will be the looser");
+                alert.showAndWait().ifPresent(rs->{
+
+                    if(rs==ButtonType.OK)
+                        TicTacToe.scene.setRoot(new MainPageScreenBase());
+                });
+            }else {
+            
+                TicTacToe.scene.setRoot(new ProfileScreenBase());
+            
+            }
+        });
 
         rectangle.setArcHeight(70.0);
         rectangle.setArcWidth(70.0);
@@ -352,6 +373,11 @@ public  class BoardScreenBase extends AnchorPane {
         recordRadioButton.setText("Record The Game");
         recordRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         recordRadioButton.setFont(new Font("System Bold", 18.0));
+        
+        if (GamesRecordItemSceenBase.flag == true){
+            recordRadioButton.setVisible(false);
+        }
+        
 
         getChildren().add(imageView);
         getChildren().add(bordRectangle);

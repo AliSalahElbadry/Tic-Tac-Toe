@@ -7,10 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 public class TicTacToe extends Application {
+    
+    public static Scene scene ;
     @Override
     public void start(Stage primaryStage) {
-        Parent root = new SplashScreenBase();
-        Scene scene = new Scene(root, 750, 480);
+
+        scene = new Scene(new SplashScreenBase(), 750, 480);
         
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
@@ -19,7 +21,7 @@ public class TicTacToe extends Application {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -28,11 +30,10 @@ public class TicTacToe extends Application {
                     @Override
                     public void run() {
 
-                       /* Parent root = new LoginFXMLBase();
-                        Scene scene = new Scene(root, 750, 480);
+                        scene = new Scene(new LoginFXMLBase(), 750, 480);
 
                         primaryStage.setScene(scene);
-                        primaryStage.show(); */ 
+                        primaryStage.show();  
                         
                     }
                 });

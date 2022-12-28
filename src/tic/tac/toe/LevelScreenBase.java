@@ -79,6 +79,11 @@ public  class LevelScreenBase extends AnchorPane {
         easyButton.setText("Easy");
         easyButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         easyButton.setFont(new Font("Serif Regular", 24.0));
+        easyButton.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
+            
+        });
 
         imageView0.setFitHeight(45.0);
         imageView0.setFitWidth(260.0);
@@ -95,6 +100,11 @@ public  class LevelScreenBase extends AnchorPane {
         backButton.setPickOnBounds(true);
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
+        backButton.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
+        });
 
         mediumButton.setId("button");
         mediumButton.setLayoutX(235.0);
@@ -109,6 +119,11 @@ public  class LevelScreenBase extends AnchorPane {
         mediumButton.setText("Medium");
         mediumButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         mediumButton.setFont(new Font("Serif Regular", 24.0));
+        mediumButton.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
+            
+        });
 
         imageView1.setFitHeight(45.0);
         imageView1.setFitWidth(260.0);
@@ -137,6 +152,11 @@ public  class LevelScreenBase extends AnchorPane {
         imageView2.setPreserveRatio(true);
         imageView2.setImage(new Image(getClass().getResource("Photos/buttonbackground1.png").toExternalForm()));
         hardButton.setGraphic(imageView2);
+        hardButton.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
+            
+        });
 
         randomButton.setId("button");
         randomButton.setLayoutX(235.0);
@@ -158,6 +178,11 @@ public  class LevelScreenBase extends AnchorPane {
         imageView3.setPreserveRatio(true);
         imageView3.setImage(new Image(getClass().getResource("Photos/buttonbackground1.png").toExternalForm()));
         randomButton.setGraphic(imageView3);
+        randomButton.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
+            
+        });
 
         getChildren().add(imageView);
         getChildren().add(rectangle);

@@ -82,6 +82,11 @@ public class PlayersNamesScreenBase extends AnchorPane {
         startButton.setText("Start");
         startButton.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         startButton.setFont(new Font("Serif Regular", 24.0));
+        startButton.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new PickYourSideScreenBase());
+            
+        });
 
         Player1TextField.setLayoutX(227.0);
         Player1TextField.setLayoutY(173.0);
@@ -108,11 +113,9 @@ public class PlayersNamesScreenBase extends AnchorPane {
         backButtonId.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backButtonId.setOnMousePressed((event)->{
         
-//            Parent root = new MainScreenBase();
-//            Scene scene = new Scene(root, 750, 480);
-//                       
-//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
+    
         });
 
         getChildren().add(imageView);

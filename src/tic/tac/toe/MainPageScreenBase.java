@@ -65,6 +65,11 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setPickOnBounds(true);
         prifileImage.setPreserveRatio(true);
         prifileImage.setImage(new Image(getClass().getResource("Photos/profile.png").toExternalForm()));
+        prifileImage.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new ProfileScreenBase());
+            
+        });
 
         profileText.setFill(javafx.scene.paint.Color.WHITE);
         profileText.setLayoutX(4.0);
@@ -85,6 +90,11 @@ public  class MainPageScreenBase extends AnchorPane {
         computerRectangle.setStyle("-fx-arc-height: 46; -fx-arc-width: 46;");
         computerRectangle.getStyleClass().add("rect");
         computerRectangle.setWidth(185.0);
+        computerRectangle.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new LevelScreenBase());
+            
+        });
 
         localRectangle.setArcHeight(5.0);
         localRectangle.setArcWidth(5.0);
@@ -97,6 +107,11 @@ public  class MainPageScreenBase extends AnchorPane {
         localRectangle.setStyle("-fx-arc-height: 46; -fx-arc-width: 46;");
         localRectangle.getStyleClass().add("rect");
         localRectangle.setWidth(185.0);
+        localRectangle.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
+            
+        });
 
         onlineRectangle.setArcHeight(5.0);
         onlineRectangle.setArcWidth(5.0);
@@ -109,6 +124,11 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.setStyle("-fx-arc-height: 46; -fx-arc-width: 46;");
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
+        onlineRectangle.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            
+        });
 
         computerImageView.setFitHeight(100.0);
         computerImageView.setFitWidth(100.0);
@@ -117,6 +137,11 @@ public  class MainPageScreenBase extends AnchorPane {
         computerImageView.setPickOnBounds(true);
         computerImageView.setPreserveRatio(true);
         computerImageView.setImage(new Image(getClass().getResource("Photos/computer.png").toExternalForm()));
+        computerImageView.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new LevelScreenBase());
+            
+        });
 
         lacalImageView.setFitHeight(100.0);
         lacalImageView.setFitWidth(100.0);
@@ -125,6 +150,11 @@ public  class MainPageScreenBase extends AnchorPane {
         lacalImageView.setPickOnBounds(true);
         lacalImageView.setPreserveRatio(true);
         lacalImageView.setImage(new Image(getClass().getResource("Photos/local.png").toExternalForm()));
+        lacalImageView.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
+            
+        });
 
         onlineImageView.setFitHeight(100.0);
         onlineImageView.setFitWidth(100.0);
@@ -133,6 +163,11 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPickOnBounds(true);
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
+        onlineImageView.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            
+        });
 
         computerText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         computerText.setLayoutX(84.0);
@@ -141,6 +176,11 @@ public  class MainPageScreenBase extends AnchorPane {
         computerText.setStrokeWidth(0.0);
         computerText.setText("Computer");
         computerText.setFont(new Font("Serif Regular", 30.0));
+        computerText.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new LevelScreenBase());
+            
+        });
 
         localText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         localText.setLayoutX(340.0);
@@ -149,6 +189,11 @@ public  class MainPageScreenBase extends AnchorPane {
         localText.setStrokeWidth(0.0);
         localText.setText("Local");
         localText.setFont(new Font("Serif Regular", 30.0));
+        localText.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
+            
+        });
 
         onlineText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         onlineText.setLayoutX(554.0);
@@ -157,6 +202,11 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setStrokeWidth(0.0);
         onlineText.setText("Online");
         onlineText.setFont(new Font("Serif Regular", 30.0));
+        onlineText.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            
+        });
 
         getChildren().add(imageView);
         getChildren().add(imageView0);

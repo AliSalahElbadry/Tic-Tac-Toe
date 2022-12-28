@@ -117,6 +117,11 @@ public class SignUpBase extends AnchorPane {
         imageView1.setPreserveRatio(true);
         imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         signUpBtn.setGraphic(imageView1);
+        signUpBtn.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+        
+        });
 
         haveAnAccountText.setFill(javafx.scene.paint.Color.WHITE);
         haveAnAccountText.setLayoutX(290.0);
@@ -125,6 +130,11 @@ public class SignUpBase extends AnchorPane {
         haveAnAccountText.setStrokeWidth(0.0);
         haveAnAccountText.setText("Have an account?");
         haveAnAccountText.setFont(new Font("Serif Regular", 26.0));
+        haveAnAccountText.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new LoginFXMLBase());
+            
+        });
 
         getChildren().add(imageView);
         getChildren().add(rectangle);

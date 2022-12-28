@@ -68,7 +68,13 @@ public class GamesRecordScreenBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        backBtn.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new ProfileScreenBase());
+            
+        });
 
+        
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
         imageView0.setPickOnBounds(true);

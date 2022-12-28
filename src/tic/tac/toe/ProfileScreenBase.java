@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public abstract class ProfileScreenBase extends AnchorPane {
+public class ProfileScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Rectangle container;
@@ -93,6 +93,11 @@ public abstract class ProfileScreenBase extends AnchorPane {
         imageView0.setPreserveRatio(true);
         imageView0.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backBtn.setGraphic(imageView0);
+        backBtn.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
+        });
 
         imageView1.setFitHeight(82.0);
         imageView1.setFitWidth(219.0);
@@ -213,6 +218,11 @@ public abstract class ProfileScreenBase extends AnchorPane {
         gamesRecordBtn.setText("Games Record");
         gamesRecordBtn.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         gamesRecordBtn.setFont(new Font("Serif Regular", 15.0));
+        gamesRecordBtn.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new GamesRecordScreenBase());
+            
+        });
 
         imageView5.setFitHeight(31.0);
         imageView5.setFitWidth(119.0);

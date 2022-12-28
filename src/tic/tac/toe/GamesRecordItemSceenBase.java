@@ -23,6 +23,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
     protected final Text player2Item2Text;
     protected final Text timeItem2Text;
     protected final Text winnerItem2Text;
+    public static boolean flag = false ;
 
     public GamesRecordItemSceenBase() {
 
@@ -67,6 +68,12 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem1Btn.setText("Show Game");
         showGameItem1Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem1Btn.setFont(new Font("Serif Regular", 16.0));
+        showGameItem1Btn.setOnAction(event ->{
+        
+            flag = true ;
+            TicTacToe.scene.setRoot(new BoardScreenBase());
+            
+        });
 
         imageView.setFitHeight(31.0);
         imageView.setFitWidth(120.0);
@@ -124,6 +131,14 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem2Btn.setText("Show Game");
         showGameItem2Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem2Btn.setFont(new Font("Serif Regular", 16.0));
+        showGameItem2Btn.setOnAction(event ->{
+        
+            flag = true ;
+            TicTacToe.scene.setRoot(new BoardScreenBase());
+            
+            
+            
+        });
 
         imageView0.setFitHeight(31.0);
         imageView0.setFitWidth(120.0);

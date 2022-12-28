@@ -58,6 +58,11 @@ public class AvailablePlayersBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backBtn");
         backBtn.getStylesheets().add("/tic/tac/toe/available%20players.css");
+        backBtn.setOnAction(event ->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
+        });
 
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
