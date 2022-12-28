@@ -1,9 +1,6 @@
 package tic.tac.toe;
-
-import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -51,20 +48,18 @@ public class GamesRecordScreenBase extends AnchorPane {
         container.setStrokeWidth(0.0);
         container.setStyle("-fx-arc-height: 60; -fx-arc-width: 60;");
         container.setWidth(474.0);
-
         hestoryGamesRecordListView.setLayoutX(179.0);
-        hestoryGamesRecordListView.setLayoutY(98.0);
+        hestoryGamesRecordListView.setLayoutY(105.0);
         hestoryGamesRecordListView.setPrefHeight(274.0);
         hestoryGamesRecordListView.setPrefWidth(414.0);
-        hestoryGamesRecordListView.setStyle("-fx-padding:-20;-fx-control-inner-background: #2a47ad;");
-        
         hestoryGamesRecordListView.getStylesheets().add("/tic/tac/toe/gamesrecordsceen.css");
+        hestoryGamesRecordListView.getStyleClass().add("mylistview");
         
         hestoryGamesRecordListView.getItems().add(new GamesRecordItemSceenBase());
         hestoryGamesRecordListView.getItems().add(new GamesRecordItemSceenBase());
         hestoryGamesRecordListView.getItems().add(new GamesRecordItemSceenBase());
         hestoryGamesRecordListView.getItems().add(new GamesRecordItemSceenBase());
-        
+       
         backBtn.setId("obtn");
         backBtn.setLayoutX(14.0);
         backBtn.setLayoutY(384.0);
@@ -88,7 +83,6 @@ public class GamesRecordScreenBase extends AnchorPane {
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
         imageView1.setImage(new Image(getClass().getResource("Photos/logo.png").toExternalForm()));
-
         getChildren().add(imageView);
         getChildren().add(container);
         getChildren().add(hestoryGamesRecordListView);
