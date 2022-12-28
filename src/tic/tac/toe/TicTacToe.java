@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) {
-       // Parent root = new SplashScreenBase();
-        Scene scene = new Scene(new GamesRecordScreenBase(), 750, 480);
-//        
+        Parent root = new SplashScreenBase();
+        Scene scene = new Scene(root, 750, 480);
+        
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
         primaryStage.show();       
@@ -28,11 +28,11 @@ public class TicTacToe extends Application {
                     @Override
                     public void run() {
 
-                        Parent root = new LoginFXMLBase();
+                       /* Parent root = new LoginFXMLBase();
                         Scene scene = new Scene(root, 750, 480);
 
                         primaryStage.setScene(scene);
-                        primaryStage.show();  
+                        primaryStage.show(); */ 
                         
                     }
                 });
