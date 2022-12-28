@@ -88,7 +88,7 @@ public class AvailablePlayersBase extends AnchorPane {
         availablePlayerslistView.setLayoutY(89.0);
         availablePlayerslistView.setPrefHeight(331.0);
         availablePlayerslistView.setPrefWidth(437.0);
-        availablePlayerslistView.getStyleClass().add("listView");
+        availablePlayerslistView.getStyleClass().add("mylistview");
         availablePlayerslistView.getStylesheets().add("/tic/tac/toe/available%20players.css");
 
         getChildren().add(imageView);

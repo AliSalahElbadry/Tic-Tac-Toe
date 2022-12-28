@@ -31,6 +31,6 @@
             <Font name="Serif Regular" size="51.0" />
          </font>
       </Text>
-      <ListView fx:id="availablePlayerslistView" layoutX="157.0" layoutY="89.0" prefHeight="331.0" prefWidth="437.0" styleClass="listView" stylesheets="@available%20players.css" />
+      <ListView fx:id="availablePlayerslistView" layoutX="157.0" layoutY="89.0" prefHeight="331.0" prefWidth="437.0" styleClass="mylistview" stylesheets="@available%20players.css" />
    </children>
 </AnchorPane>
