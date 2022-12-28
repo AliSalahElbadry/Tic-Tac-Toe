@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="750.0" stylesheets="@MainPageScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/background.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="bordRectangle" arcHeight="80.0" arcWidth="80.0" fill="#2a47ad" height="431.0" layoutX="141.0" layoutY="37.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="456.0" />
+      <ImageView fx:id="backButton" accessibleRole="BUTTON" fitHeight="70.0" fitWidth="70.0" layoutX="2.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/back.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="193.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box00" fitHeight="76.0" fitWidth="85.0" layoutX="212.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/X.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="311.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box01" fitHeight="76.0" fitWidth="85.0" layoutX="334.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/O.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="430.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box02" fitHeight="76.0" fitWidth="85.0" layoutX="451.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/X.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="195.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box10" fitHeight="76.0" fitWidth="85.0" layoutX="219.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/O.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="313.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box11" fitHeight="76.0" fitWidth="85.0" layoutX="334.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/X.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="432.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box12" fitHeight="76.0" fitWidth="85.0" layoutX="455.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/O.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="195.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box20" fitHeight="76.0" fitWidth="85.0" layoutX="216.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/X.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="313.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box21" fitHeight="76.0" fitWidth="85.0" layoutX="339.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/O.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="WHITE" height="96.0" layoutX="432.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+      <ImageView fx:id="box22" fitHeight="76.0" fitWidth="85.0" layoutX="453.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/X.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="scorePlayer1" fill="WHITE" layoutX="230.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="scorePlayer2" fill="WHITE" layoutX="484.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="47.0" fitWidth="157.0" layoutX="298.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" rotate="3.0">
+         <image>
+            <Image url="@Photos/Title2.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="levelText" fill="#2a47ad" layoutX="344.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy" wrappingWidth="61.13671875">
+         <font>
+            <Font name="Serif Regular" size="23.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="47.0" fitWidth="157.0" layoutX="173.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/Title2.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="player1Text" fill="#2a47ad" layoutX="209.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1" wrappingWidth="93.13671875">
+         <font>
+            <Font name="Serif Regular" size="23.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="47.0" fitWidth="157.0" layoutX="415.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/Title2.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="player2Text" fill="#2a47ad" layoutX="455.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player2" wrappingWidth="81.13671875">
+         <font>
+            <Font name="Serif Regular" size="23.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="15.0" fitWidth="50.0" layoutX="334.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@Photos/buttonbackground.png" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="recordRadioButton" layoutX="30.0" layoutY="5.0" mnemonicParsing="false" text="Record The Game" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </RadioButton>
+   </children>
+</AnchorPane>

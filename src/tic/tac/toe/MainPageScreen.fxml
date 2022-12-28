@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="750.0" stylesheets="@MainPageScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic.tac.toe.MainPageScreenController">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/background.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="170.0" layoutX="580.0" pickOnBounds="true">
+         <image>
+            <Image url="@Photos/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="prifileImage" fitHeight="75.0" fitWidth="85.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/profile.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="profileText" fill="WHITE" layoutX="4.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="computerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="61.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 46; -fx-arc-width: 46;" styleClass="rect" width="185.0" />
+      <Rectangle fx:id="localRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="283.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 46; -fx-arc-width: 46;" styleClass="rect" width="185.0" />
+      <Rectangle fx:id="onlineRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="502.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 46; -fx-arc-width: 46;" styleClass="rect" width="185.0" />
+      <ImageView fx:id="computerImageView" fitHeight="100.0" fitWidth="100.0" layoutX="102.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/computer.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lacalImageView" fitHeight="100.0" fitWidth="100.0" layoutX="329.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/local.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="onlineImageView" fitHeight="100.0" fitWidth="100.0" layoutX="544.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/onlinegame.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="computerText" fill="#293b9f" layoutX="84.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="localText" fill="#293b9f" layoutX="340.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="onlineText" fill="#293b9f" layoutX="554.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

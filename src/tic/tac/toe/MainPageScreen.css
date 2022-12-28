@@ -1,0 +1,27 @@
+
+.button{
+    
+   
+    -fx-background-size:100% 100%;
+    
+    -fx-background-color:transparent;
+}
+.button:pressed{
+-fx-background-color:#938a26;
+}
+.backbtn{
+    -fx-background-image:url('photos/back.png');
+    -fx-background-size:100% 100%;
+    -fx-background-color:transparent;
+}
+.title{
+    -fx-background-image:url('photos/Title2.png');
+    -fx-background-size:100% 100%;
+    -fx-background-color:transparent;
+    
+}
+.rect{
+   
+    -fx-effect:dropshadow(two-pass-box, rgba(0,0,0,0.8), 0, 10, 0, 10);
+}
+

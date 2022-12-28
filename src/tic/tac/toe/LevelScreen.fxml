@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="480.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/background.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2a47ad" height="291.0" layoutX="191.0" layoutY="130.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 90; -fx-arc-width: 90;" width="354.0" />
+      <ImageView fx:id="logoImageView" fitHeight="81.0" fitWidth="262.0" layoutX="249.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/logo.png" />
+         </image>
+      </ImageView>
+      <Button id="button" fx:id="easyButton" layoutX="235.0" layoutY="179.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-content-display: center;" stylesheets="@MainPageScreen.css" text="Easy" textFill="#2a47ad">
+         <font>
+            <Font name="Serif Regular" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../buttonbackground.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="backButton" accessibleRole="BUTTON" fitHeight="70.0" fitWidth="70.0" layoutX="2.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Photos/back.png" />
+         </image>
+      </ImageView>
+      <Button id="button" fx:id="mediumButton" layoutX="235.0" layoutY="232.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-content-display: center;" stylesheets="@MainPageScreen.css" text="Medium" textFill="#2a47ad">
+         <font>
+            <Font name="Serif Regular" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../buttonbackground.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="button" fx:id="hardButton" layoutX="235.0" layoutY="283.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-content-display: center;" stylesheets="@MainPageScreen.css" text="Hard" textFill="#2a47ad">
+         <font>
+            <Font name="Serif Regular" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../buttonbackground.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="button" fx:id="randomButton" layoutX="235.0" layoutY="337.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-content-display: center;" stylesheets="@MainPageScreen.css" text="Random" textFill="#2a47ad">
+         <font>
+            <Font name="Serif Regular" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../buttonbackground.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
