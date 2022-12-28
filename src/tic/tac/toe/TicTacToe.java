@@ -14,35 +14,32 @@ public class TicTacToe extends Application {
 //        
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
-        primaryStage.show();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(5000);
-//                    
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//           
-//                Platform.runLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-////
-////                        Parent root = new MainScreenBase();
-////                        Scene scene = new Scene(root, 750, 480);
-////
-////                        primaryStage.setScene(scene);
-////                        primaryStage.show();  
-////                        
-////                       
-//                        
-//                    }
-//                });
-//                 
-//            }
-//        }).start();
-   }
+        primaryStage.show();       
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Parent root = new LoginFXMLBase();
+                        Scene scene = new Scene(root, 750, 480);
+
+                        primaryStage.setScene(scene);
+                        primaryStage.show();  
+                        
+                    }
+                });
+                 
+            }
+        }).start();
+    }
     public static void main(String[] args) {
         launch(args);
     }
