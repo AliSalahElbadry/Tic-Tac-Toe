@@ -30,13 +30,11 @@ public class TicTacToe extends Application {
                     @Override
                     public void run() {
 
-//                        Parent root = new MainScreenBase();
-//                        Scene scene = new Scene(root, 750, 480);
-//
-//                        primaryStage.setScene(scene);
-//                        primaryStage.show();  
-                        
-                       
+                        Parent root = new LoginFXMLBase();
+                        Scene scene = new Scene(root, 750, 480);
+
+                        primaryStage.setScene(scene);
+                        primaryStage.show();  
                         
                     }
                 });
