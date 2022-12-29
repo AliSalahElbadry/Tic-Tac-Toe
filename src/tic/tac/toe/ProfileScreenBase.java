@@ -28,12 +28,16 @@ public class ProfileScreenBase extends AnchorPane {
     protected final Button gamesRecordBtn;
     protected final ImageView imageView5;
     protected final ImageView imageView6;
+    protected final Button logoutBtn;
+    protected final ImageView imageView7;
 
     public ProfileScreenBase() {
 
         imageView = new ImageView();
+        imageView7 = new ImageView();
         container = new Rectangle();
         backBtn = new Button();
+        logoutBtn = new Button();
         imageView0 = new ImageView();
         imageView1 = new ImageView();
         rectangle = new Rectangle();
@@ -86,7 +90,25 @@ public class ProfileScreenBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
-
+        
+        logoutBtn.setLayoutX(14.0);
+        logoutBtn.setLayoutY(14.0);
+        logoutBtn.setMnemonicParsing(false);
+        logoutBtn.setPrefHeight(70.0);
+        logoutBtn.setPrefWidth(70.0);
+        logoutBtn.getStyleClass().add("backbtn");
+        logoutBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        imageView7.setFitHeight(70.0);
+        imageView7.setFitWidth(70.0);
+        imageView7.setPickOnBounds(true);
+        imageView7.setPreserveRatio(true);
+        imageView7.setImage(new Image(getClass().getResource("Photos/back_logout.png").toExternalForm()));
+        logoutBtn.setGraphic(imageView7);
+        logoutBtn.setOnAction(e->{
+        
+            TicTacToe.scene.setRoot(new LoginFXMLBase());
+        
+        });
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
         imageView0.setPickOnBounds(true);
@@ -189,12 +211,13 @@ public class ProfileScreenBase extends AnchorPane {
         playedGamesText.setFont(new Font("Serif Regular", 22.0));
 
         text1.setFill(javafx.scene.paint.Color.valueOf("#2949ae"));
-        text1.setLayoutX(195.0);
+        text1.setLayoutX(185.0);
         text1.setLayoutY(251.0);
         text1.setStroke(javafx.scene.paint.Color.WHITE);
         text1.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         text1.setStrokeWidth(0.0);
-        text1.setText("Played Games");
+        text1.setText("Wins");
+        text1.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         text1.setWrappingWidth(98.9999994635582);
         text1.setFont(new Font("Serif Regular", 15.0));
 
@@ -242,6 +265,7 @@ public class ProfileScreenBase extends AnchorPane {
         getChildren().add(imageView);
         getChildren().add(container);
         getChildren().add(backBtn);
+        getChildren().add(logoutBtn);
         getChildren().add(imageView1);
         getChildren().add(rectangle);
         getChildren().add(imageView2);
