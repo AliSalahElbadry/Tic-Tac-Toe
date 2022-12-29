@@ -11,12 +11,13 @@ public class TicTacToe extends Application {
     public static Scene scene ;
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setResizable(false);
+       
         scene = new Scene(new SplashScreenBase(), 750, 480);
         
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
-        primaryStage.show();       
+       primaryStage.show();  
+       
         new Thread(new Runnable() {
             @Override
             public void run() {
