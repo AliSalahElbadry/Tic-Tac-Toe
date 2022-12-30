@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import tic.tac.toe.TicTacToe;
 
 public class PickYourSideScreenBase extends AnchorPane {
 
@@ -42,7 +43,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("pickYourSide");
-        getStylesheets().add("/tic/tac/toe/pickYourSide.css");
+        getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
@@ -78,7 +79,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         oBtn.setPrefHeight(150.0);
         oBtn.setPrefWidth(150.0);
         oBtn.getStyleClass().add("obtn");
-        oBtn.getStylesheets().add("/tic/tac/toe/pickYourSide.css");
+        oBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         oBtn.setOnAction(event ->{
         
             GamesRecordItemSceenBase.flag = false ;
@@ -102,7 +103,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         xBtn.setPrefHeight(150.0);
         xBtn.setPrefWidth(150.0);
         xBtn.getStyleClass().add("xbtn");
-        xBtn.getStylesheets().add("/tic/tac/toe/pickYourSide.css");
+        xBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         xBtn.setOnAction(event ->{
         
             GamesRecordItemSceenBase.flag = false ;
@@ -124,7 +125,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         backBtn.setPrefHeight(70.0);
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
-        backBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         backBtn.setOnAction(event ->{
         
             TicTacToe.scene.setRoot(new MainPageScreenBase());

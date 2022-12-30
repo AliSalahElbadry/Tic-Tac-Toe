@@ -32,7 +32,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("mainback");
-        getStylesheets().add("/tic/tac/toe/winnerscreen.css");
+        getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
 
         AnchorPane.setBottomAnchor(congMediaView, 0.0);
         AnchorPane.setLeftAnchor(congMediaView, 0.0);
@@ -65,7 +65,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         playAgainButtton.setPrefHeight(50.0);
         playAgainButtton.setPrefWidth(129.0);
         playAgainButtton.getStyleClass().add("returnbtn");
-        playAgainButtton.getStylesheets().add("/tic/tac/toe/winnerscreen.css");
+        playAgainButtton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
         playAgainButtton.setText("Play Again");
         playAgainButtton.setFont(new Font("Serif Regular", 22.0));
 
@@ -82,7 +82,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         mainPageButton.setPrefHeight(76.0);
         mainPageButton.setPrefWidth(129.0);
         mainPageButton.getStyleClass().add("returnbtn");
-        mainPageButton.getStylesheets().add("/tic/tac/toe/winnerscreen.css");
+        mainPageButton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
         mainPageButton.setText("Main Page");
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
 

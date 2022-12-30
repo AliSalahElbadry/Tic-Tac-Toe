@@ -9,8 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public
-        class ItemBase extends AnchorPane {
+public class ItemBase extends AnchorPane {
 
     protected final Rectangle rectangle;
     protected final Text playerNameText;
@@ -28,7 +27,7 @@ public
         setPrefHeight(48.0);
         setPrefWidth(410.0);
         getStyleClass().add("mainFxmlClass");
-        getStylesheets().add("/tic/tac/toe/Item.css");
+        getStylesheets().add("/tic/tac/toe/css/Item.css");
 
         rectangle.setArcHeight(50.0);
         rectangle.setArcWidth(50.0);
@@ -53,7 +52,7 @@ public
         inviteBtn.setPrefHeight(33.0);
         inviteBtn.setPrefWidth(77.0);
         inviteBtn.getStyleClass().add("inviteBtn");
-        inviteBtn.getStylesheets().add("/tic/tac/toe/Item.css");
+        inviteBtn.getStylesheets().add("/tic/tac/toe/css/Item.css");
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
         

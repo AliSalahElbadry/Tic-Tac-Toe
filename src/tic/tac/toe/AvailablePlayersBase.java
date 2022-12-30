@@ -33,7 +33,7 @@ public class AvailablePlayersBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("mainFxmlClass");
-        getStylesheets().add("/tic/tac/toe/available%20players.css");
+        getStylesheets().add("/tic/tac/toe/css/available%20players.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
@@ -57,8 +57,12 @@ public class AvailablePlayersBase extends AnchorPane {
         backBtn.setPrefHeight(70.0);
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backBtn");
-        backBtn.getStylesheets().add("/tic/tac/toe/available%20players.css");
-
+        backBtn.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
+         backBtn.setOnAction(e->{
+             
+             TicTacToe.scene.setRoot(new MainPageScreenBase());
+         
+         });
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
         imageView0.setPickOnBounds(true);
@@ -89,7 +93,7 @@ public class AvailablePlayersBase extends AnchorPane {
         availablePlayerslistView.setPrefHeight(306.0);
         availablePlayerslistView.setPrefWidth(437.0);
         availablePlayerslistView.getStyleClass().add("mylistview");
-        availablePlayerslistView.getStylesheets().add("/tic/tac/toe/available%20players.css");
+        availablePlayerslistView.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
         
         ItemBase itemBase1 = new ItemBase();
         ItemBase itemBase2 = new ItemBase();

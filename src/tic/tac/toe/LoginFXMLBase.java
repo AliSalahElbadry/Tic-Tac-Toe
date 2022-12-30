@@ -37,7 +37,7 @@ public class LoginFXMLBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("mainFxmlClass");
-        getStylesheets().add("/tic/tac/toe/loginfxml.css");
+        getStylesheets().add("/tic/tac/toe/css/loginfxml.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
@@ -87,7 +87,11 @@ public class LoginFXMLBase extends AnchorPane {
         loginBtn.getStyleClass().add("loginBtn");
         loginBtn.setText("Log In");
         loginBtn.setFont(new Font("Serif Regular", 20.0));
-
+        loginBtn.setOnAction(e->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+        
+        });
         imageView1.setFitHeight(37.0);
         imageView1.setFitWidth(165.0);
         imageView1.setPickOnBounds(true);
@@ -102,7 +106,11 @@ public class LoginFXMLBase extends AnchorPane {
         dontHaveAnAccountText.setStrokeWidth(0.0);
         dontHaveAnAccountText.setText("Don't have an account?");
         dontHaveAnAccountText.setFont(new Font("Serif Regular", 25.0));
-
+        dontHaveAnAccountText.setOnMouseClicked(e->{
+            
+           TicTacToe.scene.setRoot(new SignUpBase());
+        
+        });
         getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(imageView0);

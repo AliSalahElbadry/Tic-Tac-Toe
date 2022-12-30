@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import tic.tac.toe.TicTacToe;
 
 public  class GamesRecordItemSceenBase extends AnchorPane {
 
@@ -44,7 +45,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         setPrefHeight(128.0);
         setPrefWidth(415.0);
         getStyleClass().add("Container");
-        getStylesheets().add("/tic/tac/toe/gamesrecorditemsceen.css");
+        getStylesheets().add("/tic/tac/toe/css/gamesrecorditemsceen.css");
 
         rectangle.setArcHeight(5.0);
         rectangle.setArcWidth(5.0);
@@ -64,7 +65,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem1Btn.setPrefHeight(31.0);
         showGameItem1Btn.setPrefWidth(90.0);
         showGameItem1Btn.getStyleClass().add("showbtn");
-        showGameItem1Btn.getStylesheets().add("/tic/tac/toe/gamesrecorditemsceen.css");
+        showGameItem1Btn.getStylesheets().add("/tic/tac/toe/css/gamesrecorditemsceen.css");
         showGameItem1Btn.setText("Show Game");
         showGameItem1Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem1Btn.setFont(new Font("Serif Regular", 16.0));
@@ -127,7 +128,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem2Btn.setPrefHeight(43.0);
         showGameItem2Btn.setPrefWidth(131.0);
         showGameItem2Btn.getStyleClass().add("showbtn");
-        showGameItem2Btn.getStylesheets().add("/tic/tac/toe/gamesrecorditemsceen.css");
+        showGameItem2Btn.getStylesheets().add("/tic/tac/toe/css/gamesrecorditemsceen.css");
         showGameItem2Btn.setText("Show Game");
         showGameItem2Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem2Btn.setFont(new Font("Serif Regular", 16.0));
