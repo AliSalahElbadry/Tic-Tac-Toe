@@ -58,11 +58,6 @@ public class AvailablePlayersBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backBtn");
         backBtn.getStylesheets().add("/tic/tac/toe/available%20players.css");
-        backBtn.setOnAction(event ->{
-        
-            TicTacToe.scene.setRoot(new MainPageScreenBase());
-            
-        });
 
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
@@ -90,12 +85,34 @@ public class AvailablePlayersBase extends AnchorPane {
         text.setFont(new Font("Serif Regular", 51.0));
 
         availablePlayerslistView.setLayoutX(157.0);
-        availablePlayerslistView.setLayoutY(89.0);
-        availablePlayerslistView.setPrefHeight(331.0);
+        availablePlayerslistView.setLayoutY(114.0);
+        availablePlayerslistView.setPrefHeight(306.0);
         availablePlayerslistView.setPrefWidth(437.0);
         availablePlayerslistView.getStyleClass().add("mylistview");
         availablePlayerslistView.getStylesheets().add("/tic/tac/toe/available%20players.css");
+        
+        ItemBase itemBase1 = new ItemBase();
+        ItemBase itemBase2 = new ItemBase();
+        ItemBase itemBase3 = new ItemBase();
+        ItemBase itemBase4 = new ItemBase();
+        ItemBase itemBase5 = new ItemBase();
+        ItemBase itemBase6 = new ItemBase();
+        itemBase1.playerNameText.setText("safiya");
+        itemBase2.playerNameText.setText("safiya");
+        itemBase3.playerNameText.setText("safiya");
+        itemBase4.playerNameText.setText("safiya");
+        itemBase5.playerNameText.setText("safiya");
+        itemBase6.playerNameText.setText("safiya");
+        availablePlayerslistView.getItems().add(itemBase1);
+        availablePlayerslistView.getItems().add(itemBase2);
+        availablePlayerslistView.getItems().add(itemBase3);
+        availablePlayerslistView.getItems().add(itemBase4);
+        availablePlayerslistView.getItems().add(itemBase5);
+        availablePlayerslistView.getItems().add(itemBase6);
 
+        
+        
+        
         getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(backBtn);

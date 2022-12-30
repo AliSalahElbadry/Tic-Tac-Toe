@@ -1,11 +1,6 @@
 package tic.tac.toe;
 
 import java.net.URL;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,14 +10,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class LoginFXMLBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Rectangle rectangle;
     protected final ImageView imageView0;
-    protected final TextField usernameTextField;
+    protected final TextField EmailTextField;
     protected final PasswordField passwordTextField;
     protected final Button loginBtn;
     protected final ImageView imageView1;
@@ -33,7 +27,7 @@ public class LoginFXMLBase extends AnchorPane {
         imageView = new ImageView();
         rectangle = new Rectangle();
         imageView0 = new ImageView();
-        usernameTextField = new TextField();
+        EmailTextField = new TextField();
         passwordTextField = new PasswordField();
         loginBtn = new Button();
         imageView1 = new ImageView();
@@ -69,13 +63,13 @@ public class LoginFXMLBase extends AnchorPane {
         imageView0.setPreserveRatio(true);
         imageView0.setImage(new Image(getClass().getResource("Photos/logo.png").toExternalForm()));
 
-        usernameTextField.setLayoutX(224.0);
-        usernameTextField.setLayoutY(164.0);
-        usernameTextField.setPrefHeight(45.0);
-        usernameTextField.setPrefWidth(290.0);
-        usernameTextField.setPromptText("Username");
-        usernameTextField.getStyleClass().add("textField");
-        usernameTextField.setFont(new Font(19.0));
+        EmailTextField.setLayoutX(224.0);
+        EmailTextField.setLayoutY(164.0);
+        EmailTextField.setPrefHeight(45.0);
+        EmailTextField.setPrefWidth(290.0);
+        EmailTextField.setPromptText("Email");
+        EmailTextField.getStyleClass().add("textField");
+        EmailTextField.setFont(new Font(19.0));
 
         passwordTextField.setLayoutX(224.0);
         passwordTextField.setLayoutY(218.0);
@@ -100,11 +94,6 @@ public class LoginFXMLBase extends AnchorPane {
         imageView1.setPreserveRatio(true);
         imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         loginBtn.setGraphic(imageView1);
-        loginBtn.setOnAction((event)->{
-        
-            TicTacToe.scene.setRoot(new MainPageScreenBase());
-        
-        });
 
         dontHaveAnAccountText.setFill(javafx.scene.paint.Color.WHITE);
         dontHaveAnAccountText.setLayoutX(253.0);
@@ -113,17 +102,11 @@ public class LoginFXMLBase extends AnchorPane {
         dontHaveAnAccountText.setStrokeWidth(0.0);
         dontHaveAnAccountText.setText("Don't have an account?");
         dontHaveAnAccountText.setFont(new Font("Serif Regular", 25.0));
-        dontHaveAnAccountText.setOnMouseClicked(event ->{
-        
-            TicTacToe.scene.setRoot(new SignUpBase());
-            
-        });
-       
 
         getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(imageView0);
-        getChildren().add(usernameTextField);
+        getChildren().add(EmailTextField);
         getChildren().add(passwordTextField);
         getChildren().add(loginBtn);
         getChildren().add(dontHaveAnAccountText);

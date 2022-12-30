@@ -29,7 +29,7 @@ public class TicTacToe extends Application {
                     @Override
                     public void run() {
 
-                        scene = new Scene(new LoginFXMLBase(), 750, 480);
+                        scene = new Scene(new AvailablePlayersBase(), 750, 480);
 
                         primaryStage.setScene(scene);
                         primaryStage.show();  
