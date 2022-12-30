@@ -15,7 +15,8 @@ public class TicTacToe extends Application {
         
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
-        primaryStage.show();       
+       primaryStage.show();  
+       
         new Thread(new Runnable() {
             @Override
             public void run() {
