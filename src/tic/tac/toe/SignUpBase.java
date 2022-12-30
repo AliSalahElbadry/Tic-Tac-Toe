@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import tic.tac.toe.TicTacToe;
 
 public class SignUpBase extends AnchorPane {
 
@@ -41,7 +42,7 @@ public class SignUpBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("mainFxmlClass");
-        getStylesheets().add("/tic/tac/toe/signup.css");
+        getStylesheets().add("/tic/tac/toe/css/signup.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
@@ -74,7 +75,7 @@ public class SignUpBase extends AnchorPane {
         usernameTextField.setPrefWidth(290.0);
         usernameTextField.setPromptText("Username");
         usernameTextField.getStyleClass().add("textField");
-        usernameTextField.getStylesheets().add("/tic/tac/toe/signup.css");
+        usernameTextField.getStylesheets().add("/tic/tac/toe/css/signup.css");
         usernameTextField.setFont(new Font(19.0));
 
         EmailTextField.setLayoutX(230.0);
@@ -107,7 +108,7 @@ public class SignUpBase extends AnchorPane {
         signUpBtn.setPrefHeight(37.0);
         signUpBtn.setPrefWidth(165.0);
         signUpBtn.getStyleClass().add("signUp");
-        signUpBtn.getStylesheets().add("/tic/tac/toe/signup.css");
+        signUpBtn.getStylesheets().add("/tic/tac/toe/css/signup.css");
         signUpBtn.setText("Sign Up");
         signUpBtn.setFont(new Font("Serif Regular", 19.0));
 

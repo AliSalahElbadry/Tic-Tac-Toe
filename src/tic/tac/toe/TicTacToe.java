@@ -15,12 +15,13 @@ public class TicTacToe extends Application {
         
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
-        primaryStage.show();       
+       primaryStage.show();  
+       
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
                 }

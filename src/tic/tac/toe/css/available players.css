@@ -14,19 +14,15 @@
 
 .mylistview{
     
-	-fx-border-color:derive(gray,80%);
-        -fx-padding:-20;
+      -fx-border-color:derive(gray,80%);
+      -fx-padding:-7;
       -fx-control-inner-background: #2a47ad;
 }
-
-
 
 .mylistview  .scroll-bar:vertical{
     -fx-background-color:transparent;
 	
 }
-
-
 .mylistview .scroll-bar:vertical .track{
 	-fx-background-color:linear-gradient(to right, derive(gray,50%) 5%,
 	derive(gray,100%) 50%, derive(gray,50%) 100%);

@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import tic.tac.toe.TicTacToe;
 
 public class ProfileScreenBase extends AnchorPane {
 
@@ -58,7 +59,7 @@ public class ProfileScreenBase extends AnchorPane {
         setMaxWidth(750.0);
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
 
         AnchorPane.setBottomAnchor(imageView, 0.0);
         AnchorPane.setLeftAnchor(imageView, 0.0);
@@ -89,7 +90,7 @@ public class ProfileScreenBase extends AnchorPane {
         backBtn.setPrefHeight(70.0);
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
-        backBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         
         logoutBtn.setLayoutX(14.0);
         logoutBtn.setLayoutY(14.0);
@@ -97,7 +98,7 @@ public class ProfileScreenBase extends AnchorPane {
         logoutBtn.setPrefHeight(70.0);
         logoutBtn.setPrefWidth(70.0);
         logoutBtn.getStyleClass().add("backbtn");
-        logoutBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        logoutBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         imageView7.setFitHeight(70.0);
         imageView7.setFitWidth(70.0);
         imageView7.setPickOnBounds(true);
@@ -237,7 +238,7 @@ public class ProfileScreenBase extends AnchorPane {
         gamesRecordBtn.setPrefWidth(118.0);
         gamesRecordBtn.setSnapToPixel(false);
         gamesRecordBtn.getStyleClass().add("recordbtn");
-        gamesRecordBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        gamesRecordBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         gamesRecordBtn.setText("Games Record");
         gamesRecordBtn.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         gamesRecordBtn.setFont(new Font("Serif Regular", 15.0));

@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import tic.tac.toe.TicTacToe;
 
 public  class MainPageScreenBase extends AnchorPane {
 
@@ -45,7 +46,7 @@ public  class MainPageScreenBase extends AnchorPane {
         setMinWidth(USE_PREF_SIZE);
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStylesheets().add("/tic/tac/toe/MainPageScreen.css");
+        getStylesheets().add("/tic/tac/toe/css/MainPageScreen.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);

@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import tic.tac.toe.TicTacToe;
 
 public class PlayersNamesScreenBase extends AnchorPane {
 
@@ -38,7 +39,7 @@ public class PlayersNamesScreenBase extends AnchorPane {
         setId("AnchorPane");
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStylesheets().add("/tic/tac/toe/playersnamesscreen.css");
+        getStylesheets().add("/tic/tac/toe/css/playersnamesscreen.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);

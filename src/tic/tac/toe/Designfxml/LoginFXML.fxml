@@ -27,7 +27,7 @@
             <Image url="@Photos/logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameTextField" layoutX="224.0" layoutY="164.0" prefHeight="45.0" prefWidth="290.0" promptText="Username" styleClass="textField">
+      <TextField fx:id="EmailTextField" layoutX="224.0" layoutY="164.0" prefHeight="45.0" prefWidth="290.0" promptText="Email" styleClass="textField">
          <font>
             <Font size="19.0" />
          </font></TextField>

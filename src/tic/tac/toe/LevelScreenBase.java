@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import tic.tac.toe.TicTacToe;
 
 public  class LevelScreenBase extends AnchorPane {
 
@@ -19,8 +20,6 @@ public  class LevelScreenBase extends AnchorPane {
     protected final ImageView imageView1;
     protected final Button hardButton;
     protected final ImageView imageView2;
-    protected final Button randomButton;
-    protected final ImageView imageView3;
 
     public LevelScreenBase() {
 
@@ -34,8 +33,6 @@ public  class LevelScreenBase extends AnchorPane {
         imageView1 = new ImageView();
         hardButton = new Button();
         imageView2 = new ImageView();
-        randomButton = new Button();
-        imageView3 = new ImageView();
 
         setPrefHeight(480.0);
         setPrefWidth(750.0);
@@ -68,14 +65,14 @@ public  class LevelScreenBase extends AnchorPane {
 
         easyButton.setId("button");
         easyButton.setLayoutX(235.0);
-        easyButton.setLayoutY(179.0);
+        easyButton.setLayoutY(200.0);
         easyButton.setMaxWidth(USE_PREF_SIZE);
         easyButton.setMinWidth(USE_PREF_SIZE);
         easyButton.setMnemonicParsing(false);
         easyButton.setPrefHeight(40.0);
         easyButton.setPrefWidth(260.0);
         easyButton.setStyle("-fx-content-display: center;");
-        easyButton.getStylesheets().add("/tic/tac/toe/MainPageScreen.css");
+        easyButton.getStylesheets().add("/tic/tac/toe/css/MainPageScreen.css");
         easyButton.setText("Easy");
         easyButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         easyButton.setFont(new Font("Serif Regular", 24.0));
@@ -108,14 +105,14 @@ public  class LevelScreenBase extends AnchorPane {
 
         mediumButton.setId("button");
         mediumButton.setLayoutX(235.0);
-        mediumButton.setLayoutY(232.0);
+        mediumButton.setLayoutY(253.0);
         mediumButton.setMaxWidth(USE_PREF_SIZE);
         mediumButton.setMinWidth(USE_PREF_SIZE);
         mediumButton.setMnemonicParsing(false);
         mediumButton.setPrefHeight(40.0);
         mediumButton.setPrefWidth(260.0);
         mediumButton.setStyle("-fx-content-display: center;");
-        mediumButton.getStylesheets().add("/tic/tac/toe/MainPageScreen.css");
+        mediumButton.getStylesheets().add("/tic/tac/toe/css/MainPageScreen.css");
         mediumButton.setText("Medium");
         mediumButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         mediumButton.setFont(new Font("Serif Regular", 24.0));
@@ -134,14 +131,14 @@ public  class LevelScreenBase extends AnchorPane {
 
         hardButton.setId("button");
         hardButton.setLayoutX(235.0);
-        hardButton.setLayoutY(283.0);
+        hardButton.setLayoutY(303.0);
         hardButton.setMaxWidth(USE_PREF_SIZE);
         hardButton.setMinWidth(USE_PREF_SIZE);
         hardButton.setMnemonicParsing(false);
         hardButton.setPrefHeight(40.0);
         hardButton.setPrefWidth(260.0);
         hardButton.setStyle("-fx-content-display: center;");
-        hardButton.getStylesheets().add("/tic/tac/toe/MainPageScreen.css");
+        hardButton.getStylesheets().add("/tic/tac/toe/css/MainPageScreen.css");
         hardButton.setText("Hard");
         hardButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         hardButton.setFont(new Font("Serif Regular", 24.0));
@@ -158,31 +155,6 @@ public  class LevelScreenBase extends AnchorPane {
             
         });
 
-        randomButton.setId("button");
-        randomButton.setLayoutX(235.0);
-        randomButton.setLayoutY(337.0);
-        randomButton.setMaxWidth(USE_PREF_SIZE);
-        randomButton.setMinWidth(USE_PREF_SIZE);
-        randomButton.setMnemonicParsing(false);
-        randomButton.setPrefHeight(40.0);
-        randomButton.setPrefWidth(260.0);
-        randomButton.setStyle("-fx-content-display: center;");
-        randomButton.getStylesheets().add("/tic/tac/toe/MainPageScreen.css");
-        randomButton.setText("Random");
-        randomButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
-        randomButton.setFont(new Font("Serif Regular", 24.0));
-
-        imageView3.setFitHeight(45.0);
-        imageView3.setFitWidth(260.0);
-        imageView3.setPickOnBounds(true);
-        imageView3.setPreserveRatio(true);
-        imageView3.setImage(new Image(getClass().getResource("Photos/buttonbackground1.png").toExternalForm()));
-        randomButton.setGraphic(imageView3);
-        randomButton.setOnAction(event ->{
-        
-            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
-            
-        });
 
         getChildren().add(imageView);
         getChildren().add(rectangle);
@@ -191,7 +163,6 @@ public  class LevelScreenBase extends AnchorPane {
         getChildren().add(backButton);
         getChildren().add(mediumButton);
         getChildren().add(hardButton);
-        getChildren().add(randomButton);
 
     }
 }

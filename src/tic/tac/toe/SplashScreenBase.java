@@ -18,7 +18,7 @@ public class SplashScreenBase extends AnchorPane {
         setId("AnchorPane");
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStylesheets().add("/tic/tac/toe/splashscreen.css");
+        getStylesheets().add("/tic/tac/toe/css/splashscreen.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);

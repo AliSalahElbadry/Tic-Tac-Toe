@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import tic.tac.toe.TicTacToe;
 
 public class GamesRecordScreenBase extends AnchorPane {
 
@@ -29,7 +30,7 @@ public class GamesRecordScreenBase extends AnchorPane {
         setPrefHeight(480.0);
         setPrefWidth(750.0);
         getStyleClass().add("mainback");
-        getStylesheets().add("/tic/tac/toe/gamesrecordsceen.css");
+        getStylesheets().add("/tic/tac/toe/css/gamesrecordsceen.css");
 
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
@@ -52,7 +53,7 @@ public class GamesRecordScreenBase extends AnchorPane {
         hestoryGamesRecordListView.setLayoutY(105.0);
         hestoryGamesRecordListView.setPrefHeight(274.0);
         hestoryGamesRecordListView.setPrefWidth(414.0);
-        hestoryGamesRecordListView.getStylesheets().add("/tic/tac/toe/gamesrecordsceen.css");
+        hestoryGamesRecordListView.getStylesheets().add("/tic/tac/toe/css/gamesrecordsceen.css");
         hestoryGamesRecordListView.getStyleClass().add("mylistview");
         
         hestoryGamesRecordListView.getItems().add(new GamesRecordItemSceenBase());
@@ -67,7 +68,7 @@ public class GamesRecordScreenBase extends AnchorPane {
         backBtn.setPrefHeight(70.0);
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
-        backBtn.getStylesheets().add("/tic/tac/toe/ProfileScreen.css");
+        backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         backBtn.setOnAction(event ->{
         
             TicTacToe.scene.setRoot(new ProfileScreenBase());
