@@ -54,7 +54,8 @@ public class LoginFXMLBase extends AnchorPane {
         rectangle.setStroke(javafx.scene.paint.Color.TRANSPARENT);
         rectangle.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
         rectangle.setWidth(450.0);
-
+        rectangle.setFocusTraversable(true);
+        
         imageView0.setFitHeight(101.0);
         imageView0.setFitWidth(307.0);
         imageView0.setLayoutX(224.0);

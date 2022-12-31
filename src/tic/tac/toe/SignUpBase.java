@@ -26,7 +26,7 @@ public class SignUpBase extends AnchorPane {
     protected final Text haveAnAccountText;
 
     public SignUpBase() {
-
+        
         imageView = new ImageView();
         rectangle = new Rectangle();
         imageView0 = new ImageView();
@@ -49,7 +49,7 @@ public class SignUpBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setImage(new Image(getClass().getResource("Photos/background.jpg").toExternalForm()));
-
+        
         rectangle.setArcHeight(100.0);
         rectangle.setArcWidth(100.0);
         rectangle.setFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
@@ -59,7 +59,8 @@ public class SignUpBase extends AnchorPane {
         rectangle.setStroke(javafx.scene.paint.Color.TRANSPARENT);
         rectangle.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
         rectangle.setWidth(450.0);
-
+        rectangle.setFocusTraversable(true);
+       
         imageView0.setFitHeight(101.0);
         imageView0.setFitWidth(307.0);
         imageView0.setLayoutX(224.0);
@@ -68,7 +69,7 @@ public class SignUpBase extends AnchorPane {
         imageView0.setPreserveRatio(true);
         imageView0.getStyleClass().add("logo");
         imageView0.setImage(new Image(getClass().getResource("Photos/logo.png").toExternalForm()));
-
+        
         usernameTextField.setLayoutX(230.0);
         usernameTextField.setLayoutY(118.0);
         usernameTextField.setPrefHeight(35.0);
