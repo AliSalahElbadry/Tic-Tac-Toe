@@ -68,13 +68,13 @@ public class PlayersNamesScreenBase extends AnchorPane {
 
         imageView1.setFitHeight(48.0);
         imageView1.setFitWidth(170.0);
-        imageView1.setLayoutX(275.0);
+        imageView1.setLayoutX(300.0);
         imageView1.setLayoutY(300.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
         imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
 
-        startButton.setLayoutX(275.0);
+        startButton.setLayoutX(300.0);
         startButton.setLayoutY(300.0);
         startButton.setMnemonicParsing(false);
         startButton.setPrefHeight(37.0);
@@ -89,19 +89,19 @@ public class PlayersNamesScreenBase extends AnchorPane {
             
         });
 
-        Player1TextField.setLayoutX(227.0);
+        Player1TextField.setLayoutX(250.0);
         Player1TextField.setLayoutY(173.0);
         Player1TextField.setPrefHeight(25.0);
         Player1TextField.setPrefWidth(255.0);
-        Player1TextField.setPromptText("Player1");
+        Player1TextField.setPromptText("Player1 Name");
         Player1TextField.setStyle("-fx-background-radius: 30;");
         Player1TextField.setFont(new Font("Serif Regular", 20.0));
 
-        Player2TextField.setLayoutX(227.0);
+        Player2TextField.setLayoutX(250.0);
         Player2TextField.setLayoutY(236.0);
         Player2TextField.setPrefHeight(25.0);
         Player2TextField.setPrefWidth(255.0);
-        Player2TextField.setPromptText("Player2");
+        Player2TextField.setPromptText("Player2 Name");
         Player2TextField.setStyle("-fx-background-radius: 30;");
         Player2TextField.setFont(new Font("Serif Regular", 20.0));
 

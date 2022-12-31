@@ -171,7 +171,7 @@ public  class MainPageScreenBase extends AnchorPane {
         });
 
         computerText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
-        computerText.setLayoutX(84.0);
+        computerText.setLayoutX(88.0);
         computerText.setLayoutY(358.0);
         computerText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         computerText.setStrokeWidth(0.0);

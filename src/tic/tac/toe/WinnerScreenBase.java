@@ -1,5 +1,7 @@
 package tic.tac.toe;
 
+
+
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,8 +33,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         setId("AnchorPane");
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStyleClass().add("mainback");
-        getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
+        getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
 
         AnchorPane.setBottomAnchor(congMediaView, 0.0);
         AnchorPane.setLeftAnchor(congMediaView, 0.0);
@@ -49,7 +50,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setStyle("-fx-rotate: 3;");
-        imageView.setImage(new Image(getClass().getResource("Photos/Title_image.png").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource("../Photos/Title_image.png").toExternalForm()));
 
         winnerText.setFill(javafx.scene.paint.Color.WHITE);
         winnerText.setLayoutX(310.0);
@@ -64,8 +65,8 @@ public abstract class WinnerScreenBase extends AnchorPane {
         playAgainButtton.setMnemonicParsing(false);
         playAgainButtton.setPrefHeight(50.0);
         playAgainButtton.setPrefWidth(129.0);
-        playAgainButtton.getStyleClass().add("returnbtn");
-        playAgainButtton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
+        playAgainButtton.getStyleClass().add("playagainbtn");
+        playAgainButtton.getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
         playAgainButtton.setText("Play Again");
         playAgainButtton.setFont(new Font("Serif Regular", 22.0));
 
@@ -73,7 +74,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         imageView0.setFitWidth(200.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
+        imageView0.setImage(new Image(getClass().getResource("../Photos/buttonbackground.png").toExternalForm()));
         playAgainButtton.setGraphic(imageView0);
 
         mainPageButton.setLayoutX(495.0);
@@ -82,7 +83,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         mainPageButton.setPrefHeight(76.0);
         mainPageButton.setPrefWidth(129.0);
         mainPageButton.getStyleClass().add("returnbtn");
-        mainPageButton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
+        mainPageButton.getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
         mainPageButton.setText("Main Page");
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
 
@@ -90,7 +91,7 @@ public abstract class WinnerScreenBase extends AnchorPane {
         imageView1.setFitWidth(200.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
+        imageView1.setImage(new Image(getClass().getResource("../Photos/buttonbackground.png").toExternalForm()));
         mainPageButton.setGraphic(imageView1);
 
         getChildren().add(congMediaView);
