@@ -90,7 +90,7 @@ public class LoginFXMLBase extends AnchorPane {
         loginBtn.setFont(new Font("Serif Regular", 20.0));
         loginBtn.setOnAction(e->{
         
-            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            TicTacToe.scene.setRoot(new AvailablePlayersBase());
         
         });
         imageView1.setFitHeight(37.0);

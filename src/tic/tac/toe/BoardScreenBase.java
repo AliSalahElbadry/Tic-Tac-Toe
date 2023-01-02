@@ -45,7 +45,7 @@ public  class BoardScreenBase extends AnchorPane {
     protected final ImageView imageView2;
     protected final Text player2Text;
     protected final ImageView imageView3;
-    protected final RadioButton recordRadioButton;
+    
 
     public BoardScreenBase() {
 
@@ -79,7 +79,7 @@ public  class BoardScreenBase extends AnchorPane {
         imageView2 = new ImageView();
         player2Text = new Text();
         imageView3 = new ImageView();
-        recordRadioButton = new RadioButton();
+        
 
         setId("AnchorPane");
         setPrefHeight(480.0);
@@ -145,7 +145,7 @@ public  class BoardScreenBase extends AnchorPane {
         box00.setLayoutY(63.0);
         box00.setPickOnBounds(true);
         box00.setPreserveRatio(true);
-        box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+        //box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle0.setArcHeight(70.0);
         rectangle0.setArcWidth(70.0);
@@ -163,7 +163,7 @@ public  class BoardScreenBase extends AnchorPane {
         box01.setLayoutY(61.0);
         box01.setPickOnBounds(true);
         box01.setPreserveRatio(true);
-        box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+        //box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
 
         rectangle1.setArcHeight(70.0);
         rectangle1.setArcWidth(70.0);
@@ -181,7 +181,7 @@ public  class BoardScreenBase extends AnchorPane {
         box02.setLayoutY(69.0);
         box02.setPickOnBounds(true);
         box02.setPreserveRatio(true);
-        box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+       // box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle2.setArcHeight(70.0);
         rectangle2.setArcWidth(70.0);
@@ -199,7 +199,7 @@ public  class BoardScreenBase extends AnchorPane {
         box10.setLayoutY(162.0);
         box10.setPickOnBounds(true);
         box10.setPreserveRatio(true);
-        box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+        //box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
 
         rectangle3.setArcHeight(70.0);
         rectangle3.setArcWidth(70.0);
@@ -217,7 +217,7 @@ public  class BoardScreenBase extends AnchorPane {
         box11.setLayoutY(165.0);
         box11.setPickOnBounds(true);
         box11.setPreserveRatio(true);
-        box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+       // box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle4.setArcHeight(70.0);
         rectangle4.setArcWidth(70.0);
@@ -235,7 +235,7 @@ public  class BoardScreenBase extends AnchorPane {
         box12.setLayoutY(163.0);
         box12.setPickOnBounds(true);
         box12.setPreserveRatio(true);
-        box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+      //  box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
 
         rectangle5.setArcHeight(70.0);
         rectangle5.setArcWidth(70.0);
@@ -253,7 +253,7 @@ public  class BoardScreenBase extends AnchorPane {
         box20.setLayoutY(266.0);
         box20.setPickOnBounds(true);
         box20.setPreserveRatio(true);
-        box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+      //  box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle6.setArcHeight(70.0);
         rectangle6.setArcWidth(70.0);
@@ -271,7 +271,7 @@ public  class BoardScreenBase extends AnchorPane {
         box21.setLayoutY(264.0);
         box21.setPickOnBounds(true);
         box21.setPreserveRatio(true);
-        box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+      //  box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
 
         rectangle7.setArcHeight(70.0);
         rectangle7.setArcWidth(70.0);
@@ -289,7 +289,7 @@ public  class BoardScreenBase extends AnchorPane {
         box22.setLayoutY(264.0);
         box22.setPickOnBounds(true);
         box22.setPreserveRatio(true);
-        box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+      //  box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         scorePlayer1.setFill(javafx.scene.paint.Color.WHITE);
         scorePlayer1.setLayoutX(230.0);
@@ -368,18 +368,6 @@ public  class BoardScreenBase extends AnchorPane {
         imageView3.setRotate(90.0);
         imageView3.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
 
-        recordRadioButton.setLayoutX(30.0);
-        recordRadioButton.setLayoutY(5.0);
-        recordRadioButton.setMnemonicParsing(false);
-        recordRadioButton.setText("Record The Game");
-        recordRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        recordRadioButton.setFont(new Font("System Bold", 18.0));
-        
-        if (GamesRecordItemSceenBase.flag == true){
-            recordRadioButton.setVisible(false);
-        }
-        
-
         getChildren().add(imageView);
         getChildren().add(bordRectangle);
         getChildren().add(backButton);
@@ -410,7 +398,7 @@ public  class BoardScreenBase extends AnchorPane {
         getChildren().add(imageView2);
         getChildren().add(player2Text);
         getChildren().add(imageView3);
-        getChildren().add(recordRadioButton);
+        
 
     }
 }

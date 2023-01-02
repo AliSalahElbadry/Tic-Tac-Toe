@@ -1,6 +1,7 @@
 package tic.tac.toe;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +23,8 @@ public class PickYourSideScreenBase extends AnchorPane {
     protected final ImageView imageView2;
     protected final Text text;
     protected final ImageView imageView3;
+    protected final RadioButton recordRadioButton;
+    
 
     public PickYourSideScreenBase() {
 
@@ -36,6 +39,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         imageView2 = new ImageView();
         text = new Text();
         imageView3 = new ImageView();
+        recordRadioButton = new RadioButton();
 
         setId("pickYourSide");
         setMaxHeight(480.0);
@@ -54,7 +58,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         container.setArcHeight(5.0);
         container.setArcWidth(5.0);
         container.setFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
-        container.setHeight(229.0);
+        container.setHeight(250.0);
         container.setLayoutX(144.0);
         container.setLayoutY(140.0);
         container.setStroke(javafx.scene.paint.Color.BLACK);
@@ -62,6 +66,17 @@ public class PickYourSideScreenBase extends AnchorPane {
         container.setStrokeWidth(0.0);
         container.setStyle("-fx-arc-height: 60; -fx-arc-width: 60;");
         container.setWidth(455.0);
+        
+        recordRadioButton.setLayoutX(290.0);
+        recordRadioButton.setLayoutY(355.0);
+        recordRadioButton.setMnemonicParsing(false);
+        recordRadioButton.setText("Record The Game");
+        recordRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        recordRadioButton.setFont(new Font("System Bold", 18.0));
+        
+        if (GamesRecordItemSceenBase.flag == true){
+            recordRadioButton.setVisible(false);
+        }
 
         vsImage.setFitHeight(197.0);
         vsImage.setFitWidth(443.0);
@@ -162,6 +177,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         getChildren().add(backBtn);
         getChildren().add(text);
         getChildren().add(imageView3);
+        getChildren().add(recordRadioButton);
 
     }
 }
