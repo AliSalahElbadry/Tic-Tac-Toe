@@ -77,7 +77,7 @@ public  class LevelScreenBase extends AnchorPane {
         easyButton.setTextFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
         easyButton.setFont(new Font("Serif Regular", 24.0));
         easyButton.setOnAction(event ->{
-        
+            
             TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
             
         });
@@ -150,8 +150,8 @@ public  class LevelScreenBase extends AnchorPane {
         imageView2.setImage(new Image(getClass().getResource("Photos/buttonbackground1.png").toExternalForm()));
         hardButton.setGraphic(imageView2);
         hardButton.setOnAction(event ->{
-        
-            TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
+            LevelHardClass hard=new LevelHardClass();
+            TicTacToe.scene.setRoot(hard.boardScreen);
             
         });
 
