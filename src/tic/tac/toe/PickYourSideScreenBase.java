@@ -24,6 +24,7 @@ public class PickYourSideScreenBase extends AnchorPane {
     protected final Text text;
     protected final ImageView imageView3;
     protected final RadioButton recordRadioButton;
+    public static String player1Side;
     
 
     public PickYourSideScreenBase() {
@@ -98,7 +99,8 @@ public class PickYourSideScreenBase extends AnchorPane {
         oBtn.setOnAction(event ->{
         
             GamesRecordItemSceenBase.flag = false ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            player1Side="O";
+            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
             
 
             
@@ -122,7 +124,8 @@ public class PickYourSideScreenBase extends AnchorPane {
         xBtn.setOnAction(event ->{
         
             GamesRecordItemSceenBase.flag = false ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            player1Side="X";
+            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
             
             
         });
