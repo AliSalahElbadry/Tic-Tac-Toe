@@ -1,4 +1,5 @@
 package tic.tac.toe;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -30,7 +31,7 @@ public class TicTacToe extends Application {
                     @Override
                     public void run() {
 
-                        scene = new Scene(new LoginFXMLBase(), 750, 480);
+                        scene = new Scene(new MainPageScreenBase(), 750, 480);
 
                         primaryStage.setScene(scene);
                         primaryStage.show();  

@@ -101,4 +101,12 @@ public  class WinnerScreenBase extends AnchorPane {
         getChildren().add(mainPageButton);
 
     }
+    public void showWinner(String winnerName,boolean draw)
+    {
+        if(!draw)
+        {
+            winnerText.setText(winnerName);
+         
+        }
+    }
 }

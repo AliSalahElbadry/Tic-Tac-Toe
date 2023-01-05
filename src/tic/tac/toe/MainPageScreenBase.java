@@ -127,7 +127,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
         
-            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            TicTacToe.scene.setRoot(new LoginFXMLBase());
             
         });
 
@@ -166,7 +166,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
         onlineImageView.setOnMouseClicked(event ->{
         
-            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            TicTacToe.scene.setRoot(new  LoginFXMLBase());
             
         });
 
@@ -205,7 +205,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setFont(new Font("Serif Regular", 30.0));
         onlineText.setOnMouseClicked(event ->{
         
-            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            TicTacToe.scene.setRoot(new LoginFXMLBase());
             
         });
 

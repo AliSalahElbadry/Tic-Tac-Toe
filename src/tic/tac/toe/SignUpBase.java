@@ -121,7 +121,7 @@ public class SignUpBase extends AnchorPane {
         signUpBtn.setGraphic(imageView1);
         signUpBtn.setOnAction(event ->{
         
-            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            TicTacToe.scene.setRoot(new AvailablePlayersBase());
         
         });
 
