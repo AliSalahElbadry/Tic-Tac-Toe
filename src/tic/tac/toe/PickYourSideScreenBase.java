@@ -120,7 +120,10 @@ public class PickYourSideScreenBase extends AnchorPane {
                     TicTacToe.scene.setRoot(medium.boardScreenBase);
                     break;
                 case 2:
-                    //hard
+                    
+                    LevelHardClass hard=new LevelHardClass();
+                    LevelHardClass.playerSide=1;
+                    TicTacToe.scene.setRoot(hard.boardScreen);
                     break;
                 case 3:
                     player1Side="O";
@@ -167,7 +170,9 @@ public class PickYourSideScreenBase extends AnchorPane {
                     TicTacToe.scene.setRoot(medium.boardScreenBase);
                     break;
                 case 2:
-                    //hard
+                     LevelHardClass hard=new LevelHardClass();
+                    LevelHardClass.playerSide=0;
+                    TicTacToe.scene.setRoot(hard.boardScreen);
                     break;
                 case 3:
                     player1Side="X";

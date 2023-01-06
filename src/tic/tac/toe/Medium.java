@@ -8,7 +8,8 @@ public class Medium{
     
     public static String side ;
     BoardScreenBase boardScreenBase;
-
+    public String PlayerName = "you";
+            
     int board[][] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
     
     boolean win = false ;
@@ -16,9 +17,13 @@ public class Medium{
     public Medium(){
        
         boardScreenBase = new BoardScreenBase();
-        boardScreenBase.levelText.setWrappingWidth(80);
+        boardScreenBase.levelText.setLayoutX(330);
+        boardScreenBase.levelText.setWrappingWidth(100);
         boardScreenBase.levelText.setText("Medium");
-        
+        boardScreenBase.player1Text.setText(PlayerName);
+        boardScreenBase.player2Text.setWrappingWidth(100);
+        boardScreenBase.player2Text.setLayoutX(445);
+        boardScreenBase.player2Text.setText("Computer");
          click();
         
         
@@ -31,7 +36,9 @@ public class Medium{
                 printSides(00);
                 board[0][0]=1;
                 winner();
+                if(isMovesLeft(board)){
                 computer();
+                }
                 winner();
 
             }
@@ -44,7 +51,9 @@ public class Medium{
             printSides(01);
             board[0][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
 
             }
@@ -56,7 +65,9 @@ public class Medium{
             printSides(02);
             board[0][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -66,7 +77,9 @@ public class Medium{
             printSides(10);
             board[1][0]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -75,7 +88,9 @@ public class Medium{
             printSides(11);
             board[1][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -85,7 +100,9 @@ public class Medium{
             printSides(12);
             board[1][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -95,7 +112,9 @@ public class Medium{
             printSides(20);
             board[2][0]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -105,7 +124,9 @@ public class Medium{
             printSides(21);
             board[2][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -115,7 +136,9 @@ public class Medium{
             printSides(22);
             board[2][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -216,11 +239,18 @@ public class Medium{
     public void winner(){
     
         if(pridectWinner(board)==1){
-            System.err.println("x wins");
+            System.err.println(side+ " wins");
             win = true;
+        
         }else if(pridectWinner(board)==0){
-            System.err.println("o wins");
+            if(side =="x"){
+                side = "o";
+            }else{
+                side = "x";
+            }
+            System.err.println(side+ " wins");
             win = true;
+        
         }else if(! isMovesLeft(board)){
             System.err.println("draw");
             win = true; 

@@ -91,6 +91,7 @@ public class PlayersNamesScreenBase extends AnchorPane {
             player1Name=Player1TextField.getText().toString();
             player2Name=Player2TextField.getText().toString();
             if((!player1Name.equals(""))&&(!player2Name.equals(""))){
+                PickYourSideScreenBase.level=3;
                 TicTacToe.scene.setRoot(new PickYourSideScreenBase());
             }
             else{

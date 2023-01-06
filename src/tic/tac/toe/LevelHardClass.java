@@ -1,5 +1,7 @@
 package tic.tac.toe;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 
 /**
@@ -13,8 +15,9 @@ public class LevelHardClass  {
     int[][]board;
     public static int playerSide=0;
     private boolean win=false;
+    public static String PlayerName="Ali";
     public LevelHardClass()
-   {   
+    {   
        boardScreen=new BoardScreenBase();
        board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
        boardScreen.levelText.setText("Hard");
@@ -26,10 +29,8 @@ public class LevelHardClass  {
               board[0][0]=playerSide;
               setMoveOnScreen("00",""+(playerSide==0?'X':'O'));
               int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
        
@@ -40,10 +41,8 @@ public class LevelHardClass  {
               board[1][0]=playerSide;
               setMoveOnScreen("10",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -53,10 +52,8 @@ public class LevelHardClass  {
               board[2][0]=playerSide;
               setMoveOnScreen("20",""+(playerSide==0?'X':'O'));
             int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -66,10 +63,8 @@ public class LevelHardClass  {
               board[0][1]=playerSide;
               setMoveOnScreen("01",""+(playerSide==0?'X':'O'));
             int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -79,10 +74,8 @@ public class LevelHardClass  {
               board[1][1]=playerSide;
               setMoveOnScreen("11",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -93,10 +86,8 @@ public class LevelHardClass  {
               board[2][1]=playerSide;
               setMoveOnScreen("21",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else if(ev==-1)
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -107,10 +98,8 @@ public class LevelHardClass  {
               board[0][2]=playerSide;
               setMoveOnScreen("02",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
             
@@ -122,10 +111,8 @@ public class LevelHardClass  {
               board[1][2]=playerSide;
               setMoveOnScreen("12",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }         
         });
@@ -135,10 +122,8 @@ public class LevelHardClass  {
               board[2][2]=playerSide;
               setMoveOnScreen("22",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
-                if(ev==0||ev==1)
-                {
-                    win=true;
-                }else
+                    ShowWinner(ev);
+                    if(ev==-1)
                     moveComputer();
           }
         });
@@ -146,39 +131,23 @@ public class LevelHardClass  {
    
    private void moveComputer()
    {
-        if(!isMovesLeft(board))
-         {
-           System.err.println("draw");//here draw
-           return;
-        }
          int[]best=getbestMove();
        if(best[0]!=-1&&best[1]!=-1)
        {
            board[best[0]][best[1]]=playerSide==0?1:0;
            int winner=pridectWinner(board);
            setMoveOnScreen(""+best[0]+""+best[1],playerSide==0?"O":"X");
-           boolean hasEmpty=isMovesLeft(board);
-           if(winner==playerSide)
-           {
-               System.err.println("Player Wins");//here player wins
-               win=true;
-           }else if(winner==(playerSide==0?1:0))
-           {
-               System.err.println("computer Wins"+winner);
-               
-               win=true;//here computer wins
-           }else if(!hasEmpty)
-           {
-                System.err.println("Draw");//here draw
-                
-               win=true;
-           }
-       }
-          
+             
+             try {
+                 Thread.sleep(10);
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(LevelHardClass.class.getName()).log(Level.SEVERE, null, ex);
+             }
+           ShowWinner(winner);
+       }    
    }
    private int pridectWinner(int[][] board)
    {
-      
       for(int i=0;i<3;i++)
       {
           if(board[0][i]==board[1][i]&&board[1][i]==board[2][i]&&board[2][i]!=-1)
@@ -247,6 +216,7 @@ public class LevelHardClass  {
               
                break;
        }
+            
    }
 
    private Boolean isMovesLeft(int board[][])
@@ -286,6 +256,7 @@ public class LevelHardClass  {
             }
         }
     }
+    if(bestwin[0]!=-1){
     board[bestwin[0]][bestwin[1]]=playerSide==0?1:0;
     if(pridectWinner(board)==(playerSide==0?1:0))
     {
@@ -293,6 +264,8 @@ public class LevelHardClass  {
         return bestwin;
     }
     board[bestwin[0]][bestwin[1]]=-1;
+    }
+    if(bestStop[0]!=-1){
     board[bestStop[0]][bestStop[1]]=playerSide;
     if(pridectWinner(board)==(playerSide))
     {
@@ -300,6 +273,7 @@ public class LevelHardClass  {
         return bestStop;
     }
     board[bestStop[0]][bestStop[1]]=-1;
+    }
     if(board[1][1]==-1)
     {
         return new int[]{1,1};
@@ -335,5 +309,20 @@ public class LevelHardClass  {
              }
          }
      return depth;
+    }
+
+    private void ShowWinner(int ev) {
+     if(ev==0||ev==1)
+     {
+         win=true; 
+         WinnerScreenBase winner=new WinnerScreenBase();
+         winner.PrepareWinnerScreen(ev==playerSide?PlayerName:"Computer", ev==playerSide?1:-1);
+        
+     }else if(ev==-1&&!isMovesLeft(board))
+     {
+         win=true;
+          WinnerScreenBase winner=new WinnerScreenBase();
+          winner.PrepareWinnerScreen("Draw",0);
+     }
     }
 }
