@@ -24,11 +24,15 @@ public class PickYourSideScreenBase extends AnchorPane {
     protected final Text text;
     protected final ImageView imageView3;
     protected final RadioButton recordRadioButton;
+
+    public static int level=0;
+
     public static String player1Side;
+
     
 
     public PickYourSideScreenBase() {
-
+     
         imageView = new ImageView();
         container = new Rectangle();
         vsImage = new ImageView();
@@ -41,6 +45,8 @@ public class PickYourSideScreenBase extends AnchorPane {
         text = new Text();
         imageView3 = new ImageView();
         recordRadioButton = new RadioButton();
+        
+        
 
         setId("pickYourSide");
         setMaxHeight(480.0);
@@ -97,10 +103,34 @@ public class PickYourSideScreenBase extends AnchorPane {
         oBtn.getStyleClass().add("obtn");
         oBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         oBtn.setOnAction(event ->{
+         
         
-            GamesRecordItemSceenBase.flag = false ;
-            player1Side="O";
-            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+         GamesRecordItemSceenBase.flag = false ;
+            switch(level){
+                case 0 :
+                   Easy.side=0;
+                    Easy easy=new Easy();
+                    TicTacToe.scene.setRoot(easy.boardScreen);
+                    break;
+                case 1:
+                    Medium medium = new Medium();
+                    Medium.side = "o";
+                    TicTacToe.scene.setRoot(medium.boardScreenBase);
+                    break;
+                case 2:
+                    //hard
+                    break;
+                case 3:
+                    player1Side="O";
+                    TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+                    break;
+                default :
+                    System.out.print("");
+                    break;
+            
+            }
+         
+
             
 
             
@@ -122,12 +152,33 @@ public class PickYourSideScreenBase extends AnchorPane {
         xBtn.getStyleClass().add("xbtn");
         xBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         xBtn.setOnAction(event ->{
-        
-            GamesRecordItemSceenBase.flag = false ;
-            player1Side="X";
-            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+
+
+              GamesRecordItemSceenBase.flag = false ;
+            switch(level){
+                case 0 :
+                   Easy.side=1;
+                    Easy easy=new Easy();
+                    TicTacToe.scene.setRoot(easy.boardScreen);
+                    break;
+                case 1:
+                    Medium medium = new Medium();
+                    Medium.side = "x";
+                    TicTacToe.scene.setRoot(medium.boardScreenBase);
+                    break;
+                case 2:
+                    //hard
+                    break;
+                case 3:
+                    player1Side="X";
+                    TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+                    break;
+                default :
+                    System.out.print("");
+                    break;
+
             
-            
+            }
         });
 
         imageView1.setFitHeight(150.0);

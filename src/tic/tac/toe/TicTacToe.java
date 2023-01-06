@@ -1,5 +1,6 @@
 package tic.tac.toe;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -10,7 +11,7 @@ public class TicTacToe extends Application {
     
     public static Scene scene ;
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
         primaryStage.setResizable(false);
         scene = new Scene(new SplashScreenBase(), 750, 480);
         
