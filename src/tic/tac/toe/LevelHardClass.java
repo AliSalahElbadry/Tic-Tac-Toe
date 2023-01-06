@@ -13,10 +13,12 @@ public class LevelHardClass  {
     int[][]board;
     public static int playerSide=0;
     private boolean win=false;
-   public LevelHardClass()
+    public LevelHardClass()
    {   
        boardScreen=new BoardScreenBase();
        board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+       boardScreen.levelText.setText("Hard");
+       boardScreen.player1Text.setText("Computer");
        
        boardScreen.box00.setOnMouseClicked(e->{
           if(board[0][0]==-1&&win==false&&isMovesLeft(board))
