@@ -70,6 +70,8 @@ public  class WinnerScreenBase extends AnchorPane {
             switch(PickYourSideScreenBase.level)
             {
                 case 0:
+                    Easy easy=new Easy();
+                    TicTacToe.scene.setRoot(easy.boardScreen);
                     break;
                 case 1:
                     break;
@@ -102,6 +104,8 @@ public  class WinnerScreenBase extends AnchorPane {
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
         mainPageButton.setOnMouseClicked(e->{
         TicTacToe.scene.setRoot(new MainPageScreenBase());
+        Easy.computerScore=0;
+        Easy.computerScore=0;
         });
         imageView1.setFitHeight(150.0);
         imageView1.setFitWidth(200.0);
@@ -119,24 +123,15 @@ public  class WinnerScreenBase extends AnchorPane {
     }
      public void PrepareWinnerScreen(String Name,int mode)
      {
-         if(PickYourSideScreenBase.level>=0||PickYourSideScreenBase.level<=2)
+         if(PickYourSideScreenBase.level==0||PickYourSideScreenBase.level==1||PickYourSideScreenBase.level==2)
          {
              winnerText.setVisible(false);
              imageView.setVisible(false);
          }
         winnerText.setText(Name);
         String path="";
-        if(mode==-1)//lose
-        {
-          path ="G:\\ITI\\java project\\Tic-Tac-Toe\\src\\tic\\tac\\toe\\Photos\\lose.mp4";
-        }else if(mode==0)//draw
-        {
-          path ="G:\\ITI\\java project\\Tic-Tac-Toe\\src\\tic\\tac\\toe\\Photos\\draw.mp4";
-             
-        }else if(mode==1)//win
-        {
-          path ="G:\\ITI\\java project\\Tic-Tac-Toe\\src\\tic\\tac\\toe\\Photos\\winner.mp4";
-        }
+        
+       
         Media media = new Media(new File(path).toURI().toString());  
          
         MediaPlayer mediaPlayer = new MediaPlayer(media); 

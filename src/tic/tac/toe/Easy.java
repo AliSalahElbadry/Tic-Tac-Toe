@@ -7,13 +7,22 @@ import javafx.scene.image.Image;
 
 public class Easy {
     BoardScreenBase boardScreen;
-    static int side;
+    WinnerScreenBase winnerScreen =new WinnerScreenBase();
+    static int side=0;
+    static int playerScore=0;
+    static int computerScore=0;
     boolean isWin;
     int board[][] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
     
     public Easy()
-    {
-        boardScreen =new BoardScreenBase();
+    { boardScreen =new BoardScreenBase();
+    boardScreen.player2Text.setWrappingWidth(100);
+    boardScreen.player2Text.setLayoutX(435);
+        boardScreen.player1Text.setText("You");
+        boardScreen.player2Text.setText("Computer");
+        boardScreen.scorePlayer1.setText(String.valueOf(playerScore));
+        boardScreen.scorePlayer2.setText(String.valueOf(computerScore));
+       
         boardScreen.levelText.setText("Easy");
         isWin=false;
         if(side==0)
@@ -24,7 +33,7 @@ public class Easy {
         boardScreen.box00.setOnMouseClicked(e->{ 
         if(isPositionEmpty(board[0][0])&& !isWin){
            
-            playInPositionC("00");
+            playInPositionP("00");
             
             checkMove();   
             
@@ -114,12 +123,13 @@ public class Easy {
         if(isWinner==-1)
         {
             if(checkDraw())
-                return;
+                winnerScreen.PrepareWinnerScreen("",0);
             
         }
         else
         {
-          return;
+          winnerScreen.PrepareWinnerScreen("",-1); 
+          computerScore+=1;
 
         }
  
@@ -139,7 +149,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box00.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[0][0]=1;   
+                    board[0][0]=0;   
                 }
         break;
         case "01":
@@ -151,7 +161,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[0][1]=1;   
+                    board[0][1]=0;   
                 }
         break;
         case "02":
@@ -163,7 +173,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box02.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[0][2]=1;   
+                    board[0][2]=0;   
                 }
         break;
         case "10":
@@ -175,7 +185,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[1][0]=1;   
+                    board[1][0]=0;   
                 }
         break;
         case "11":
@@ -187,7 +197,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box11.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[1][1]=1;   
+                    board[1][1]=0;   
                 }
         break;
         case "12":
@@ -199,7 +209,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[1][2]=1;   
+                    board[1][2]=0;   
                 }
         break;
         case "20":
@@ -211,7 +221,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box20.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[2][0]=1;   
+                    board[2][0]=0;   
                 }
         break;
         case "21":
@@ -223,7 +233,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[2][1]=1;   
+                    board[2][1]=0;   
                 }
         break;
         case "22":
@@ -235,7 +245,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box22.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));  
-                    board[2][2]=1;   
+                    board[2][2]=0;   
                 }
         break;
     }
@@ -254,7 +264,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[0][0]=0;   
+                    board[0][0]=1;   
                 }
         break;
         case "01":
@@ -266,7 +276,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box01.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[0][1]=0;   
+                    board[0][1]=1;   
                 }
         break;
         case "02":
@@ -278,7 +288,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[0][2]=0;   
+                    board[0][2]=1;   
                 }
         break;
         case "10":
@@ -290,7 +300,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box10.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[1][0]=0;   
+                    board[1][0]=1;   
                 }
         break;
         case "11":
@@ -302,7 +312,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[1][1]=0;   
+                    board[1][1]=1;   
                 }
         break;
         case "12":
@@ -314,7 +324,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box12.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[1][2]=0;   
+                    board[1][2]=1;   
                 }
         break;
         case "20":
@@ -326,7 +336,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[2][0]=0;   
+                    board[2][0]=1;   
                 }
         break;
         case "21":
@@ -338,7 +348,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box21.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[2][1]=0;   
+                    board[2][1]=1;   
                 }
         break;
         case "22":
@@ -350,7 +360,7 @@ public class Easy {
                 else
                 {
                    boardScreen.box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));  
-                    board[2][2]=0;   
+                    board[2][2]=1;   
                 }
         break;
     }
@@ -403,13 +413,23 @@ public class Easy {
         int isWinner=checkWinner();
         if(isWinner==-1)
         {
-            if(!checkDraw())
-            computerMove();
+            if(checkDraw())
+                winnerScreen.PrepareWinnerScreen("",0);
+            
+            else
+            {
+               computerMove(); 
+            }
+        }
+        else if(isWinner==side)
+        {
+          winnerScreen.PrepareWinnerScreen("",1);
+          playerScore+=1;
         }
         else
         {
-          return;
-
+            winnerScreen.PrepareWinnerScreen("",-1); 
+            computerScore+=1;
         }
     }
     
