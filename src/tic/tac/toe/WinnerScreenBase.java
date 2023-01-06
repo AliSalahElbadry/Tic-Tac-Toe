@@ -70,6 +70,8 @@ public  class WinnerScreenBase extends AnchorPane {
 
         playAgainButtton.setOnMouseClicked(e->{
 
+
+
             mediaView.getMediaPlayer().stop();
             switch(PickYourSideScreenBase.level)
             {
@@ -116,9 +118,10 @@ public  class WinnerScreenBase extends AnchorPane {
 
         mainPageButton.setOnMouseClicked(e->{
 
-        mediaView.getMediaPlayer().stop();
-        Easy.computerScore=0;
-        Easy.computerScore=0;
+            mediaView.getMediaPlayer().stop();
+            Easy.computerScore=0;
+            Easy.computerScore=0;
+
             Medium.player = 0;
             Medium.computer = 0;
             LevelHardClass.playerRes=0;
@@ -126,6 +129,7 @@ public  class WinnerScreenBase extends AnchorPane {
             LocalMode.player1Score=0;
             LocalMode.player2Score=0;
             TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
 
 
         });
