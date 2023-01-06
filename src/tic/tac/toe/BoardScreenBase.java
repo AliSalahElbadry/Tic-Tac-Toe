@@ -115,6 +115,9 @@ public  class BoardScreenBase extends AnchorPane {
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backButton.setOnMouseClicked(event ->{
+            
+            Medium.player = 0;
+            Medium.computer = 0;
            
             if (GamesRecordItemSceenBase.flag == false ){
                 Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
