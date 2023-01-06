@@ -9,7 +9,10 @@ public class Medium{
     public static String side ;
     BoardScreenBase boardScreenBase;
     public String PlayerName = "you";
-            
+    WinnerScreenBase winner ;
+    public static int player=0;
+    public static int computer=0;
+    
     int board[][] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
     
     boolean win = false ;
@@ -24,6 +27,9 @@ public class Medium{
         boardScreenBase.player2Text.setWrappingWidth(100);
         boardScreenBase.player2Text.setLayoutX(445);
         boardScreenBase.player2Text.setText("Computer");
+        boardScreenBase.scorePlayer1.setText(String.valueOf(player));
+        boardScreenBase.scorePlayer2.setText(String.valueOf(computer));
+        winner=new WinnerScreenBase();
          click();
         
         
@@ -37,51 +43,57 @@ public class Medium{
                 board[0][0]=1;
                 winner();
                 if(isMovesLeft(board)){
-                computer();
+                if(!win){
+                        computer();
+                        winner();
+                    }
                 }
-                winner();
-
             }
-            
-        
         });
         
         boardScreenBase.box01.setOnMouseClicked(e->{ 
             if(isEmpty(board[0][1]) && !win){
-            printSides(01);
-            board[0][1]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                    printSides(01);
+                    board[0][1]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
                 }
-            winner();
-
-            }
         
         });
         
         boardScreenBase.box02.setOnMouseClicked(e->{ 
             if(isEmpty(board[0][2])&& !win){
-            printSides(02);
-            board[0][2]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                printSides(02);
+                board[0][2]=1;
+                winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
+               
                 }
-            winner();
-            }
         });
         
         boardScreenBase.box10.setOnMouseClicked(e->{  
             if(isEmpty(board[1][0])&& !win){
-            printSides(10);
-            board[1][0]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                printSides(10);
+                board[1][0]=1;
+                winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
+                
                 }
-            winner();
-            }
         });
         boardScreenBase.box11.setOnMouseClicked(e->{  
             if(isEmpty(board[1][1])&& !win){
@@ -89,46 +101,55 @@ public class Medium{
             board[1][1]=1;
             winner();
             if(isMovesLeft(board)){
-                computer();
+                if(!win){
+                        computer();
+                        winner();
+                    }
                 }
-            winner();
             }
         });
         
         boardScreenBase.box12.setOnMouseClicked(e->{       
-            if(isEmpty(board[1][2])&& !win){
-            printSides(12);
-            board[1][2]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                if(isEmpty(board[1][2])&& !win){
+                    printSides(12);
+                    board[1][2]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
                 }
-            winner();
-            }
+
+                }
         });
         
         boardScreenBase.box20.setOnMouseClicked(e->{     
-            if(isEmpty(board[2][0])&& !win){
-            printSides(20);
-            board[2][0]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                if(isEmpty(board[2][0])&& !win){
+                    printSides(20);
+                    board[2][0]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
                 }
-            winner();
-            }
         });
         
         boardScreenBase.box21.setOnMouseClicked(e->{ 
-            if(isEmpty(board[2][1])&& !win){
-            printSides(21);
-            board[2][1]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+                if(isEmpty(board[2][1])&& !win){
+                printSides(21);
+                board[2][1]=1;
+                winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
                 }
-            winner();
-            }
         });
         
         boardScreenBase.box22.setOnMouseClicked(e->{    
@@ -138,8 +159,8 @@ public class Medium{
             winner();
             if(isMovesLeft(board)){
                 computer();
+                winner();
                 }
-            winner();
             }
         });
         
@@ -239,20 +260,23 @@ public class Medium{
     public void winner(){
     
         if(pridectWinner(board)==1){
-            System.err.println(side+ " wins");
+            player+=1;
+            winner.PrepareWinnerScreen("win",1);
             win = true;
         
         }else if(pridectWinner(board)==0){
+            computer+=1;
+            winner.PrepareWinnerScreen("lose",-1);
             if(side =="x"){
                 side = "o";
             }else{
                 side = "x";
             }
-            System.err.println(side+ " wins");
             win = true;
         
         }else if(! isMovesLeft(board)){
-            System.err.println("draw");
+           
+            winner.PrepareWinnerScreen("draw",0);
             win = true; 
         }
     }
