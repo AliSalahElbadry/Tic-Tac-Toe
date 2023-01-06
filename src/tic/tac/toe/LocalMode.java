@@ -1,8 +1,9 @@
-
 package tic.tac.toe;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import static tic.tac.toe.LevelHardClass.PlayerName;
+import static tic.tac.toe.LevelHardClass.playerSide;
 
 public class LocalMode  {
     
@@ -17,8 +18,8 @@ public class LocalMode  {
     String defaultSide="X";
     boolean XSide;
     
-    int player1Score;
-    int player2Score;
+    static int player1Score=0;
+    static int player2Score=0;
     
     
     public LocalMode() {
@@ -29,9 +30,12 @@ public class LocalMode  {
         boardScreenBase=new BoardScreenBase();
         pickYourSideScreenBase=new PickYourSideScreenBase();
         playersNamesScreenBase=new PlayersNamesScreenBase();
+        PickYourSideScreenBase.level=3;
         
         boardScreenBase.player1Text.setText(PlayersNamesScreenBase.player1Name);
         boardScreenBase.player2Text.setText(PlayersNamesScreenBase.player2Name);
+        boardScreenBase.scorePlayer1.setText(Integer.toString(player1Score));
+        boardScreenBase.scorePlayer2.setText(Integer.toString(player2Score));
         boardScreenBase.levelText.setText("Local");
         checkSideToStart(PickYourSideScreenBase.player1Side);
         play();
@@ -283,12 +287,36 @@ public class LocalMode  {
     void endGame(int winnerSide){
         if(winnerSide==1){
             System.out.println("X won");
+            if(pickYourSideScreenBase.player1Side=="X"){
+                player1Score+=1;
+                WinnerScreenBase winner=new WinnerScreenBase();
+                winner.PrepareWinnerScreen(PlayersNamesScreenBase.player1Name,1);
+            }
+            else if(pickYourSideScreenBase.player1Side=="O"){
+                player2Score+=1;
+                WinnerScreenBase winner=new WinnerScreenBase();
+                winner.PrepareWinnerScreen(PlayersNamesScreenBase.player2Name,1);
+            }
         }
         else if(winnerSide==0){
             System.out.println("O won");
+            if(pickYourSideScreenBase.player1Side=="O"){
+                player1Score+=1;
+                WinnerScreenBase winner=new WinnerScreenBase();
+                winner.PrepareWinnerScreen(PlayersNamesScreenBase.player1Name,1);
+            }
+            else if(pickYourSideScreenBase.player1Side=="X"){
+                player2Score+=1;
+                WinnerScreenBase winner=new WinnerScreenBase();
+                winner.PrepareWinnerScreen(PlayersNamesScreenBase.player2Name,1);
+            }
         }
         else if(winnerSide==2){
             System.out.println("Both players won");
+            player1Score+=1;
+            player2Score+=1;
+            WinnerScreenBase winner=new WinnerScreenBase();
+            winner.PrepareWinnerScreen("Players",0);
         }
         
     }
