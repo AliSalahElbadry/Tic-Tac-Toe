@@ -49,7 +49,8 @@ public  class BoardScreenBase extends AnchorPane {
     
 
     public BoardScreenBase() {
-        
+
+
         imageView = new ImageView();
         bordRectangle = new Rectangle();
         backButton = new ImageView();
@@ -147,12 +148,9 @@ public  class BoardScreenBase extends AnchorPane {
         box00.setLayoutY(63.0);
         box00.setPickOnBounds(true);
         box00.setPreserveRatio(true);
-        box00.setOnMouseClicked(e->{
-            if(box00.getImage()==null){
-                box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-            }
-        });
-       
+
+      
+
         //box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle0.setArcHeight(70.0);
@@ -190,6 +188,11 @@ public  class BoardScreenBase extends AnchorPane {
         box02.setPickOnBounds(true);
         box02.setPreserveRatio(true);
        // box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+//        box02.setOnMouseClicked(e->{
+//            Medium medium = new Medium();
+//            medium.printSides(02);
+//            
+//        });
 
         rectangle2.setArcHeight(70.0);
         rectangle2.setArcWidth(70.0);
