@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 import tic.tac.toe.TicTacToe;
 
 public  class MainPageScreenBase extends AnchorPane {
-
+    
     protected final ImageView imageView;
     protected final ImageView imageView0;
     protected final ImageView prifileImage;
@@ -25,7 +25,7 @@ public  class MainPageScreenBase extends AnchorPane {
     protected final Text onlineText;
 
     public MainPageScreenBase() {
-
+        
         imageView = new ImageView();
         imageView0 = new ImageView();
         prifileImage = new ImageView();
@@ -39,7 +39,8 @@ public  class MainPageScreenBase extends AnchorPane {
         computerText = new Text();
         localText = new Text();
         onlineText = new Text();
-
+        LevelHardClass.computerRes=0;
+        LevelHardClass.computerRes=0;
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
