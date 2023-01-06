@@ -2,10 +2,13 @@ package tic.tac.toe;
 
 
 
+import java.io.File;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -65,6 +68,32 @@ public abstract class WinnerScreenBase extends AnchorPane {
         playAgainButtton.setText("Play Again");
         playAgainButtton.setFont(new Font("Serif Regular", 22.0));
 
+        playAgainButtton.setOnMouseClicked(e->{
+        
+            switch(PickYourSideScreenBase.level)
+            {
+                case 0:
+                    Easy easy=new Easy();
+                    TicTacToe.scene.setRoot(easy.boardScreen);
+                    break;
+                case 1:
+                    Medium medium=new Medium();
+                    
+                    TicTacToe.scene.setRoot(medium.boardScreenBase);
+                    break;
+                case 2:
+                    LevelHardClass hard=new LevelHardClass();
+                    TicTacToe.scene.setRoot(hard.boardScreen);
+                    break;
+                case 3:
+                    LocalMode localMode=new LocalMode();
+                    TicTacToe.scene.setRoot(localMode.boardScreenBase);
+                    break;
+                case 4:
+                    break;
+            }
+        
+        });
         imageView0.setFitHeight(150.0);
         imageView0.setFitWidth(200.0);
         imageView0.setPickOnBounds(true);
@@ -82,6 +111,13 @@ public abstract class WinnerScreenBase extends AnchorPane {
         mainPageButton.setText("Main Page");
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
 
+        mainPageButton.setOnMouseClicked(e->{
+            LevelHardClass.playerRes=0;
+            LevelHardClass.computerRes=0;
+            LocalMode.player1Score=0;
+            LocalMode.player2Score=0;
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+        });
         imageView1.setFitHeight(150.0);
         imageView1.setFitWidth(200.0);
         imageView1.setPickOnBounds(true);
@@ -95,5 +131,41 @@ public abstract class WinnerScreenBase extends AnchorPane {
         getChildren().add(playAgainButtton);
         getChildren().add(mainPageButton);
 
+    }
+     public void PrepareWinnerScreen(String Name,int mode)
+     {
+         if(PickYourSideScreenBase.level==0||PickYourSideScreenBase.level==1||PickYourSideScreenBase.level==2)
+         {
+             winnerText.setVisible(false);
+             imageView.setVisible(false);
+         }
+        
+        winnerText.setText(Name);
+        String path="";
+        if(mode==-1)//lose
+        {
+          path ="Photos//lose.mp4";
+        }else if(mode==0)//draw
+        {
+          path ="Photos//draw.mp4";
+             
+        }else if(mode==1)//win
+        {
+          path ="Photos//winner.mp4";
+        }
+        Media media = new Media(getClass().getResource(path).toExternalForm());  
+         
+        MediaPlayer mediaPlayer = new MediaPlayer(media); 
+        mediaView.setMediaPlayer(mediaPlayer);
+        if(mode==0)
+        {
+            mediaView.setScaleX(1.19);
+            mediaView.setScaleY(1.5);
+        }else 
+        {
+          mediaView.setScaleY(1.2);
+        }
+        mediaPlayer.setAutoPlay(true);
+        TicTacToe.scene.setRoot(this);
     }
 }
