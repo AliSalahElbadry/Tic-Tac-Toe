@@ -96,9 +96,11 @@ public class PickYourSideScreenBase extends AnchorPane {
         oBtn.getStyleClass().add("obtn");
         oBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         oBtn.setOnAction(event ->{
+            Easy.side=0;
+        Easy easy=new Easy();
         
             GamesRecordItemSceenBase.flag = false ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            TicTacToe.scene.setRoot(easy.boardScreen);
             
 
             
@@ -120,9 +122,11 @@ public class PickYourSideScreenBase extends AnchorPane {
         xBtn.getStyleClass().add("xbtn");
         xBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         xBtn.setOnAction(event ->{
+            Easy.side=1;
+        Easy easy=new Easy();
         
             GamesRecordItemSceenBase.flag = false ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            TicTacToe.scene.setRoot(easy.boardScreen);
             
             
         });
