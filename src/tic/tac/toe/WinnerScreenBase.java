@@ -36,7 +36,7 @@ public  class WinnerScreenBase extends AnchorPane {
         setId("AnchorPane");
         setPrefHeight(480.0);
         setPrefWidth(750.0);
-        getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
+        getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
 
         mediaView.setFitHeight(480.0);
         mediaView.setFitWidth(750.0);
@@ -48,7 +48,7 @@ public  class WinnerScreenBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setStyle("-fx-rotate: 3;");
-        imageView.setImage(new Image(getClass().getResource("../Photos/Title_image.png").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource("Photos/Title_image.png").toExternalForm()));
 
         winnerText.setFill(javafx.scene.paint.Color.WHITE);
         winnerText.setLayoutX(310.0);
@@ -64,12 +64,12 @@ public  class WinnerScreenBase extends AnchorPane {
         playAgainButtton.setPrefHeight(50.0);
         playAgainButtton.setPrefWidth(129.0);
         playAgainButtton.getStyleClass().add("playagainbtn");
-        playAgainButtton.getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
+        playAgainButtton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
         playAgainButtton.setText("Play Again");
         playAgainButtton.setFont(new Font("Serif Regular", 22.0));
 
         playAgainButtton.setOnMouseClicked(e->{
-        
+        mediaView.getMediaPlayer().stop();
             switch(PickYourSideScreenBase.level)
             {
                 case 0:
@@ -99,7 +99,7 @@ public  class WinnerScreenBase extends AnchorPane {
         imageView0.setFitWidth(200.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("../Photos/buttonbackground.png").toExternalForm()));
+        imageView0.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         playAgainButtton.setGraphic(imageView0);
 
         mainPageButton.setLayoutX(495.0);
@@ -108,12 +108,13 @@ public  class WinnerScreenBase extends AnchorPane {
         mainPageButton.setPrefHeight(76.0);
         mainPageButton.setPrefWidth(129.0);
         mainPageButton.getStyleClass().add("returnbtn");
-        mainPageButton.getStylesheets().add("/tic/tac/toe/Designfxml/../css/winnerscreen.css");
+        mainPageButton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
         mainPageButton.setText("Main Page");
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
+        
 
         mainPageButton.setOnMouseClicked(e->{
-        
+        mediaView.getMediaPlayer().stop();
         Easy.computerScore=0;
         Easy.computerScore=0;
             Medium.player = 0;
@@ -130,7 +131,7 @@ public  class WinnerScreenBase extends AnchorPane {
         imageView1.setFitWidth(200.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("../Photos/buttonbackground.png").toExternalForm()));
+        imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         mainPageButton.setGraphic(imageView1);
 
         getChildren().add(mediaView);
@@ -154,14 +155,14 @@ public  class WinnerScreenBase extends AnchorPane {
 
         if(mode==-1)//lose
         {
-          path ="Photos//lose.mp4";
+          path ="Photos/lose.mp4";
         }else if(mode==0)//draw
         {
-          path ="Photos//draw.mp4";
+          path ="Photos/draw.mp4";
              
         }else if(mode==1)//win
         {
-          path ="Photos//winner.mp4";
+          path ="Photos/winner.mp4";
         }
         Media media = new Media(getClass().getResource(path).toExternalForm());  
 
