@@ -329,8 +329,6 @@ public class LevelHardClass  {
      }else if(ev==-1&&!isMovesLeft(board))
      {
          win=true;
-         playerRes++;
-         computerRes++;
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
      }
