@@ -72,7 +72,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem1Btn.setOnAction(event ->{
         
             flag = true ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
             
         });
 
@@ -135,7 +135,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem2Btn.setOnAction(event ->{
         
             flag = true ;
-            TicTacToe.scene.setRoot(new BoardScreenBase());
+            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
             
             
             
