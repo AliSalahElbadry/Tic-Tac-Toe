@@ -11,11 +11,11 @@ import javafx.scene.image.Image;
 public class LevelHardClass  {
  
     BoardScreenBase boardScreen;
-    
     int[][]board;
     public static int playerSide=0;
     private boolean win=false;
     public static String PlayerName="Ali";
+    public static  int computerRes=0,playerRes=0;
     public LevelHardClass()
     {   
        boardScreen=new BoardScreenBase();
@@ -23,6 +23,10 @@ public class LevelHardClass  {
        boardScreen.levelText.setText("Hard");
        boardScreen.player1Text.setText("Computer");
        
+       boardScreen.player1Text.setText(PlayerName);
+       boardScreen.player2Text.setText("Computer");
+       boardScreen.scorePlayer1.setText(""+playerRes);
+       boardScreen.scorePlayer2.setText(""+computerRes);
        boardScreen.box00.setOnMouseClicked(e->{
           if(board[0][0]==-1&&win==false&&isMovesLeft(board))
           {
@@ -314,6 +318,10 @@ public class LevelHardClass  {
     private void ShowWinner(int ev) {
      if(ev==0||ev==1)
      {
+         
+         if(playerSide==ev)playerRes++;
+         else computerRes++;
+         
          win=true; 
          WinnerScreenBase winner=new WinnerScreenBase();
          winner.PrepareWinnerScreen(ev==playerSide?PlayerName:"Computer", ev==playerSide?1:-1);
@@ -321,6 +329,8 @@ public class LevelHardClass  {
      }else if(ev==-1&&!isMovesLeft(board))
      {
          win=true;
+         playerRes++;
+         computerRes++;
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
      }
