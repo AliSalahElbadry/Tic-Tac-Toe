@@ -31,7 +31,9 @@ public class Medium{
                 printSides(00);
                 board[0][0]=1;
                 winner();
+                if(isMovesLeft(board)){
                 computer();
+                }
                 winner();
 
             }
@@ -44,7 +46,9 @@ public class Medium{
             printSides(01);
             board[0][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
 
             }
@@ -56,7 +60,9 @@ public class Medium{
             printSides(02);
             board[0][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -66,7 +72,9 @@ public class Medium{
             printSides(10);
             board[1][0]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -75,7 +83,9 @@ public class Medium{
             printSides(11);
             board[1][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -85,7 +95,9 @@ public class Medium{
             printSides(12);
             board[1][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -95,7 +107,9 @@ public class Medium{
             printSides(20);
             board[2][0]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -105,7 +119,9 @@ public class Medium{
             printSides(21);
             board[2][1]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
@@ -115,7 +131,9 @@ public class Medium{
             printSides(22);
             board[2][2]=1;
             winner();
-            computer();
+            if(isMovesLeft(board)){
+                computer();
+                }
             winner();
             }
         });
