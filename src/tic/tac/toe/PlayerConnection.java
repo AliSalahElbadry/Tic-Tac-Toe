@@ -3,7 +3,10 @@ package tic.tac.toe;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlayerConnection extends Thread{
   public DataInputStream recive;
@@ -30,14 +33,20 @@ public class PlayerConnection extends Thread{
         while(true){
             try {
                 if(recive!=null){
-                    message=recive.readLine();//here message recived
-                    System.err.println(message);
+                    message=recive.readUTF();//here message recived
+                  
                 }
             } catch (Exception ex) {
-                  this.stop();//here set status offline
                 System.out.print(ex.getMessage());
             }
         }
     }
-       
+     public void sendMessage(String message)
+     {
+      try {
+          send.writeUTF(message);
+      } catch (IOException ex) {
+          Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, null, ex);
+      }
+     }
 }
