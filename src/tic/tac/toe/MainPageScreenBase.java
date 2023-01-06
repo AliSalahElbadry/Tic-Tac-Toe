@@ -109,7 +109,7 @@ public  class MainPageScreenBase extends AnchorPane {
         localRectangle.getStyleClass().add("rect");
         localRectangle.setWidth(185.0);
         localRectangle.setOnMouseClicked(event ->{
-        
+            PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
         });
@@ -153,6 +153,7 @@ public  class MainPageScreenBase extends AnchorPane {
         lacalImageView.setImage(new Image(getClass().getResource("Photos/local.png").toExternalForm()));
         lacalImageView.setOnMouseClicked(event ->{
         
+            PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
         });
@@ -192,6 +193,7 @@ public  class MainPageScreenBase extends AnchorPane {
         localText.setFont(new Font("Serif Regular", 30.0));
         localText.setOnMouseClicked(event ->{
         
+            PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
         });
