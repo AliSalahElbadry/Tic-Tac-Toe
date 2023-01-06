@@ -13,7 +13,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public abstract class WinnerScreenBase extends AnchorPane {
+public  class WinnerScreenBase extends AnchorPane {
 
     protected final MediaView mediaView;
     protected final ImageView imageView;
