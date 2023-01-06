@@ -4,7 +4,9 @@ import java.net.URL;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +26,8 @@ public class PlayersNamesScreenBase extends AnchorPane {
     protected final TextField Player1TextField;
     protected final TextField Player2TextField;
     protected final ImageView backButtonId;
+    public static String player1Name;
+    public static String player2Name;
 
     public PlayersNamesScreenBase() {
 
@@ -84,9 +88,17 @@ public class PlayersNamesScreenBase extends AnchorPane {
         startButton.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         startButton.setFont(new Font("Serif Regular", 24.0));
         startButton.setOnAction(event ->{
-        
-            TicTacToe.scene.setRoot(new PickYourSideScreenBase());
-            
+            player1Name=Player1TextField.getText().toString();
+            player2Name=Player2TextField.getText().toString();
+            if((!player1Name.equals(""))&&(!player2Name.equals(""))){
+                TicTacToe.scene.setRoot(new PickYourSideScreenBase());
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("please enter your name !!");
+                 alert.showAndWait();
+            }
         });
 
         Player1TextField.setLayoutX(250.0);
