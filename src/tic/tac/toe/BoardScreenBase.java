@@ -45,10 +45,11 @@ public  class BoardScreenBase extends AnchorPane {
     protected final ImageView imageView2;
     protected final Text player2Text;
     protected final ImageView imageView3;
+
     
 
     public BoardScreenBase() {
-        
+
 
         imageView = new ImageView();
         bordRectangle = new Rectangle();
@@ -80,6 +81,7 @@ public  class BoardScreenBase extends AnchorPane {
         imageView2 = new ImageView();
         player2Text = new Text();
         imageView3 = new ImageView();
+        
         
 
         setId("AnchorPane");
@@ -146,7 +148,9 @@ public  class BoardScreenBase extends AnchorPane {
         box00.setLayoutY(63.0);
         box00.setPickOnBounds(true);
         box00.setPreserveRatio(true);
-        
+
+      
+
         //box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
 
         rectangle0.setArcHeight(70.0);
@@ -406,6 +410,5 @@ public  class BoardScreenBase extends AnchorPane {
         getChildren().add(player2Text);
         getChildren().add(imageView3);
         
-
     }
 }
