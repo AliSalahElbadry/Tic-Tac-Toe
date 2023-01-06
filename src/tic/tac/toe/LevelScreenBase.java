@@ -79,6 +79,7 @@ public  class LevelScreenBase extends AnchorPane {
         easyButton.setFont(new Font("Serif Regular", 24.0));
         easyButton.setOnAction(event ->{
             
+            
             TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
             
         });
