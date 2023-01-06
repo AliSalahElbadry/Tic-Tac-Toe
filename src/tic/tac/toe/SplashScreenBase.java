@@ -25,6 +25,7 @@ public class SplashScreenBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setImage(new Image(getClass().getResource("Photos/background.jpg").toExternalForm()));
+
         logoId.setFitHeight(203.0);
         logoId.setFitWidth(583.0);
         logoId.setId("logoid");
