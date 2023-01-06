@@ -8,7 +8,8 @@ public class Medium{
     
     public static String side ;
     BoardScreenBase boardScreenBase;
-
+    public String PlayerName = "you";
+            
     int board[][] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
     
     boolean win = false ;
@@ -16,9 +17,13 @@ public class Medium{
     public Medium(){
        
         boardScreenBase = new BoardScreenBase();
-        boardScreenBase.levelText.setWrappingWidth(80);
+        boardScreenBase.levelText.setLayoutX(330);
+        boardScreenBase.levelText.setWrappingWidth(100);
         boardScreenBase.levelText.setText("Medium");
-        
+        boardScreenBase.player1Text.setText(PlayerName);
+        boardScreenBase.player2Text.setWrappingWidth(100);
+        boardScreenBase.player2Text.setLayoutX(445);
+        boardScreenBase.player2Text.setText("Computer");
          click();
         
         
@@ -234,11 +239,18 @@ public class Medium{
     public void winner(){
     
         if(pridectWinner(board)==1){
-            System.err.println("x wins");
+            System.err.println(side+ " wins");
             win = true;
+        
         }else if(pridectWinner(board)==0){
-            System.err.println("o wins");
+            if(side =="x"){
+                side = "o";
+            }else{
+                side = "x";
+            }
+            System.err.println(side+ " wins");
             win = true;
+        
         }else if(! isMovesLeft(board)){
             System.err.println("draw");
             win = true; 
