@@ -69,6 +69,7 @@ public  class WinnerScreenBase extends AnchorPane {
         playAgainButtton.setFont(new Font("Serif Regular", 22.0));
 
         playAgainButtton.setOnMouseClicked(e->{
+
             mediaView.getMediaPlayer().stop();
             switch(PickYourSideScreenBase.level)
             {
@@ -111,9 +112,13 @@ public  class WinnerScreenBase extends AnchorPane {
         mainPageButton.getStylesheets().add("/tic/tac/toe/css/winnerscreen.css");
         mainPageButton.setText("Main Page");
         mainPageButton.setFont(new Font("Serif Regular", 22.0));
+        
 
         mainPageButton.setOnMouseClicked(e->{
-            mediaView.getMediaPlayer().stop();
+
+        mediaView.getMediaPlayer().stop();
+        Easy.computerScore=0;
+        Easy.computerScore=0;
             Medium.player = 0;
             Medium.computer = 0;
             LevelHardClass.playerRes=0;
@@ -121,6 +126,7 @@ public  class WinnerScreenBase extends AnchorPane {
             LocalMode.player1Score=0;
             LocalMode.player2Score=0;
             TicTacToe.scene.setRoot(new MainPageScreenBase());
+
 
         });
         imageView1.setFitHeight(150.0);
@@ -148,6 +154,7 @@ public  class WinnerScreenBase extends AnchorPane {
         winnerText.setText(Name);
         String path="";
 
+
         if(mode==-1)//lose
         {
           path ="Photos/lose.mp4";
@@ -160,6 +167,7 @@ public  class WinnerScreenBase extends AnchorPane {
           path ="Photos/winner.mp4";
         }
         Media media = new Media(getClass().getResource(path).toExternalForm());  
+
 
          
         MediaPlayer mediaPlayer = new MediaPlayer(media); 
