@@ -1,5 +1,9 @@
 package tic.tac.toe;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -17,7 +21,8 @@ public class AvailablePlayersBase extends AnchorPane {
     protected final ImageView imageView0;
     protected final Rectangle rectangle0;
     protected final Text text;
-    protected final ListView availablePlayerslistView;
+    protected static ListView availablePlayerslistView;
+    public  static String [] avaliable ;
 
     public AvailablePlayersBase() {
 
@@ -28,6 +33,15 @@ public class AvailablePlayersBase extends AnchorPane {
         rectangle0 = new Rectangle();
         text = new Text();
         availablePlayerslistView = new ListView();
+        
+        Socket socket;
+            try {
+                socket = new Socket("127.0.0.1", 5005);
+                PlayerConnection playerConnection = new PlayerConnection(socket);
+                playerConnection.sendMessage("Avaliable");
+            } catch (IOException ex) {
+                Logger.getLogger(MainPageScreenBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         setId("AnchorPane");
         setPrefHeight(480.0);
@@ -95,34 +109,19 @@ public class AvailablePlayersBase extends AnchorPane {
         availablePlayerslistView.getStyleClass().add("mylistview");
         availablePlayerslistView.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
         
-        ItemBase itemBase1 = new ItemBase();
-        ItemBase itemBase2 = new ItemBase();
-        ItemBase itemBase3 = new ItemBase();
-        ItemBase itemBase4 = new ItemBase();
-        ItemBase itemBase5 = new ItemBase();
-        ItemBase itemBase6 = new ItemBase();
-        itemBase1.playerNameText.setText("safiya");
-        itemBase2.playerNameText.setText("safiya");
-        itemBase3.playerNameText.setText("safiya");
-        itemBase4.playerNameText.setText("safiya");
-        itemBase5.playerNameText.setText("safiya");
-        itemBase6.playerNameText.setText("safiya");
-        availablePlayerslistView.getItems().add(itemBase1);
-        availablePlayerslistView.getItems().add(itemBase2);
-        availablePlayerslistView.getItems().add(itemBase3);
-        availablePlayerslistView.getItems().add(itemBase4);
-        availablePlayerslistView.getItems().add(itemBase5);
-        availablePlayerslistView.getItems().add(itemBase6);
-
-        
-        
-        
-        getChildren().add(imageView);
+   getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(backBtn);
         getChildren().add(rectangle0);
         getChildren().add(text);
         getChildren().add(availablePlayerslistView);
 
+    }
+    
+    public static void preperList(String name){
+    
+        ItemBase itemBase = new ItemBase();
+        itemBase.playerNameText.setText(name);
+        availablePlayerslistView.getItems().add(itemBase);
     }
 }

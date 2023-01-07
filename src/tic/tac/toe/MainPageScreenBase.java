@@ -1,12 +1,15 @@
 package tic.tac.toe;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import tic.tac.toe.TicTacToe;
 
 public  class MainPageScreenBase extends AnchorPane {
     
@@ -167,7 +170,8 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
         onlineImageView.setOnMouseClicked(event ->{
-        
+            
+            
             TicTacToe.scene.setRoot(new  LoginFXMLBase());
             
         });
@@ -208,6 +212,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setFont(new Font("Serif Regular", 30.0));
         onlineText.setOnMouseClicked(event ->{
         
+           
             TicTacToe.scene.setRoot(new LoginFXMLBase());
             
         });
