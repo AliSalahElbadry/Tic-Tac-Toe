@@ -1,7 +1,22 @@
 package tic.tac.toe;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javafx.geometry.Side;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,8 +36,22 @@ public class LoginFXMLBase extends AnchorPane {
     protected final Button loginBtn;
     protected final ImageView imageView1;
     protected final Text dontHaveAnAccountText;
+    protected final ContextMenu emailValidator;
+    protected final ContextMenu passValidator;
+    public static Socket mySocket;
+    public static PlayerData playerData;
+    PlayerConnection playerConnection;
+    boolean isConnected = true;
 
     public LoginFXMLBase() {
+
+        try {
+            mySocket = new Socket(InetAddress.getLocalHost(), 5005);
+            playerConnection = new PlayerConnection(mySocket);
+        } catch (Exception ex) {
+            isConnected = false;
+
+        }
 
         imageView = new ImageView();
         rectangle = new Rectangle();
@@ -55,7 +84,7 @@ public class LoginFXMLBase extends AnchorPane {
         rectangle.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
         rectangle.setWidth(450.0);
         rectangle.setFocusTraversable(true);
-        
+
         imageView0.setFitHeight(101.0);
         imageView0.setFitWidth(307.0);
         imageView0.setLayoutX(224.0);
@@ -71,6 +100,12 @@ public class LoginFXMLBase extends AnchorPane {
         EmailTextField.setPromptText("Email");
         EmailTextField.getStyleClass().add("textField");
         EmailTextField.setFont(new Font(19.0));
+
+        emailValidator = new ContextMenu();
+        emailValidator.setAutoHide(false);
+
+        passValidator = new ContextMenu();
+        passValidator.setAutoHide(false);
 
         passwordTextField.setLayoutX(224.0);
         passwordTextField.setLayoutY(218.0);
@@ -88,11 +123,74 @@ public class LoginFXMLBase extends AnchorPane {
         loginBtn.getStyleClass().add("loginBtn");
         loginBtn.setText("Log In");
         loginBtn.setFont(new Font("Serif Regular", 20.0));
-        loginBtn.setOnAction(e->{
-        
-            TicTacToe.scene.setRoot(new AvailablePlayersBase());
-        
+        loginBtn.setOnAction(e -> {
+
+            if (EmailTextField.getText().equals("")) {
+                emailValidator.hide();
+                passValidator.hide();
+                emailValidator.getItems().clear();
+                emailValidator.getItems().add(
+                        new MenuItem("Please enter emil"));
+                emailValidator.show(EmailTextField, Side.RIGHT, 10, 0);
+                
+            }
+             else if(EmailTextField.getText().contains(","))
+            {
+                emailValidator.hide();
+                passValidator.hide();
+               emailValidator.getItems().clear();
+                emailValidator.getItems().add(
+                        new MenuItem("email shouldn't contain \",\""));
+                emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
+            }
+             else if(!emailPattern(EmailTextField.getText(), "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
+             {
+                 emailValidator.hide();
+                passValidator.hide();
+                 emailValidator.getItems().clear();
+                emailValidator.getItems().add(
+                        new MenuItem("Invalid email \nshould be like:yas@gmail.com"));
+                emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
+             }
+            else if (passwordTextField.getText().equals("")) {
+                emailValidator.hide();
+                passValidator.hide();
+                passValidator.getItems().clear();
+                passValidator.getItems().add(
+                        new MenuItem("Please enter Password"));
+                passValidator.show(passwordTextField, Side.RIGHT, 10, 0);
+            }
+            else if(passwordTextField.getText().contains(","))
+            {
+                emailValidator.hide();
+                passValidator.hide();
+                passValidator.getItems().clear();
+                passValidator.getItems().add(
+                        new MenuItem("Password shouldn't contain \",\""));
+                passValidator.show(passwordTextField, Side.RIGHT, 10, 0);
+            }
+            else {
+                emailValidator.hide();
+                passValidator.hide();
+                if (!isConnected) {
+                    Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
+                    alert.setTitle("Connection Failed");
+                    alert.setContentText("Sorry! This service is not available now.\n Please,try again later");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        TicTacToe.scene.setRoot(new MainPageScreenBase());
+                        return;
+                    }
+                }
+                String email = EmailTextField.getText();
+                String pass = passwordTextField.getText();
+                String msg = "login" + "," + email + "," + pass;
+                playerConnection.sendMessage(msg);
+            }
+
+            // TicTacToe.scene.setRoot(new AvailablePlayersBase());
         });
+        
         imageView1.setFitHeight(37.0);
         imageView1.setFitWidth(165.0);
         imageView1.setPickOnBounds(true);
@@ -107,10 +205,10 @@ public class LoginFXMLBase extends AnchorPane {
         dontHaveAnAccountText.setStrokeWidth(0.0);
         dontHaveAnAccountText.setText("Don't have an account?");
         dontHaveAnAccountText.setFont(new Font("Serif Regular", 25.0));
-        dontHaveAnAccountText.setOnMouseClicked(e->{
-            
-           TicTacToe.scene.setRoot(new SignUpBase());
-        
+        dontHaveAnAccountText.setOnMouseClicked(e -> {
+
+            TicTacToe.scene.setRoot(new SignUpBase());
+
         });
         getChildren().add(imageView);
         getChildren().add(rectangle);
@@ -120,5 +218,18 @@ public class LoginFXMLBase extends AnchorPane {
         getChildren().add(loginBtn);
         getChildren().add(dontHaveAnAccountText);
 
+    }
+    
+    public  boolean emailPattern(String emailAddress, String regexPattern) {
+    return Pattern.compile(regexPattern)
+      .matcher(emailAddress)
+      .matches();
+}
+    public static void showAlert()
+    {
+        Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
+                            alert.setTitle("Wrong Data");
+                            alert.setContentText("Sorry! Invalid Email or Password .\n Please,check data and try again");
+                            alert.show();
     }
 }
