@@ -1,6 +1,5 @@
 package tic.tac.toe;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -36,12 +35,14 @@ public class LoginFXMLBase extends AnchorPane {
     protected final Button loginBtn;
     protected final ImageView imageView1;
     protected final Text dontHaveAnAccountText;
+
     protected final ContextMenu emailValidator;
     protected final ContextMenu passValidator;
     public Socket mySocket;
     public static PlayerData playerData;
     public static PlayerConnection playerConnection;
     boolean isConnected = true;
+
 
     public LoginFXMLBase() {
 

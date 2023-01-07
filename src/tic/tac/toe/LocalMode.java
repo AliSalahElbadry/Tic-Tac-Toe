@@ -313,8 +313,6 @@ public class LocalMode  {
         }
         else if(winnerSide==2){
             System.out.println("Both players won");
-            player1Score+=1;
-            player2Score+=1;
             WinnerScreenBase winner=new WinnerScreenBase();
             winner.PrepareWinnerScreen("Players",0);
         }

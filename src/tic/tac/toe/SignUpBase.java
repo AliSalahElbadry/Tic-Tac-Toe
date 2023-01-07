@@ -1,7 +1,16 @@
 package tic.tac.toe;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import tic.tac.toe.TicTacToe;
+import java.util.regex.Pattern;
 
 public class SignUpBase extends AnchorPane {
 
@@ -24,8 +34,14 @@ public class SignUpBase extends AnchorPane {
     protected final Button signUpBtn;
     protected final ImageView imageView1;
     protected final Text haveAnAccountText;
+    String username;
+    String email;
+    String password;
+    String repassword;
+    boolean isConnected=true;
 
     public SignUpBase() {
+        
         
         imageView = new ImageView();
         rectangle = new Rectangle();
@@ -120,9 +136,61 @@ public class SignUpBase extends AnchorPane {
         imageView1.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         signUpBtn.setGraphic(imageView1);
         signUpBtn.setOnAction(event ->{
-        
-            TicTacToe.scene.setRoot(new AvailablePlayersBase());
-        
+            username=usernameTextField.getText().toString();
+            email=EmailTextField.getText().toString();
+            password=passwordTextField.getText().toString();
+            repassword=repasswordTextField.getText().toString();
+            
+            if(username.equals("")||email.equals("")||password.equals("")||repassword.equals("")){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("you must enter your all data");
+                alert.showAndWait();
+            }
+            else if (username.contains(",")){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("your username can't have comma(,)");
+                alert.showAndWait();
+                usernameTextField.setText("");
+            }
+            else if(!password.equals(repassword)){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("you entered two different passwords");
+                alert.showAndWait();
+                passwordTextField.setText("");
+                repasswordTextField.setText("");
+            }
+            else if(password.equals(repassword)&&password.contains(",")){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("your password and repassword can't have comma(,)");
+                alert.showAndWait();
+                passwordTextField.setText("");
+                repasswordTextField.setText("");
+            }
+            else if(!isValid(email)){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("invalid email");
+                alert.showAndWait();
+            }
+            else{
+               if(isConnected==false){
+                    Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK);
+                    alert.setTitle("Connection Failed");
+                    alert.setContentText("Sorry! This service is not available now.\n Please,try again later");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        TicTacToe.scene.setRoot(new MainPageScreenBase());
+                        return;
+                    }
+                }
+                String messageToBeSend="signUp,"+username+","+email+","+password;
+                LoginFXMLBase.playerConnection.sendMessage(messageToBeSend);
+                //TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            }
         });
 
         haveAnAccountText.setFill(javafx.scene.paint.Color.WHITE);
@@ -149,4 +217,17 @@ public class SignUpBase extends AnchorPane {
         getChildren().add(haveAnAccountText);
 
     }
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+                              
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+  
 }
