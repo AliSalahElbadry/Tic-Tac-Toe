@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 import tic.tac.toe.TicTacToe;
 
 public  class MainPageScreenBase extends AnchorPane {
-    
+   
     protected final ImageView imageView;
     protected final ImageView imageView0;
     protected final ImageView prifileImage;
@@ -25,7 +25,6 @@ public  class MainPageScreenBase extends AnchorPane {
     protected final Text onlineText;
 
     public MainPageScreenBase() {
-        
         imageView = new ImageView();
         imageView0 = new ImageView();
         prifileImage = new ImageView();
@@ -39,7 +38,7 @@ public  class MainPageScreenBase extends AnchorPane {
         computerText = new Text();
         localText = new Text();
         onlineText = new Text();
-        LevelHardClass.computerRes=0;
+        LevelHardClass.playerRes=0;
         LevelHardClass.computerRes=0;
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -127,9 +126,8 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
-        
+            PickYourSideScreenBase.level=4;
             TicTacToe.scene.setRoot(new LoginFXMLBase());
-            
         });
 
         computerImageView.setFitHeight(100.0);

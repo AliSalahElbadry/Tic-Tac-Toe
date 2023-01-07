@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import tic.tac.toe.TicTacToe;
 
 public class PickYourSideScreenBase extends AnchorPane {
-
+    
     protected final ImageView imageView;
     protected final Rectangle container;
     protected final ImageView vsImage;
