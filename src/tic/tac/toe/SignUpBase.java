@@ -196,7 +196,7 @@ public class SignUpBase extends AnchorPane {
                 }
                 String messageToBeSend="signUp,"+username+","+email+","+password;
                 playerConnection.sendMessage(messageToBeSend);
-                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+                //TicTacToe.scene.setRoot(new AvailablePlayersBase());
             }
         });
 

@@ -194,12 +194,12 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
    }
     public void sendMove(String location)
     {
-        try {
+   /*     try {
             String message="Move,"+oponentID+","+location;
             PlayerConnection.send.writeUTF(message);
         } catch (IOException ex) {
             Logger.getLogger(OnLineGameBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     public  void reciveMove(String location)
     {

@@ -36,7 +36,7 @@ public class PlayerConnection extends Thread{
                 if (recive != null) {
                     
                     message = recive.readUTF();//here message recived
-                   
+                    System.out.println(message);
                     String dbResult[] = message.split(",");
                     
                     if (dbResult[0].equals("login")) {
@@ -52,12 +52,26 @@ public class PlayerConnection extends Thread{
 
                         }
                         
+                    }
+                    else if(dbResult[0].equals("signUp")){
+                        System.out.println(dbResult[1]);
+                         
+                        if(dbResult[1].equals("true")){
+                             TicTacToe.scene.setRoot(new LoginFXMLBase());
+                        }
+                        else{
+                            System.out.println("no insert happened");
+                        }
+                        
                     }else 
                         if("Move".equals(message.split(",")[0]))
                         {
                             message=message.split(",")[1];
                            //sendToReciveMove
                         }
+                }
+                else{
+                    System.out.println("recieve is null");
                 }
 
             } catch (Exception ex) {
