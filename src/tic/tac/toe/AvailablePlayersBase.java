@@ -34,12 +34,9 @@ public class AvailablePlayersBase extends AnchorPane {
         text = new Text();
         availablePlayerslistView = new ListView();
         
-        Socket socket;
             try {
-                socket = new Socket("127.0.0.1", 5005);
-                PlayerConnection playerConnection = new PlayerConnection(socket);
-                playerConnection.sendMessage("Avaliable");
-            } catch (IOException ex) {
+                LoginFXMLBase.playerConnection.sendMessage("Avaliable");
+            } catch (Exception ex) {
                 Logger.getLogger(MainPageScreenBase.class.getName()).log(Level.SEVERE, null, ex);
             }
 
