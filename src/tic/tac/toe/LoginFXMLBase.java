@@ -1,5 +1,6 @@
 package tic.tac.toe;
 
+import java.net.Socket;
 import java.net.URL;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -21,6 +22,7 @@ public class LoginFXMLBase extends AnchorPane {
     protected final Button loginBtn;
     protected final ImageView imageView1;
     protected final Text dontHaveAnAccountText;
+    public static Socket mySocket;
 
     public LoginFXMLBase() {
 

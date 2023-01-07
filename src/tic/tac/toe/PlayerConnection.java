@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PlayerConnection extends Thread{
-  public DataInputStream recive;
+    public DataInputStream recive;
     public DataOutputStream send;
 
     Socket socket;
