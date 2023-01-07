@@ -38,17 +38,10 @@ public class SignUpBase extends AnchorPane {
     String email;
     String password;
     String repassword;
-    PlayerConnection playerConnection;
     boolean isConnected=true;
 
     public SignUpBase() {
         
-        try {
-            playerConnection=new PlayerConnection(LoginFXMLBase.mySocket);
-        }
-        catch (Exception ex) {
-            isConnected=false;
-        }
         
         imageView = new ImageView();
         rectangle = new Rectangle();
@@ -195,7 +188,7 @@ public class SignUpBase extends AnchorPane {
                     }
                 }
                 String messageToBeSend="signUp,"+username+","+email+","+password;
-                playerConnection.sendMessage(messageToBeSend);
+                LoginFXMLBase.playerConnection.sendMessage(messageToBeSend);
                 //TicTacToe.scene.setRoot(new AvailablePlayersBase());
             }
         });

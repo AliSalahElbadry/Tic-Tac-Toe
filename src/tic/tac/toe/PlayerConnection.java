@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
-    public DataOutputStream send;
+    public static DataOutputStream send;
 
     Socket socket;
     String message;
@@ -22,7 +22,9 @@ public class PlayerConnection extends Thread{
             recive = new DataInputStream(socket.getInputStream());
             send = new DataOutputStream(socket.getOutputStream());
             start();
+
         } catch (Exception e) {
+
             System.out.println(e.getCause());
         }
     }
@@ -63,12 +65,21 @@ public class PlayerConnection extends Thread{
                             System.out.println("no insert happened");
                         }
                         
-                    }else 
-                        if("Move".equals(message.split(",")[0]))
-                        {
+                    }
+                    else if("Move".equals(message.split(",")[0])){
                             message=message.split(",")[1];
                            //sendToReciveMove
+                       
+                    }
+                    else if(dbResult[0].equals("Avaliable")){
+                        AvailablePlayersBase.avaliable = dbResult;
+                        
+                        for(int i=2;i<dbResult.length;i+=2){
+                            AvailablePlayersBase.preperList(dbResult[i]);
                         }
+                    }
+                    
+
                 }
                 else{
                     System.out.println("recieve is null");
@@ -80,9 +91,9 @@ public class PlayerConnection extends Thread{
         }
     }
 
+
     public void sendMessage(String message) {
         try {
-           
             send.writeUTF(message);
         } catch (IOException ex) {
             Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, null, ex);

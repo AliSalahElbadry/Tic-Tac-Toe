@@ -38,9 +38,9 @@ public class LoginFXMLBase extends AnchorPane {
 
     protected final ContextMenu emailValidator;
     protected final ContextMenu passValidator;
-    public static Socket mySocket;
+    public Socket mySocket;
     public static PlayerData playerData;
-    PlayerConnection playerConnection;
+    public static PlayerConnection playerConnection;
     boolean isConnected = true;
 
 
