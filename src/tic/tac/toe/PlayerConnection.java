@@ -9,21 +9,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PlayerConnection extends Thread{
-  public DataInputStream recive;
-    public DataOutputStream send;
+    public DataInputStream recive;
+    public static DataOutputStream send;
 
     Socket socket;
     String message;
     
-    public PlayerConnection(Socket s){
+    public PlayerConnection(){
         try{
             message="";
-            socket=s;
+            socket=new Socket("127.0.0.1",5005);
             recive=new DataInputStream(socket.getInputStream());
             send=new DataOutputStream(socket.getOutputStream());
             start();
         }catch(Exception e)
         {
+            
             System.out.println(e.getCause());
         }
     }
@@ -34,14 +35,18 @@ public class PlayerConnection extends Thread{
             try {
                 if(recive!=null){
                     message=recive.readUTF();//here message recived
-                  
+                  if("Move".equals(message.split(",")[0]))
+                  {
+                      message=message.split(",")[1];
+                     //sendToReciveMove
+                  }
                 }
             } catch (Exception ex) {
                 System.out.print(ex.getMessage());
             }
         }
     }
-     public void sendMessage(String message)
+     public static void sendMessage(String message)
      {
       try {
           send.writeUTF(message);
