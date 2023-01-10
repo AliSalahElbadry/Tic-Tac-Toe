@@ -6,10 +6,20 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 public class TicTacToe extends Application {
     
     public static Scene scene ;
+    public static MediaPlayer player;
+
+    @Override
+    public void init() throws Exception {
+       Media media = new Media(getClass().getResource("/sounds/start.mp3").toExternalForm());  
+       player=new MediaPlayer(media);
+       player.setAutoPlay(true);
+    }
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
         primaryStage.setResizable(false);
@@ -18,12 +28,12 @@ public class TicTacToe extends Application {
        primaryStage.setTitle("Tic Tac Toe");
        primaryStage.setScene(scene);
        primaryStage.show();  
-       
+        player.play();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -33,17 +43,30 @@ public class TicTacToe extends Application {
                     public void run() {
 
                         scene = new Scene(new MainPageScreenBase(), 750, 480);
-
+                        
                         primaryStage.setScene(scene);
-                        primaryStage.show();  
+                        primaryStage.show(); 
                         
                     }
                 });
                  
             }
         }).start();
+        primaryStage.setOnCloseRequest(e->{
+           try{ 
+               if(AvailablePlayersBase.boardGameOnline.isPalying)
+                LoginFXMLBase.playerConnection.sendMessage("endGame,"+AvailablePlayersBase.boardGameOnline.oponentID);
+                LoginFXMLBase.playerConnection.stop();
+           }catch (Exception ex)
+           {
+               ex.printStackTrace();
+           }
+        });
+        
     }
     public static void main(String[] args) {
         launch(args);
     }
+    
+  
 }

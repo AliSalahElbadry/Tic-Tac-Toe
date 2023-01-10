@@ -2,7 +2,6 @@ package tic.tac.toe;
 
 
 
-import java.io.File;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -179,10 +178,10 @@ public  class WinnerScreenBase extends AnchorPane {
         if(mode==0)
         {
             mediaView.setScaleX(1.19);
-            mediaView.setScaleY(1.5);
+            mediaView.setScaleY(1.7);
         }else 
         {
-          mediaView.setScaleY(1.2);
+          mediaView.setScaleY(1.4);
         }
         mediaPlayer.setAutoPlay(true);
         TicTacToe.scene.setRoot(this);
