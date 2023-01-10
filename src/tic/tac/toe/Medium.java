@@ -3,6 +3,8 @@ package tic.tac.toe;
 
 import java.util.Random;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Medium{
     
@@ -39,7 +41,7 @@ public class Medium{
     public void click(){
         boardScreenBase.box00.setOnMouseClicked(e->{ 
             if(isEmpty(board[0][0]) && !win){
-                printSides(00);
+                printSides(00);playSound();
                 board[0][0]=1;
                 winner();
                 if(isMovesLeft(board)){
@@ -53,7 +55,7 @@ public class Medium{
         
         boardScreenBase.box01.setOnMouseClicked(e->{ 
             if(isEmpty(board[0][1]) && !win){
-                    printSides(01);
+                    printSides(01);playSound();
                     board[0][1]=1;
                     winner();
                 if(isMovesLeft(board)){
@@ -68,7 +70,7 @@ public class Medium{
         
         boardScreenBase.box02.setOnMouseClicked(e->{ 
             if(isEmpty(board[0][2])&& !win){
-                printSides(02);
+                printSides(02);playSound();
                 board[0][2]=1;
                 winner();
                 if(isMovesLeft(board)){
@@ -83,7 +85,7 @@ public class Medium{
         
         boardScreenBase.box10.setOnMouseClicked(e->{  
             if(isEmpty(board[1][0])&& !win){
-                printSides(10);
+                printSides(10);playSound();
                 board[1][0]=1;
                 winner();
                 if(isMovesLeft(board)){
@@ -97,7 +99,7 @@ public class Medium{
         });
         boardScreenBase.box11.setOnMouseClicked(e->{  
             if(isEmpty(board[1][1])&& !win){
-            printSides(11);
+            printSides(11);playSound();
             board[1][1]=1;
             winner();
             if(isMovesLeft(board)){
@@ -111,7 +113,7 @@ public class Medium{
         
         boardScreenBase.box12.setOnMouseClicked(e->{       
                 if(isEmpty(board[1][2])&& !win){
-                    printSides(12);
+                    printSides(12);playSound();
                     board[1][2]=1;
                     winner();
                 if(isMovesLeft(board)){
@@ -126,7 +128,7 @@ public class Medium{
         
         boardScreenBase.box20.setOnMouseClicked(e->{     
                 if(isEmpty(board[2][0])&& !win){
-                    printSides(20);
+                    printSides(20);playSound();
                     board[2][0]=1;
                     winner();
                 if(isMovesLeft(board)){
@@ -140,7 +142,7 @@ public class Medium{
         
         boardScreenBase.box21.setOnMouseClicked(e->{ 
                 if(isEmpty(board[2][1])&& !win){
-                printSides(21);
+                printSides(21);playSound();
                 board[2][1]=1;
                 winner();
                 if(isMovesLeft(board)){
@@ -154,7 +156,7 @@ public class Medium{
         
         boardScreenBase.box22.setOnMouseClicked(e->{    
             if(isEmpty(board[2][2])&& !win){
-            printSides(22);
+            printSides(22); playSound();
             board[2][2]=1;
             winner();
             if(isMovesLeft(board)){
@@ -290,8 +292,8 @@ public class Medium{
     }
     
     public void computer(){
-        int counter = 0;
-        int []move  = new int[2];
+        int counter = 0;playSound();
+        int []move  = new int[2]; 
         
         for (int i=0;i<3;i++){
             for(int j=0;j<3;j++){
@@ -595,6 +597,12 @@ public class Medium{
           
        return -1;
    }
+    private void playSound()
+    {
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
+        TicTacToe.player.play();
+    }
     
     
 }

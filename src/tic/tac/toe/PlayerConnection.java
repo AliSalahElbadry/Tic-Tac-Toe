@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
     public static DataOutputStream send;
@@ -38,13 +37,13 @@ public class PlayerConnection extends Thread{
                 if (recive != null) {
                     
                     message = recive.readUTF();//here message recived
-                    System.out.println(message);
+                    
                     String dbResult[] = message.split(",");
                     
                     if (dbResult[0].equals("login")) {
                         
                         if (message.length() > 6) {
-                           
+                            
                             LoginFXMLBase.playerData = new PlayerData(Integer.valueOf(dbResult[1]), dbResult[2], dbResult[3], dbResult[4], dbResult[5], Integer.valueOf(dbResult[6]), Integer.valueOf(dbResult[7]));
                             TicTacToe.scene.setRoot(new AvailablePlayersBase());
                         } 
@@ -66,10 +65,9 @@ public class PlayerConnection extends Thread{
                         }
                         
                     }
-                    else if("Move".equals(message.split(",")[0])){
-                            message=message.split(",")[1];
-                           //sendToReciveMove
-                       
+                    else if("Move".equals(dbResult[0])){
+                            message=dbResult[1];
+                           AvailablePlayersBase.boardGameOnline.reciveMove(message);
                     }
                     else if(dbResult[0].equals("Avaliable")){
                         AvailablePlayersBase.avaliable = dbResult;
@@ -77,6 +75,18 @@ public class PlayerConnection extends Thread{
                         for(int i=2;i<dbResult.length;i+=2){
                             AvailablePlayersBase.preperList(dbResult[i]);
                         }
+                    }else if(dbResult[0].equals("endGame"))
+                    {
+                        WinnerScreenBase winner=new WinnerScreenBase();
+                        winner.PrepareWinnerScreen(LoginFXMLBase.playerData.userName,1);
+                        AvailablePlayersBase.boardGameOnline.clear();
+                        message="wins,"+(LoginFXMLBase.playerData.wins+1);
+                        sendMessage(message);
+                        LoginFXMLBase.playerData.wins++;
+                        message="PGames,"+""+(LoginFXMLBase.playerData.countGames+1);
+                        LoginFXMLBase.playerData.countGames++;
+                        sendMessage(message);
+                        TicTacToe.scene.setRoot(winner);
                     }
                     
 

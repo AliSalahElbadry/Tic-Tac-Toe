@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -27,7 +29,7 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
     public static boolean flag = false ;
 
     public GamesRecordItemSceenBase() {
-
+        PickYourSideScreenBase.level=6;
         rectangle = new Rectangle();
         showGameItem1Btn = new Button();
         imageView = new ImageView();
@@ -70,9 +72,11 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem1Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem1Btn.setFont(new Font("Serif Regular", 16.0));
         showGameItem1Btn.setOnAction(event ->{
-        
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+        TicTacToe.player.play();
             flag = true ;
-            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+            TicTacToe.scene.setRoot(new BoardScreenBase());
             
         });
 
@@ -133,9 +137,11 @@ public  class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem2Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem2Btn.setFont(new Font("Serif Regular", 16.0));
         showGameItem2Btn.setOnAction(event ->{
-        
+           TicTacToe.player.stop();
+           TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+           TicTacToe.player.play();
             flag = true ;
-            TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+            TicTacToe.scene.setRoot(new BoardScreenBase());
             
             
             
