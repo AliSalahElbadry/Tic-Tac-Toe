@@ -10,6 +10,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  *
@@ -23,12 +26,13 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     public  int oponentID;
     public  int playerRes=0,oponentRes=0;
     public  char playerSide='X';
-    public  boolean myTurn=false;
+    public  static boolean myTurn=false;
     public  boolean isPalying=false;
     public OnLineGameBoard ()
     {
         board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
         boardScreenBase=new BoardScreenBase();
+        boardScreenBase.levelText.fontProperty().set(Font.font("ARIAL", FontWeight.LIGHT, FontPosture.REGULAR, 16));
         isPalying=true;
         PickYourSideScreenBase.level=4;
         boardScreenBase.levelText.setText("Online");
@@ -42,7 +46,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
             {
                 board[0][0]=0;myTurn=false;
                 setMoveOnScreen("00", playerSide=='X'?"X":"O");
-                sendMove("00");
+                sendMove("00");playSound();
                 
                 showWinner(pridectWinner(board));
             }
@@ -52,7 +56,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
             {
                 board[1][0]=0;myTurn=false;
                 setMoveOnScreen("10", playerSide=='X'?"X":"O");
-                sendMove("10");
+                sendMove("10");playSound();
                 showWinner(pridectWinner(board));
             }
         });
@@ -61,7 +65,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
             {
                 board[2][0]=0;myTurn=false;
                 setMoveOnScreen("20", playerSide=='X'?"X":"O");
-                sendMove("20");
+                sendMove("20");playSound();
                 showWinner(pridectWinner(board));
                 
             }
@@ -69,7 +73,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box01.setOnMouseClicked(e->{
         if(board[0][1]==-1&&myTurn&&isPalying)
             {
-                board[0][1]=0;myTurn=false;
+                board[0][1]=0;myTurn=false;playSound();
                 setMoveOnScreen("01", playerSide=='X'?"X":"O");
                 sendMove("01");
                 showWinner(pridectWinner(board));
@@ -79,7 +83,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box11.setOnMouseClicked(e->{
         if(board[1][1]==-1&&myTurn&&isPalying)
             {
-                board[1][1]=0;
+                board[1][1]=0;playSound();
                 setMoveOnScreen("11", playerSide=='X'?"X":"O");
                 sendMove("11");myTurn=false;
                 showWinner(pridectWinner(board));
@@ -88,7 +92,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box21.setOnMouseClicked(e->{
         if(board[2][1]==-1&&myTurn&&isPalying)
             {
-                board[2][1]=0;myTurn=false;
+                board[2][1]=0;myTurn=false;playSound();
                 setMoveOnScreen("21", playerSide=='X'?"X":"O");
                 sendMove("21");
                 showWinner(pridectWinner(board));
@@ -97,7 +101,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box02.setOnMouseClicked(e->{
         if(board[0][2]==-1&&myTurn&&isPalying)
             {
-                board[0][2]=0;myTurn=false;
+                board[0][2]=0;myTurn=false;playSound();
                 setMoveOnScreen("02", playerSide=='X'?"X":"O");
                 sendMove("02");
                 showWinner(pridectWinner(board));
@@ -107,7 +111,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box12.setOnMouseClicked(e->{
         if(board[1][2]==-1&&myTurn&&isPalying)
             {
-                board[1][2]=0;myTurn=false;
+                board[1][2]=0;myTurn=false;playSound();
                 setMoveOnScreen("12", playerSide=='X'?"X":"O");
                 sendMove("12");
                 showWinner(pridectWinner(board));
@@ -117,7 +121,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         boardScreenBase.box22.setOnMouseClicked(e->{
         if(board[2][2]==-1&&myTurn&&isPalying)
             {
-                board[2][2]=0;myTurn=false;
+                board[2][2]=0;myTurn=false;playSound();
                 setMoveOnScreen("22", playerSide=='X'?"X":"O");
                 sendMove("22");
                 showWinner(pridectWinner(board));
@@ -130,7 +134,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         alert.showAndWait().ifPresent(res->{
          if(res==ButtonType.OK)
          {
-               clear();
+             
                LoginFXMLBase.playerConnection.sendMessage("endGame,"+oponentID);
                TicTacToe.scene.setRoot(new AvailablePlayersBase());
          }
@@ -240,8 +244,8 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     private void showWinner(int ev) {
      if(ev==0||ev==1)
      {
-         if(playerSide==ev)playerRes++;
-         else oponentRes++;
+         if(ev==0)playerRes++;
+         else if(ev==1) oponentRes++;
          try {
              String message="";
             if(ev==0){
@@ -259,10 +263,10 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
          
          WinnerScreenBase winner=new WinnerScreenBase();
          winner.PrepareWinnerScreen(ev==0?PlayerName:oponentName, ev==0?1:-1);
-         clear();
+         
      }else if(ev==-1&&!isMovesLeft(board))
      {
-         clear();
+        
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
      }
@@ -274,7 +278,15 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         TicTacToe.player.play();
     }
 
-    public void clear() {
+    public void prepare()
+    {
+        
+      PlayerName=LoginFXMLBase.playerData.userName;
+      boardScreenBase.player1Text.setText(PlayerName);
+      boardScreenBase.player2Text.setText(oponentName);
+      boardScreenBase.scorePlayer1.setText(""+playerRes);
+      boardScreenBase.scorePlayer2.setText(""+oponentRes);
+      isPalying=true; 
       boardScreenBase.box00.setImage(null);
       boardScreenBase.box10.setImage(null);
       boardScreenBase.box20.setImage(null);
@@ -285,23 +297,6 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
       boardScreenBase.box12.setImage(null);
       boardScreenBase.box22.setImage(null);
       board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
-      isPalying=false;
-      boardScreenBase.player1Text.setText("");
-      boardScreenBase.player2Text.setText("");
-      boardScreenBase.scorePlayer1.setText("");
-      boardScreenBase.scorePlayer2.setText("");
-      oponentName="";
-      oponentID=-1;
     }
-    public void prepare()
-    {
-        //TODO: get oponent name , id after you get invetation or invite some one
-       //set Oponent name , id after you get invetation or invite some one
-        PlayerName=LoginFXMLBase.playerData.userName;
-        boardScreenBase.player1Text.setText(PlayerName);
-        boardScreenBase.player2Text.setText(oponentName);
-        boardScreenBase.scorePlayer1.setText(""+playerRes);
-        boardScreenBase.scorePlayer2.setText(""+oponentRes);
-        isPalying=true;
-    }
+  
 }

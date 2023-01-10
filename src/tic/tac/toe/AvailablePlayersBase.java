@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -18,7 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class AvailablePlayersBase extends AnchorPane {
-    public static OnLineGameBoard boardGameOnline=new OnLineGameBoard();
+    public static OnLineGameBoard boardGameOnline;
     protected final ImageView imageView;
     protected final Rectangle rectangle;
     protected final Button backBtn;
@@ -29,6 +30,7 @@ public class AvailablePlayersBase extends AnchorPane {
     public  static String [] avaliable ;
 
     public AvailablePlayersBase() {
+        
         TicTacToe.player.stop();
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/serveronline.mp3").toExternalForm()));
         TicTacToe.player.play();
@@ -130,7 +132,9 @@ public class AvailablePlayersBase extends AnchorPane {
     }
     
     public static void showDialog(String name ,String PlayerIdOfTheInvitation){
-        Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+    Platform.runLater(new Runnable() {
+    @Override
+    public void run() { Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
         alert.setTitle("Attention");
         alert.setContentText("you are invited to play with "+name+"\n"+"if you accept the invitation press ok button");
         alert.showAndWait().ifPresent(rs->{
@@ -144,5 +148,7 @@ public class AvailablePlayersBase extends AnchorPane {
             }
 
         });
+        }
+    });
     }
 }

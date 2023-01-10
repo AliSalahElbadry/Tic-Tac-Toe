@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static tic.tac.toe.AvailablePlayersBase.boardGameOnline;
 
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
@@ -79,7 +80,6 @@ public class PlayerConnection extends Thread{
                     {
                         WinnerScreenBase winner=new WinnerScreenBase();
                         winner.PrepareWinnerScreen(LoginFXMLBase.playerData.userName,1);
-                        AvailablePlayersBase.boardGameOnline.clear();
                         message="wins,"+(LoginFXMLBase.playerData.wins+1);
                         sendMessage(message);
                         LoginFXMLBase.playerData.wins++;
@@ -91,8 +91,20 @@ public class PlayerConnection extends Thread{
                     else if(dbResult[0].equals("invite")){
                          AvailablePlayersBase.showDialog(dbResult[2],dbResult[1]);
                     }
-                    else if(dbResult[0].equals("acceptInvitation")){
+                    else if(dbResult[0].equals("startGame")){
+                        boardGameOnline=new OnLineGameBoard();
                         PickYourSideScreenBase.level=4;
+                        boardGameOnline.oponentID=Integer.valueOf(dbResult[1]);
+                        for(int i=1;i<AvailablePlayersBase.avaliable.length;i+=2)
+                        {
+                            if(AvailablePlayersBase.avaliable[i].equals(dbResult[1]))
+                            {
+                               boardGameOnline.oponentName=
+                                        AvailablePlayersBase.avaliable[i+1];
+                                break;
+                            }
+                        }
+                        AvailablePlayersBase.boardGameOnline.prepare();
                         TicTacToe.scene.setRoot(new PickYourSideScreenBase());
                     }
                     else if(dbResult[0].equals("rejectInvitation")){

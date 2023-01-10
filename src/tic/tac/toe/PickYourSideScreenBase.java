@@ -132,6 +132,7 @@ public class PickYourSideScreenBase extends AnchorPane {
                     break;
                 case 4:
                     AvailablePlayersBase.boardGameOnline.playerSide='O';
+                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :
                     System.out.print("");
@@ -184,6 +185,7 @@ public class PickYourSideScreenBase extends AnchorPane {
                     break;
                 case 4:
                     AvailablePlayersBase.boardGameOnline.playerSide='X';
+                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :
                     System.out.print("");
