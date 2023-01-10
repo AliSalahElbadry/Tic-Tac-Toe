@@ -60,6 +60,7 @@ public class ItemBase extends AnchorPane {
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
         inviteBtn.setOnAction(event ->{
+            OnLineGameBoard.myTurn=true;
             try {
                 String playerIdToBeInvite="";
                 for(int i=2;i<AvailablePlayersBase.avaliable.length;i+=2){
