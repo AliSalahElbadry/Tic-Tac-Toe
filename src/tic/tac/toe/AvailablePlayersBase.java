@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -120,5 +122,22 @@ public class AvailablePlayersBase extends AnchorPane {
         ItemBase itemBase = new ItemBase();
         itemBase.playerNameText.setText(name);
         availablePlayerslistView.getItems().add(itemBase);
+    }
+    
+    public static void showDialog(String name ,String PlayerIdOfTheInvitation){
+        Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+        alert.setTitle("Attention");
+        alert.setContentText("you are invited to play with "+name+"\n"+"if you accept the invitation press ok button");
+        alert.showAndWait().ifPresent(rs->{
+            if(rs==ButtonType.OK){
+                String repleyMessage="acceptInvitation,"+PlayerIdOfTheInvitation;
+                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+            }
+            else{
+                String repleyMessage="rejectInvitation,"+PlayerIdOfTheInvitation;
+                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+            }
+
+        });
     }
 }
