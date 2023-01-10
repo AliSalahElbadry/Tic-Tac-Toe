@@ -11,12 +11,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class AvailablePlayersBase extends AnchorPane {
-
+    public static OnLineGameBoard boardGameOnline=new OnLineGameBoard();
     protected final ImageView imageView;
     protected final Rectangle rectangle;
     protected final Button backBtn;
@@ -27,7 +29,10 @@ public class AvailablePlayersBase extends AnchorPane {
     public  static String [] avaliable ;
 
     public AvailablePlayersBase() {
-
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/serveronline.mp3").toExternalForm()));
+        TicTacToe.player.play();
+        
         imageView = new ImageView();
         rectangle = new Rectangle();
         backBtn = new Button();
@@ -71,7 +76,7 @@ public class AvailablePlayersBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backBtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
-         backBtn.setOnAction(e->{
+        backBtn.setOnAction(e->{
              
              TicTacToe.scene.setRoot(new MainPageScreenBase());
          
@@ -108,7 +113,7 @@ public class AvailablePlayersBase extends AnchorPane {
         availablePlayerslistView.getStyleClass().add("mylistview");
         availablePlayerslistView.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
         
-   getChildren().add(imageView);
+        getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(backBtn);
         getChildren().add(rectangle0);

@@ -88,4 +88,5 @@ public class ItemBase extends AnchorPane {
         getChildren().add(inviteBtn);
 
     }
+   
 }
