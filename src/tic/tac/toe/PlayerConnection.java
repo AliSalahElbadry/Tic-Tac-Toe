@@ -71,7 +71,7 @@ public class PlayerConnection extends Thread{
                     }
                     else if(dbResult[0].equals("Avaliable")){
                         AvailablePlayersBase.avaliable = dbResult;
-                        
+                        System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
                         for(int i=2;i<dbResult.length;i+=2){
                             AvailablePlayersBase.preperList(dbResult[i]);
                         }
@@ -87,6 +87,16 @@ public class PlayerConnection extends Thread{
                         LoginFXMLBase.playerData.countGames++;
                         sendMessage(message);
                         TicTacToe.scene.setRoot(winner);
+                    }
+                    else if(dbResult[0].equals("invite")){
+                         AvailablePlayersBase.showDialog(dbResult[2],dbResult[1]);
+                    }
+                    else if(dbResult[0].equals("acceptInvitation")){
+                        PickYourSideScreenBase.level=4;
+                        TicTacToe.scene.setRoot(new PickYourSideScreenBase());
+                    }
+                    else if(dbResult[0].equals("rejectInvitation")){
+                        
                     }
                     
 
