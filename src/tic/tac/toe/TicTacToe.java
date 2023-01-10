@@ -59,7 +59,7 @@ public class TicTacToe extends Application {
                 LoginFXMLBase.playerConnection.stop();
            }catch (Exception ex)
            {
-               ex.printStackTrace();
+               System.out.println(ex.getCause());
            }
         });
         
