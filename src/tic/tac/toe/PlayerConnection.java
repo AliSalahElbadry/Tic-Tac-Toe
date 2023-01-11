@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
     public static DataOutputStream send;
-
+ 
     Socket socket;
     String message;
 
@@ -45,12 +45,15 @@ public class PlayerConnection extends Thread{
                         
                         if (message.length() > 6) {
                            
-                            LoginFXMLBase.playerData = new PlayerData(Integer.valueOf(dbResult[1]), dbResult[2], dbResult[3], dbResult[4], dbResult[5], Integer.valueOf(dbResult[6]), Integer.valueOf(dbResult[7]));
-                            TicTacToe.scene.setRoot(new AvailablePlayersBase());
+                           LoginFXMLBase.playerData = new PlayerData(Integer.valueOf(dbResult[1]), dbResult[2], dbResult[3], dbResult[4], dbResult[5], Integer.valueOf(dbResult[6]), Integer.valueOf(dbResult[7]));
+                           
+                           
+                           TicTacToe.scene.setRoot(new AvailablePlayersBase());
+
                         } 
                         else {
                              
-                           TicTacToe.scene.setRoot(new MainPageScreenBase());
+                          // LoginFXMLBase.showAlert();
 
                         }
                         
@@ -100,4 +103,5 @@ public class PlayerConnection extends Thread{
         }
     }
 
+   
 }

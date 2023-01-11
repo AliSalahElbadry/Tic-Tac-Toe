@@ -335,7 +335,7 @@ public  class BoardScreenBase extends AnchorPane {
         imageView0.setImage(new Image(getClass().getResource("Photos/Title2.png").toExternalForm()));
 
         levelText.setFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
-        levelText.setLayoutX(344.0);
+        levelText.setLayoutX(320.0);
         levelText.setLayoutY(39.0);
         levelText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         levelText.setStrokeWidth(0.0);

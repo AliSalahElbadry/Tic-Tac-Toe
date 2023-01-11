@@ -66,8 +66,22 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setPreserveRatio(true);
         prifileImage.setImage(new Image(getClass().getResource("Photos/profile.png").toExternalForm()));
         prifileImage.setOnMouseClicked(event ->{
+        if(LoginFXMLBase.playerData==null)
+        {
+             TicTacToe.scene.setRoot(new LoginFXMLBase());
+            
+        }
+        else
+        {
+           ProfileScreenBase profileScreenBase=new ProfileScreenBase();
+           profileScreenBase.userNameText.setText(LoginFXMLBase.playerData.getUserName());
+           profileScreenBase.emailText.setText(LoginFXMLBase.playerData.getEmail());
+           profileScreenBase.playedGamesText.setText(LoginFXMLBase.playerData.getWins()+"/"+LoginFXMLBase.playerData.getCountGames());
+           MainPageScreenBase main=new MainPageScreenBase();
+           main.profileText.setText(LoginFXMLBase.playerData.getUserName());
+            TicTacToe.scene.setRoot(profileScreenBase);
+        }
         
-            TicTacToe.scene.setRoot(new ProfileScreenBase());
             
         });
 
@@ -126,7 +140,15 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
             PickYourSideScreenBase.level=4;
-            TicTacToe.scene.setRoot(new LoginFXMLBase());
+            if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            else
+            {
+                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            }
+           
         });
 
         computerImageView.setFitHeight(100.0);
@@ -166,8 +188,14 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setOnMouseClicked(event ->{
             
             
-            TicTacToe.scene.setRoot(new  LoginFXMLBase());
-            
+            if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            else
+            {
+                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            }
         });
 
         computerText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
@@ -207,9 +235,17 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setOnMouseClicked(event ->{
         
            
-            TicTacToe.scene.setRoot(new LoginFXMLBase());
+             if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            else
+            {
+                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
+            }
             
         });
+        
 
         getChildren().add(imageView);
         getChildren().add(imageView0);

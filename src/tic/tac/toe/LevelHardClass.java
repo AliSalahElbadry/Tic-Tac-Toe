@@ -20,7 +20,15 @@ public class LevelHardClass  {
     {   
        boardScreen=new BoardScreenBase();
        board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
-       boardScreen.levelText.setText("Hard");
+       if(LevelScreenBase.randomFlag)
+       {
+           boardScreen.levelText.setLayoutX(320.0);
+           boardScreen.levelText.setText("Random");
+       }
+       else
+       {boardScreen.levelText.setLayoutX(345.0);
+           boardScreen.levelText.setText("Hard");
+       }
        boardScreen.player1Text.setText("Computer");
        
        boardScreen.player1Text.setText(PlayerName);
