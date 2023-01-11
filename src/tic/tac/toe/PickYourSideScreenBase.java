@@ -132,6 +132,9 @@ public class PickYourSideScreenBase extends AnchorPane {
                     break;
                 case 4:
                     AvailablePlayersBase.boardGameOnline.playerSide='O';
+                    TicTacToe.player.stop();
+                    TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
+                    TicTacToe.player.play();
                     TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :
@@ -185,6 +188,9 @@ public class PickYourSideScreenBase extends AnchorPane {
                     break;
                 case 4:
                     AvailablePlayersBase.boardGameOnline.playerSide='X';
+                    TicTacToe.player.stop();
+                    TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
+                    TicTacToe.player.play();
                     TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :

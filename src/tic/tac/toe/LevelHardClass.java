@@ -16,7 +16,7 @@ public class LevelHardClass  {
     int[][]board;
     public static int playerSide=0;
     private boolean win=false;
-    public static String PlayerName="Ali";
+    public static String PlayerName="YOU";
     public static  int computerRes=0,playerRes=0;
     public LevelHardClass()
     {   

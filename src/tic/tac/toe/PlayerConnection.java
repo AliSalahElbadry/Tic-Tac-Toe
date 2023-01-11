@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import static tic.tac.toe.AvailablePlayersBase.boardGameOnline;
 
 public class PlayerConnection extends Thread{
@@ -78,6 +81,7 @@ public class PlayerConnection extends Thread{
                         }
                     }else if(dbResult[0].equals("endGame"))
                     {
+                        boardGameOnline.isPalying=false;
                         WinnerScreenBase winner=new WinnerScreenBase();
                         winner.PrepareWinnerScreen(LoginFXMLBase.playerData.userName,1);
                         message="wins,"+(LoginFXMLBase.playerData.wins+1);
@@ -93,8 +97,11 @@ public class PlayerConnection extends Thread{
                     }
                     else if(dbResult[0].equals("startGame")){
                         boardGameOnline=new OnLineGameBoard();
+                        boardGameOnline.PlayerName=LoginFXMLBase.playerData.userName;
                         PickYourSideScreenBase.level=4;
+                        boardGameOnline.isPalying=true;
                         boardGameOnline.oponentID=Integer.valueOf(dbResult[1]);
+                        
                         for(int i=1;i<AvailablePlayersBase.avaliable.length;i+=2)
                         {
                             if(AvailablePlayersBase.avaliable[i].equals(dbResult[1]))
@@ -108,17 +115,48 @@ public class PlayerConnection extends Thread{
                         TicTacToe.scene.setRoot(new PickYourSideScreenBase());
                     }
                     else if(dbResult[0].equals("rejectInvitation")){
+                       Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                        alert.setTitle("Attention");
+                        alert.setContentText("Player "+boardGameOnline.oponentName+" rijects your Invetation");
+                        alert.show(); 
+                       });
+                    }else if(dbResult[0].equals("playing"))
+                    {
+                        if(!boardGameOnline.isPalying){
+                        Platform.runLater(() -> {
+                            boardGameOnline.isPalying=true;
+                            Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK);
+                            alert.setTitle("Attention");
+                            alert.setContentText("Player "+boardGameOnline.oponentName+" Want to  play Again "+boardGameOnline.oponentName+"\n"+" Press Ok  To Hide this Dialog\nPress Play Again To Play ");
+                            alert.show();
+                        });
+                        }
+                    }else if(dbResult[0].equals("Close"))
+                    {
+                        try{
+                         Platform.runLater(() -> {
+                            boardGameOnline.isPalying=true;
+                            Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK);
+                            alert.setTitle("Attention");
+                            alert.setContentText("Server Is Off !!!");
+                            alert.show();
+                        });
+                        }catch(Exception e){
                         
+                        }
+                    TicTacToe.scene.setRoot(new MainPageScreenBase());
+                    this.stop();
                     }
-                    
-
                 }
                 else{
                     System.out.println("recieve is null");
+                 
                 }
 
             } catch (Exception ex) {
                 System.out.print(ex.getMessage());
+               
             }
         }
     }

@@ -83,7 +83,7 @@ public  class BoardScreenBase extends AnchorPane {
         imageView2 = new ImageView();
         player2Text = new Text();
         imageView3 = new ImageView();
-        if(PickYourSideScreenBase.level<=4)
+        if(PickYourSideScreenBase.level<=3)
         {
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));

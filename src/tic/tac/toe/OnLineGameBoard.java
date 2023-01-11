@@ -33,7 +33,6 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
         boardScreenBase=new BoardScreenBase();
         boardScreenBase.levelText.fontProperty().set(Font.font("ARIAL", FontWeight.LIGHT, FontPosture.REGULAR, 16));
-        isPalying=true;
         PickYourSideScreenBase.level=4;
         boardScreenBase.levelText.setText("Online");
         PlayerName=LoginFXMLBase.playerData.userName;
@@ -256,7 +255,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
             message="PGames,"+""+(LoginFXMLBase.playerData.countGames+1);
             LoginFXMLBase.playerData.countGames++;
             LoginFXMLBase.playerConnection.sendMessage(message);
-            
+          isPalying=false;  
         } catch (Exception ex) {
             Logger.getLogger(OnLineGameBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -266,7 +265,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
          
      }else if(ev==-1&&!isMovesLeft(board))
      {
-        
+        isPalying=false;
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
      }
@@ -280,13 +279,12 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
 
     public void prepare()
     {
-        
+      
       PlayerName=LoginFXMLBase.playerData.userName;
       boardScreenBase.player1Text.setText(PlayerName);
       boardScreenBase.player2Text.setText(oponentName);
       boardScreenBase.scorePlayer1.setText(""+playerRes);
       boardScreenBase.scorePlayer2.setText(""+oponentRes);
-      isPalying=true; 
       boardScreenBase.box00.setImage(null);
       boardScreenBase.box10.setImage(null);
       boardScreenBase.box20.setImage(null);
