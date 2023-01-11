@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -92,6 +94,9 @@ public class PlayersNamesScreenBase extends AnchorPane {
             player2Name=Player2TextField.getText().toString();
             if((!player1Name.equals(""))&&(!player2Name.equals(""))){
                 PickYourSideScreenBase.level=3;
+                TicTacToe.player.stop();
+                TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+                TicTacToe.player.play();
                 TicTacToe.scene.setRoot(new PickYourSideScreenBase());
             }
             else{
@@ -127,6 +132,9 @@ public class PlayersNamesScreenBase extends AnchorPane {
         backButtonId.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backButtonId.setOnMousePressed((event)->{
         
+               TicTacToe.player.stop();
+                TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+                TicTacToe.player.play();
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
     

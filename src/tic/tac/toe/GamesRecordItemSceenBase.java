@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,7 +24,7 @@ public class GamesRecordItemSceenBase extends AnchorPane {
     public int listId=0;
 
     public GamesRecordItemSceenBase() {
-
+        PickYourSideScreenBase.level=6;
         rectangle = new Rectangle();
         showGameItem1Btn = new Button();
         imageView = new ImageView();
@@ -59,9 +61,13 @@ public class GamesRecordItemSceenBase extends AnchorPane {
         showGameItem1Btn.setTextFill(javafx.scene.paint.Color.valueOf("#305bc3"));
         showGameItem1Btn.setFont(new Font("Serif Regular", 16.0));
         showGameItem1Btn.setOnAction(e->{
-        
-            
+
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+        TicTacToe.player.play();
             flag = true ;
+            
+
             
             ShowGame showGame = new ShowGame(GamesRecordScreenBase.listRecord.get(listId));
             TicTacToe.scene.setRoot(showGame.boardScreenBase);
@@ -102,7 +108,7 @@ public class GamesRecordItemSceenBase extends AnchorPane {
         winnerItem1Text.setText("X win");
         winnerItem1Text.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         winnerItem1Text.setFont(new Font("Serif Regular", 22.0));
-
+        
         getChildren().add(rectangle);
         getChildren().add(showGameItem1Btn);
         getChildren().add(player2Item1Text);

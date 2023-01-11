@@ -1,9 +1,8 @@
 package tic.tac.toe;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import static tic.tac.toe.LevelHardClass.PlayerName;
-import static tic.tac.toe.LevelHardClass.playerSide;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class LocalMode  {
     
@@ -58,7 +57,7 @@ public class LocalMode  {
         boardScreenBase.box00.setOnMouseClicked(e->{
             if(boardScreenBase.box00.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                board[0][0]=1;
+                board[0][0]=1;playSound();
                 turnSide(XSide);
                 checkDiagonal();
                 checkHorizontal();
@@ -68,7 +67,7 @@ public class LocalMode  {
             else if(boardScreenBase.box00.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[0][0]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -79,7 +78,7 @@ public class LocalMode  {
               if(boardScreenBase.box01.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[0][1]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -88,7 +87,7 @@ public class LocalMode  {
             else if(boardScreenBase.box01.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                  board[0][1]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -99,7 +98,7 @@ public class LocalMode  {
               if(boardScreenBase.box02.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[0][2]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -108,7 +107,7 @@ public class LocalMode  {
             else if(boardScreenBase.box02.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                  board[0][2]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -119,7 +118,7 @@ public class LocalMode  {
              if(boardScreenBase.box10.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[1][0]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -128,7 +127,7 @@ public class LocalMode  {
             else if(boardScreenBase.box10.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[1][0]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -139,7 +138,7 @@ public class LocalMode  {
               if(boardScreenBase.box11.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[1][1]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -148,7 +147,7 @@ public class LocalMode  {
             else if(boardScreenBase.box11.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[1][1]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -159,7 +158,7 @@ public class LocalMode  {
              if(boardScreenBase.box12.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[1][2]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -168,7 +167,7 @@ public class LocalMode  {
             else if(boardScreenBase.box12.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                  board[1][2]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -179,7 +178,7 @@ public class LocalMode  {
              if(boardScreenBase.box20.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[2][0]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -188,7 +187,7 @@ public class LocalMode  {
             else if(boardScreenBase.box20.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[2][0]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -199,7 +198,7 @@ public class LocalMode  {
               if(boardScreenBase.box21.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[2][1]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -208,7 +207,7 @@ public class LocalMode  {
             else if(boardScreenBase.box21.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[2][1]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -219,7 +218,7 @@ public class LocalMode  {
               if(boardScreenBase.box22.getImage()==null&&XSide==true&&winnerFlag==false){
                 boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
                 board[2][2]=1;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -228,7 +227,7 @@ public class LocalMode  {
             else if(boardScreenBase.box22.getImage()==null&&XSide==false&&winnerFlag==false){
                 boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
                 board[2][2]=0;
-                turnSide(XSide);
+                turnSide(XSide);playSound();
                 checkDiagonal();
                 checkHorizontal();
                 checkVertical();
@@ -318,5 +317,10 @@ public class LocalMode  {
         }
         
     }
-    
+    private void playSound()
+    {
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
+        TicTacToe.player.play();
+    }
 }
