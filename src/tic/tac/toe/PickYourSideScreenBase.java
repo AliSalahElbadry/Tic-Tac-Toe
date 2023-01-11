@@ -80,6 +80,9 @@ public class PickYourSideScreenBase extends AnchorPane {
         recordRadioButton.setText("Record The Game");
         recordRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         recordRadioButton.setFont(new Font("System Bold", 18.0));
+        if(recordRadioButton.isFocused()){
+            BoardScreenBase.record = true;
+        }
         
         if (GamesRecordItemSceenBase.flag == true){
             recordRadioButton.setVisible(false);

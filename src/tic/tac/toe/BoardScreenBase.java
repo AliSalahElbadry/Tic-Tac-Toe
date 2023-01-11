@@ -45,7 +45,7 @@ public  class BoardScreenBase extends AnchorPane {
     protected final ImageView imageView2;
     protected final Text player2Text;
     protected final ImageView imageView3;
-
+    public static boolean record = false;
     
 
     public BoardScreenBase() {
