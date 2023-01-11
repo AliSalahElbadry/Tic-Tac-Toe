@@ -1154,10 +1154,7 @@
     
     <!-- Note: target "-jfx-copylibs" is referenced from NB 7.1 build-impl.xml -->
     <target name="-jfx-copylibs" depends="init,compile,-pre-pre-jar,-pre-jar,-jfx-copylibs-warning" unless="fallback.no.javascript">
-<<<<<<< HEAD
-       
-=======
->>>>>>> 5fd4c8a994e4d62ec7f36204a3819b9f3bedc0aa
+        <!--<jfx-copylibs-js-impl/>-->
     </target>
     <target name="-jfx-copylibs-warning" if="fallback.no.javascript">
         <echo message="Warning: Dependent Libraries copy (-jfx-copylibs) skipped in fallback build mode due to JDK missing JavaScript support."/>
@@ -3479,7 +3476,6 @@
         <antcall target="compile"/>
     </target>
     <target name="-jfx-do-jar" depends="-check-do-jar" unless="do-jar-false">
-        <antcall target="jar"/>
     </target>
     <target name="-jfx-do-post-jar" depends="-init-check,-check-project" if="preloader-app">
         <!-- Preloaders are created using SE copylibs task that creates readme file relevant for SE only -->

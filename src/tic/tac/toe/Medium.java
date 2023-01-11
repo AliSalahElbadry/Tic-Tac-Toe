@@ -1,6 +1,15 @@
 package tic.tac.toe;
 
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -10,16 +19,18 @@ public class Medium {
     public static String side;
     BoardScreenBase boardScreenBase;
     public String PlayerName = "you";
+
     WinnerScreenBase winner;
     public static int player = 0;
     public static int computer = 0;
 
     int board[][] = {{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
-
     boolean win = false;
-
-    public Medium() {
-
+    ArrayList<Move> list ;
+    
+    public Medium(){
+        
+        list = new ArrayList<>();
         boardScreenBase = new BoardScreenBase();
         boardScreenBase.levelText.setLayoutX(330);
         boardScreenBase.levelText.setWrappingWidth(100);
@@ -235,40 +246,58 @@ public class Medium {
 
         if (side == "x") {
             switch (number) {
+
                 case 00:
                     boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move = new Move(side,"0","0");
+                    list.add(move);
                     break;
 
                 case 01:
                     boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move1 = new Move(side,"0","1");
+                    list.add(move1);
                     break;
 
                 case 02:
                     boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move2 = new Move(side,"0","2");
+                    list.add(move2);
                     break;
 
                 case 10:
                     boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move3 = new Move(side,"1","0");
+                    list.add(move3);
                     break;
 
                 case 11:
                     boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move4 = new Move(side,"1","1");
+                    list.add(move4);
                     break;
 
                 case 12:
                     boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move5 = new Move(side,"1","2");
+                    list.add(move5);
                     break;
 
                 case 20:
                     boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move6 = new Move(side,"2","0");
+                    list.add(move6);
                     break;
 
                 case 21:
                     boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    break;
-
+                    Move move7 = new Move(side,"2","1");
+                    list.add(move7);
+                    break;  
                 case 22:
                     boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
+                    Move move8 = new Move(side,"2","2");
+                    list.add(move8);
                     break;
                 default:
                     break;
@@ -280,38 +309,56 @@ public class Medium {
 
                 case 00:
                     boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move = new Move(side,"0","0");
+                    list.add(move);
                     break;
 
                 case 01:
                     boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move1 = new Move(side,"0","1");
+                    list.add(move1);
                     break;
 
                 case 02:
                     boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move2 = new Move(side,"0","2");
+                    list.add(move2);
                     break;
 
                 case 10:
                     boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move3 = new Move(side,"1","0");
+                    list.add(move3);
                     break;
 
                 case 11:
                     boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move4 = new Move(side,"1","1");
+                    list.add(move4);
                     break;
 
                 case 12:
                     boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move5 = new Move(side,"1","2");
+                    list.add(move5);
                     break;
 
                 case 20:
                     boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move6 = new Move(side,"2","0");
+                    list.add(move6);
                     break;
 
                 case 21:
                     boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    break;
-
+                    Move move7 = new Move(side,"2","1");
+                    list.add(move7);
+                    break;  
+                    
                 case 22:
                     boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
+                    Move move8 = new Move(side,"2","2");
+                    list.add(move8);
                     break;
                 default:
                     break;
@@ -321,27 +368,33 @@ public class Medium {
 
     }
 
-    public void winner() {
-
-        if (pridectWinner(board) == 1) {
-            player += 1;
-            winner.PrepareWinnerScreen("win", 1);
+    public void winner(){
+    
+        if(pridectWinner(board)==1){
+            player+=1;
+            
+            winner.PrepareWinnerScreen("win",1);
+            recordGame("you");
             win = true;
-
-        } else if (pridectWinner(board) == 0) {
-            computer += 1;
-            winner.PrepareWinnerScreen("lose", -1);
-            if (side == "x") {
+        
+        }else if(pridectWinner(board)==0){
+            computer+=1;
+            
+            winner.PrepareWinnerScreen("lose",-1);
+            recordGame("Computer");
+            if(side =="x"){
                 side = "o";
             } else {
                 side = "x";
             }
             win = true;
 
-        } else if (!isMovesLeft(board)) {
+        }else if(! isMovesLeft(board)){
+           
+            winner.PrepareWinnerScreen("draw",0);
+            recordGame("Draw");
+            win = true; 
 
-            winner.PrepareWinnerScreen("draw", 0);
-            win = true;
         }
     }
 
@@ -628,7 +681,8 @@ public class Medium {
       {
           if(board[0][i]==board[1][i]&&board[1][i]==board[2][i]&&board[2][i]!=-1)
           {
-              return board[0][i];
+            
+            return board[0][i];
           }
       }
       for(int i=0;i<3;i++)
@@ -656,6 +710,29 @@ public class Medium {
         TicTacToe.player.play();
     }
     
+    public void recordGame(String winner){
+    
+        Gson gson = new Gson();
+        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+        String date = timeStamp.replace(":", "-");
+        Record record = new Record(0, "Computer", winner,"Medium", list, new Date(),side);
+        try {
+            Writer writer = new FileWriter("Game//"+date.toString()+".json");
+            gson.toJson(record,writer);
+            writer.close();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     
 
 }
+
+
+
+
+

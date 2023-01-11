@@ -1153,6 +1153,11 @@
     <!-- Copy dependent libraries -->
     
     <!-- Note: target "-jfx-copylibs" is referenced from NB 7.1 build-impl.xml -->
+<<<<<<< HEAD
+    <target name="-jfx-copylibs" depends="init,compile,-pre-pre-jar,-pre-jar,-jfx-copylibs-warning" 
+            unless="fallback.no.javascript">
+    </target>
+=======
     <target name="-jfx-copylibs" depends="init,compile,-pre-pre-jar,-pre-jar,-jfx-copylibs-warning" unless="fallback.no.javascript">
 <<<<<<< HEAD
        

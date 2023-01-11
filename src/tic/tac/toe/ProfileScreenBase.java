@@ -112,6 +112,7 @@ public class ProfileScreenBase extends AnchorPane {
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LoginFXMLBase());
+            LoginFXMLBase.playerData=null;
         
         });
         imageView0.setFitHeight(70.0);
