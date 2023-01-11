@@ -5,6 +5,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -104,7 +106,6 @@ public class PickYourSideScreenBase extends AnchorPane {
         oBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         oBtn.setOnAction(event ->{
 
-         
         
          GamesRecordItemSceenBase.flag = false ;
             switch(level){
@@ -128,6 +129,13 @@ public class PickYourSideScreenBase extends AnchorPane {
                 case 3:
                     player1Side="O";
                     TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+                    break;
+                case 4:
+                    AvailablePlayersBase.boardGameOnline.playerSide='O';
+                    TicTacToe.player.stop();
+                    TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
+                    TicTacToe.player.play();
+                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :
                     System.out.print("");
@@ -156,7 +164,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         xBtn.getStyleClass().add("xbtn");
         xBtn.getStylesheets().add("/tic/tac/toe/css/pickYourSide.css");
         xBtn.setOnAction(event ->{
-
+              
               GamesRecordItemSceenBase.flag = false ;
             switch(level){
                 case 0 :
@@ -170,13 +178,20 @@ public class PickYourSideScreenBase extends AnchorPane {
                     TicTacToe.scene.setRoot(medium.boardScreenBase);
                     break;
                 case 2:
-                     LevelHardClass hard=new LevelHardClass();
+                    LevelHardClass hard=new LevelHardClass();
                     LevelHardClass.playerSide=0;
                     TicTacToe.scene.setRoot(hard.boardScreen);
                     break;
                 case 3:
                     player1Side="X";
                     TicTacToe.scene.setRoot(new LocalMode().boardScreenBase);
+                    break;
+                case 4:
+                    AvailablePlayersBase.boardGameOnline.playerSide='X';
+                    TicTacToe.player.stop();
+                    TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
+                    TicTacToe.player.play();
+                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
                 default :
                     System.out.print("");
@@ -201,7 +216,9 @@ public class PickYourSideScreenBase extends AnchorPane {
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         backBtn.setOnAction(event ->{
-        
+               TicTacToe.player.stop();
+                TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+                TicTacToe.player.play();
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
         });

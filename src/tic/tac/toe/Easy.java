@@ -3,6 +3,8 @@ package tic.tac.toe;
 
 import java.util.Random;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 public class Easy {
@@ -42,7 +44,7 @@ public class Easy {
         boardScreen.box00.setOnMouseClicked(e->{ 
         if(isPositionEmpty(board[0][0])&& !isWin){
            
-            playInPositionP("00");
+            playInPositionP("00");playSound();
             
             checkMove();   
             
@@ -51,56 +53,56 @@ public class Easy {
         
         boardScreen.box01.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[0][1])&& !isWin){
-                playInPositionP("01");
+                playInPositionP("01");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box02.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[0][2])&& !isWin){
-                playInPositionP("02");
+                playInPositionP("02");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box10.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[1][0])&& !isWin){
-                playInPositionP("10");
+                playInPositionP("10");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box11.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[1][1])&& !isWin){
-                 playInPositionP("11");
+                 playInPositionP("11");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box12.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[1][2])&& !isWin){
-                playInPositionP("12");
+                playInPositionP("12");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box20.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[2][0])&& !isWin){
-                playInPositionP("20");
+                playInPositionP("20");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box21.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[2][1])&& !isWin){
-                playInPositionP("21");
+                playInPositionP("21");playSound();
                 checkMove();     
             }
         });
         
         boardScreen.box22.setOnMouseClicked(e->{ 
             if(isPositionEmpty(board[2][2])&& !isWin){
-                playInPositionP("22");
+                playInPositionP("22");playSound();
                 checkMove();     
             }
         });
@@ -440,6 +442,12 @@ public class Easy {
             winnerScreen.PrepareWinnerScreen("",-1); 
             computerScore+=1;
         }
+    }
+     private void playSound()
+    {
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
+        TicTacToe.player.play();
     }
     
 }

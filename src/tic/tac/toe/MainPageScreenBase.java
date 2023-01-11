@@ -3,12 +3,14 @@ package tic.tac.toe;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public  class MainPageScreenBase extends AnchorPane {
-   
+    
     protected final ImageView imageView;
     protected final ImageView imageView0;
     protected final ImageView prifileImage;
@@ -24,6 +26,9 @@ public  class MainPageScreenBase extends AnchorPane {
     protected final Text onlineText;
 
     public MainPageScreenBase() {
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/game.mp3").toExternalForm()));
+        TicTacToe.player.play();
         imageView = new ImageView();
         imageView0 = new ImageView();
         prifileImage = new ImageView();
@@ -66,6 +71,7 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setPreserveRatio(true);
         prifileImage.setImage(new Image(getClass().getResource("Photos/profile.png").toExternalForm()));
         prifileImage.setOnMouseClicked(event ->{
+
         if(LoginFXMLBase.playerData==null)
         {
              TicTacToe.scene.setRoot(new LoginFXMLBase());
@@ -82,6 +88,12 @@ public  class MainPageScreenBase extends AnchorPane {
             TicTacToe.scene.setRoot(profileScreenBase);
         }
         
+
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
+            TicTacToe.scene.setRoot(new ProfileScreenBase());
+
             
         });
 
@@ -105,7 +117,9 @@ public  class MainPageScreenBase extends AnchorPane {
         computerRectangle.getStyleClass().add("rect");
         computerRectangle.setWidth(185.0);
         computerRectangle.setOnMouseClicked(event ->{
-        
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LevelScreenBase());
             
         });
@@ -122,6 +136,9 @@ public  class MainPageScreenBase extends AnchorPane {
         localRectangle.getStyleClass().add("rect");
         localRectangle.setWidth(185.0);
         localRectangle.setOnMouseClicked(event ->{
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
             PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
@@ -139,6 +156,9 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
             PickYourSideScreenBase.level=4;
             if(LoginFXMLBase.playerData==null)
             {
@@ -159,6 +179,9 @@ public  class MainPageScreenBase extends AnchorPane {
         computerImageView.setPreserveRatio(true);
         computerImageView.setImage(new Image(getClass().getResource("Photos/computer.png").toExternalForm()));
         computerImageView.setOnMouseClicked(event ->{
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
         
             TicTacToe.scene.setRoot(new LevelScreenBase());
             
@@ -172,6 +195,9 @@ public  class MainPageScreenBase extends AnchorPane {
         lacalImageView.setPreserveRatio(true);
         lacalImageView.setImage(new Image(getClass().getResource("Photos/local.png").toExternalForm()));
         lacalImageView.setOnMouseClicked(event ->{
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
         
             PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
@@ -195,7 +221,13 @@ public  class MainPageScreenBase extends AnchorPane {
             else
             {
                  TicTacToe.scene.setRoot(new AvailablePlayersBase());
+
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
+            TicTacToe.scene.setRoot(new  LoginFXMLBase());
             }
+
         });
 
         computerText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
@@ -206,7 +238,9 @@ public  class MainPageScreenBase extends AnchorPane {
         computerText.setText("Computer");
         computerText.setFont(new Font("Serif Regular", 30.0));
         computerText.setOnMouseClicked(event ->{
-        
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LevelScreenBase());
             
         });
@@ -219,7 +253,9 @@ public  class MainPageScreenBase extends AnchorPane {
         localText.setText("Local");
         localText.setFont(new Font("Serif Regular", 30.0));
         localText.setOnMouseClicked(event ->{
-        
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
             PickYourSideScreenBase.level=3;
             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
@@ -243,6 +279,12 @@ public  class MainPageScreenBase extends AnchorPane {
             {
                  TicTacToe.scene.setRoot(new AvailablePlayersBase());
             }
+
+             TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
+            TicTacToe.scene.setRoot(new LoginFXMLBase());
+
             
         });
         

@@ -2,6 +2,8 @@ package tic.tac.toe;
 
 import java.util.Random;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Medium {
 
@@ -39,11 +41,12 @@ public class Medium {
 
     }
 
-    public void click() {
-        boardScreenBase.box00.setOnMouseClicked(e -> {
-            if (isEmpty(board[0][0]) && !win) {
-                printSides(00);
-                board[0][0] = 1;
+    
+    public void click(){
+        boardScreenBase.box00.setOnMouseClicked(e->{ 
+            if(isEmpty(board[0][0]) && !win){
+                printSides(00);playSound();
+                board[0][0]=1;
                 winner();
                 if (isMovesLeft(board)) {
                     if (!win) {
@@ -54,13 +57,13 @@ public class Medium {
             }
         });
 
-        boardScreenBase.box01.setOnMouseClicked(e -> {
-            if (isEmpty(board[0][1]) && !win) {
-                printSides(01);
-                board[0][1] = 1;
-                winner();
-                if (isMovesLeft(board)) {
-                    if (!win) {
+        boardScreenBase.box01.setOnMouseClicked(e->{ 
+            if(isEmpty(board[0][1]) && !win){
+                    printSides(01);playSound();
+                    board[0][1]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
                         computer();
                         winner();
                     }
@@ -69,13 +72,74 @@ public class Medium {
 
         });
 
-        boardScreenBase.box02.setOnMouseClicked(e -> {
-            if (isEmpty(board[0][2]) && !win) {
-                printSides(02);
-                board[0][2] = 1;
+        
+        boardScreenBase.box02.setOnMouseClicked(e->{ 
+            if(isEmpty(board[0][2])&& !win){
+                printSides(02);playSound();
+                board[0][2]=1;
                 winner();
-                if (isMovesLeft(board)) {
-                    if (!win) {
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
+               
+                }
+        });
+        
+        boardScreenBase.box10.setOnMouseClicked(e->{  
+            if(isEmpty(board[1][0])&& !win){
+                printSides(10);playSound();
+                board[1][0]=1;
+                winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+                        computer();
+                        winner();
+                    }
+                    }
+                
+                }
+        });
+        boardScreenBase.box11.setOnMouseClicked(e->{  
+            if(isEmpty(board[1][1])&& !win){
+            printSides(11);playSound();
+            board[1][1]=1;
+            winner();
+            if(isMovesLeft(board)){
+                if(!win){
+                        computer();
+                        winner();
+                    }
+                }
+            }
+        });
+        
+        boardScreenBase.box12.setOnMouseClicked(e->{       
+                if(isEmpty(board[1][2])&& !win){
+                    printSides(12);playSound();
+                    board[1][2]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+
+                        computer();
+                        winner();
+                    }
+                }
+
+            }
+        });
+        
+        boardScreenBase.box20.setOnMouseClicked(e->{     
+                if(isEmpty(board[2][0])&& !win){
+                    printSides(20);playSound();
+                    board[2][0]=1;
+                    winner();
+                if(isMovesLeft(board)){
+                    if(!win){
+
                         computer();
                         winner();
                     }
@@ -84,30 +148,28 @@ public class Medium {
             }
         });
 
-        boardScreenBase.box10.setOnMouseClicked(e -> {
-            if (isEmpty(board[1][0]) && !win) {
-                printSides(10);
-                board[1][0] = 1;
+        boardScreenBase.box21.setOnMouseClicked(e->{ 
+                if(isEmpty(board[2][1])&& !win){
+                printSides(21);playSound();
+                board[2][1]=1;
                 winner();
                 if (isMovesLeft(board)) {
                     if (!win) {
                         computer();
                         winner();
+                    }
                     }
                 }
-
-            }
         });
-        boardScreenBase.box11.setOnMouseClicked(e -> {
-            if (isEmpty(board[1][1]) && !win) {
-                printSides(11);
-                board[1][1] = 1;
+        
+        boardScreenBase.box22.setOnMouseClicked(e->{    
+            if(isEmpty(board[2][2])&& !win){
+            printSides(22); playSound();
+            board[2][2]=1;
+            winner();
+            if(isMovesLeft(board)){
+                computer();
                 winner();
-                if (isMovesLeft(board)) {
-                    if (!win) {
-                        computer();
-                        winner();
-                    }
                 }
             }
         });
@@ -290,14 +352,14 @@ public class Medium {
             return true;
         }
     }
-
-    public void computer() {
-        int counter = 0;
-        int[] move = new int[2];
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == 0) {
+    
+    public void computer(){
+        int counter = 0;playSound();
+        int []move  = new int[2]; 
+        
+        for (int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(board[i][j]==0){
                     counter++;
                 }
             }
@@ -559,26 +621,41 @@ public class Medium {
         return depth;
     }
 
-    private int pridectWinner(int[][] board) {
-
-        for (int i = 0; i < 3; i++) {
-            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[2][i] != -1) {
-                return board[0][i];
-            }
-        }
-        for (int i = 0; i < 3; i++) {
-            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][2] != -1) {
-                return board[i][0];
-            }
-        }
-        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[2][2] != -1) {
-            return board[1][1];
-        }
-        if (board[2][0] == board[1][1] && board[1][1] == board[0][2] && board[0][2] != -1) {
-            return board[2][0];
-        }
-
-        return -1;
+    
+    private int pridectWinner(int[][] board){
+      
+      for(int i=0;i<3;i++)
+      {
+          if(board[0][i]==board[1][i]&&board[1][i]==board[2][i]&&board[2][i]!=-1)
+          {
+              return board[0][i];
+          }
+      }
+      for(int i=0;i<3;i++)
+      {
+          if(board[i][0]==board[i][1]&&board[i][1]==board[i][2]&&board[i][2]!=-1)
+          {
+              return board[i][0];
+          }
+      }
+         if(board[0][0]==board[1][1]&&board[1][1]==board[2][2]&&board[2][2]!=-1)
+          {
+              return board[1][1];
+          }
+          if(board[2][0]==board[1][1]&&board[1][1]==board[0][2]&&board[0][2]!=-1)
+          {
+              return board[2][0];
+          }
+          
+       return -1;
+   }
+    private void playSound()
+    {
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
+        TicTacToe.player.play();
     }
+    
+    
 
 }

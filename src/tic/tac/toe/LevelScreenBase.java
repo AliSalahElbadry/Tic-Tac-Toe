@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import tic.tac.toe.TicTacToe;
@@ -28,6 +30,8 @@ public  class LevelScreenBase extends AnchorPane {
 
     public LevelScreenBase() {
 
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
         
         imageView = new ImageView();
         rectangle = new Rectangle();
@@ -88,8 +92,8 @@ public  class LevelScreenBase extends AnchorPane {
 
             randomFlag=false;
             PickYourSideScreenBase.level = 0;
-            
-
+         
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
             
         });
@@ -110,7 +114,7 @@ public  class LevelScreenBase extends AnchorPane {
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backButton.setOnMouseClicked(event ->{
-        
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
         });
@@ -132,7 +136,7 @@ public  class LevelScreenBase extends AnchorPane {
             randomFlag=false;
             PickYourSideScreenBase.level = 1;
             TicTacToe.scene.setRoot(new PickYourSideScreenBase() );
-            
+            TicTacToe.player.play();
         });
 
         imageView1.setFitHeight(45.0);
@@ -163,7 +167,10 @@ public  class LevelScreenBase extends AnchorPane {
         imageView2.setImage(new Image(getClass().getResource("Photos/buttonbackground1.png").toExternalForm()));
         hardButton.setGraphic(imageView2);
         hardButton.setOnAction(event ->{
-randomFlag=false;
+
+            randomFlag=false;
+            TicTacToe.player.play();
+
             PickYourSideScreenBase.level=2;
             TicTacToe.scene.setRoot(new PickYourSideScreenBase());
 

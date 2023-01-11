@@ -1,6 +1,8 @@
 package tic.tac.toe;
 
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +17,8 @@ public class ItemBase extends AnchorPane {
     protected final Text playerNameText;
     protected final Button inviteBtn;
     protected final ImageView imageView;
+    static String playerNameToBeInvite="";
+    
 
     public ItemBase() {
 
@@ -55,7 +59,23 @@ public class ItemBase extends AnchorPane {
         inviteBtn.getStylesheets().add("/tic/tac/toe/css/Item.css");
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
-        
+        inviteBtn.setOnAction(event ->{
+            OnLineGameBoard.myTurn=true;
+            try {
+                String playerIdToBeInvite="";
+                for(int i=2;i<AvailablePlayersBase.avaliable.length;i+=2){
+                    if(playerNameText.getText().equals(AvailablePlayersBase.avaliable[i])){
+                        playerIdToBeInvite=AvailablePlayersBase.avaliable[i-1];
+                        playerNameToBeInvite=playerNameText.getText();
+                        break;
+                    }
+                }
+                LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
+                Thread.sleep(4000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         imageView.setFitHeight(33.0);
         imageView.setFitWidth(77.0);
@@ -69,4 +89,5 @@ public class ItemBase extends AnchorPane {
         getChildren().add(inviteBtn);
 
     }
+   
 }

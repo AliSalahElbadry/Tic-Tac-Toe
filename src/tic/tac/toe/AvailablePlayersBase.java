@@ -4,17 +4,22 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class AvailablePlayersBase extends AnchorPane {
-
+    public static OnLineGameBoard boardGameOnline;
     protected final ImageView imageView;
     protected final Rectangle rectangle;
     protected final Button backBtn;
@@ -25,7 +30,11 @@ public class AvailablePlayersBase extends AnchorPane {
     public  static String [] avaliable ;
 
     public AvailablePlayersBase() {
-
+        
+        TicTacToe.player.stop();
+        TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/serveronline.mp3").toExternalForm()));
+        TicTacToe.player.play();
+        
         imageView = new ImageView();
         rectangle = new Rectangle();
         backBtn = new Button();
@@ -69,7 +78,7 @@ public class AvailablePlayersBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backBtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
-         backBtn.setOnAction(e->{
+        backBtn.setOnAction(e->{
              
              TicTacToe.scene.setRoot(new MainPageScreenBase());
          
@@ -106,7 +115,7 @@ public class AvailablePlayersBase extends AnchorPane {
         availablePlayerslistView.getStyleClass().add("mylistview");
         availablePlayerslistView.getStylesheets().add("/tic/tac/toe/css/available%20players.css");
         
-   getChildren().add(imageView);
+        getChildren().add(imageView);
         getChildren().add(rectangle);
         getChildren().add(backBtn);
         getChildren().add(rectangle0);
@@ -120,5 +129,26 @@ public class AvailablePlayersBase extends AnchorPane {
         ItemBase itemBase = new ItemBase();
         itemBase.playerNameText.setText(name);
         availablePlayerslistView.getItems().add(itemBase);
+    }
+    
+    public static void showDialog(String name ,String PlayerIdOfTheInvitation){
+    Platform.runLater(new Runnable() {
+    @Override
+    public void run() { Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
+        alert.setTitle("Attention");
+        alert.setContentText("you are invited to play with "+name+"\n"+"if you accept the invitation press ok button");
+        alert.showAndWait().ifPresent(rs->{
+            if(rs==ButtonType.OK){
+                String repleyMessage="acceptInvitation,"+PlayerIdOfTheInvitation;
+                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+            }
+            else{
+                String repleyMessage="rejectInvitation,"+PlayerIdOfTheInvitation;
+                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+            }
+
+        });
+        }
+    });
     }
 }

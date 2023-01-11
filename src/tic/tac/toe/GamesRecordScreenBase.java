@@ -4,6 +4,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import tic.tac.toe.TicTacToe;
 
@@ -70,7 +72,9 @@ public class GamesRecordScreenBase extends AnchorPane {
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
         backBtn.setOnAction(event ->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new ProfileScreenBase());
             
         });

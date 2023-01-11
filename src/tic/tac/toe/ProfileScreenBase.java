@@ -4,6 +4,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -106,7 +108,9 @@ public class ProfileScreenBase extends AnchorPane {
         imageView7.setImage(new Image(getClass().getResource("Photos/back_logout.png").toExternalForm()));
         logoutBtn.setGraphic(imageView7);
         logoutBtn.setOnAction(e->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LoginFXMLBase());
         
         });
@@ -117,7 +121,9 @@ public class ProfileScreenBase extends AnchorPane {
         imageView0.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backBtn.setGraphic(imageView0);
         backBtn.setOnAction(event ->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
         });
@@ -243,7 +249,9 @@ public class ProfileScreenBase extends AnchorPane {
         gamesRecordBtn.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         gamesRecordBtn.setFont(new Font("Serif Regular", 15.0));
         gamesRecordBtn.setOnAction(event ->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new GamesRecordScreenBase());
             
         });
