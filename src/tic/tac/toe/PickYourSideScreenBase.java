@@ -171,7 +171,7 @@ public class PickYourSideScreenBase extends AnchorPane {
               GamesRecordItemSceenBase.flag = false ;
             switch(level){
                 case 0 :
-                   Easy.side=1;
+                    Easy.side=1;
                     Easy easy=new Easy();
                     TicTacToe.scene.setRoot(easy.boardScreen);
                     break;

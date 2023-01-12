@@ -43,7 +43,6 @@ public class GamesRecordScreenBase extends AnchorPane {
             paths = file.list();
             System.err.println(paths[0]);
             Gson gson = new Gson();
-            
             for(int i=0 ; i<paths.length; i++){
             System.err.println("enter");
             Record record = gson.fromJson(new FileReader("Game\\" +paths[i]), Record.class);

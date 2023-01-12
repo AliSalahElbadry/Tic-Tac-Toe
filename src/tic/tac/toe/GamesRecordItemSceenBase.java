@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 public class GamesRecordItemSceenBase extends AnchorPane {
 
     
+    
     protected final Rectangle rectangle;
     protected final Button showGameItem1Btn;
     protected final ImageView imageView;
@@ -66,9 +67,7 @@ public class GamesRecordItemSceenBase extends AnchorPane {
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
         TicTacToe.player.play();
             flag = true ;
-            
 
-            
             ShowGame showGame = new ShowGame(GamesRecordScreenBase.listRecord.get(listId));
             TicTacToe.scene.setRoot(showGame.boardScreenBase);
             new Thread(showGame).start();
@@ -78,6 +77,7 @@ public class GamesRecordItemSceenBase extends AnchorPane {
         imageView.setFitHeight(31.0);
         imageView.setFitWidth(120.0);
         imageView.setPickOnBounds(true);
+        
         imageView.setPreserveRatio(true);
         imageView.setImage(new Image(getClass().getResource("Photos/buttonbackground.png").toExternalForm()));
         showGameItem1Btn.setGraphic(imageView);
