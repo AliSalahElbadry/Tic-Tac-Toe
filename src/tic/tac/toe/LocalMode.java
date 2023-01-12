@@ -1,8 +1,19 @@
 package tic.tac.toe;
 
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import static tic.tac.toe.Medium.side;
 
 public class LocalMode  {
     
@@ -19,9 +30,10 @@ public class LocalMode  {
     
     static int player1Score=0;
     static int player2Score=0;
-    
+    ArrayList<Move>list; 
     
     public LocalMode() {
+        list = new ArrayList<>();
         XSide=false;
         winnerSide=-1;
         winnerFlag=false;
@@ -322,5 +334,20 @@ public class LocalMode  {
         TicTacToe.player.stop();
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
         TicTacToe.player.play();
+    }
+     public void recordGame(String winner){
+    
+        Gson gson = new Gson();
+        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+        String date = timeStamp.replace(":", "-");
+        Record record = new Record(0, "Computer", winner,"Medium", list, new Date(),side.toLowerCase());
+        try {
+            Writer writer = new FileWriter("Game//"+date.toString()+".json");
+            gson.toJson(record,writer);
+            writer.close();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
