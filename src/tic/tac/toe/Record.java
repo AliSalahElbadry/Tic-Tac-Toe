@@ -52,6 +52,14 @@ public class Record {
         this.recordList = recordList;
     }
 
+    public String getPlayer1_side() {
+        return player1_side;
+    }
+
+    public void setPlayer1_side(String player1_side) {
+        this.player1_side = player1_side;
+    }
+
     public String getPlayer2Name() {
         return player2Name;
     }
