@@ -7,6 +7,7 @@ import java.io.Writer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
@@ -393,13 +394,18 @@ public class LocalMode  {
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
         TicTacToe.player.play();
     }
+
+    
     
     public void recordGame(String winner,String player2Name){
+
     
         Gson gson = new Gson();
         String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
         String date = timeStamp.replace(":", "-");
+
         Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
+
         try {
             Writer writer = new FileWriter("Game//"+date.toString()+".json");
             gson.toJson(record,writer);
