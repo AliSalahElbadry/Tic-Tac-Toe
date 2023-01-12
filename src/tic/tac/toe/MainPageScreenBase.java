@@ -71,10 +71,21 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setPreserveRatio(true);
         prifileImage.setImage(new Image(getClass().getResource("Photos/profile.png").toExternalForm()));
         prifileImage.setOnMouseClicked(event ->{
-             TicTacToe.player.stop();
+            if(LoginFXMLBase.playerData!=null)
+            {
+               ProfileScreenBase base = new ProfileScreenBase();
+               base.emailText.setText(LoginFXMLBase.playerData.email);
+               base.userNameText.setText(LoginFXMLBase.playerData.userName);
+               base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
+               TicTacToe.scene.setRoot(base);
+              
+            }else if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new ProfileScreenBase());
             
         });
 
@@ -120,8 +131,8 @@ public  class MainPageScreenBase extends AnchorPane {
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            PickYourSideScreenBase.level=3;
-            TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
+             PickYourSideScreenBase.level=3;
+             TicTacToe.scene.setRoot(new PlayersNamesScreenBase());
             
         });
 
@@ -137,11 +148,17 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
-             TicTacToe.player.stop();
+             if(LoginFXMLBase.playerData!=null)
+            {
+                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+              
+            }else if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            PickYourSideScreenBase.level=4;
-            TicTacToe.scene.setRoot(new LoginFXMLBase());
         });
 
         computerImageView.setFitHeight(100.0);
@@ -185,11 +202,18 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
         onlineImageView.setOnMouseClicked(event ->{
-            
-             TicTacToe.player.stop();
+            if(LoginFXMLBase.playerData!=null)
+            {
+                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+              
+            }else if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new  LoginFXMLBase());
+        
             
         });
 
@@ -233,11 +257,18 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setFont(new Font("Serif Regular", 30.0));
         onlineText.setOnMouseClicked(event ->{
         
-             TicTacToe.player.stop();
+            if(LoginFXMLBase.playerData!=null)
+            {
+                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+              
+            }else if(LoginFXMLBase.playerData==null)
+            {
+                 TicTacToe.scene.setRoot(new LoginFXMLBase());
+            }
+            TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new LoginFXMLBase());
-            
+        
         });
 
         getChildren().add(imageView);
