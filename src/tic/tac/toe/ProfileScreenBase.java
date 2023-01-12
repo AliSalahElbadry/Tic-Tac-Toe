@@ -20,13 +20,13 @@ public class ProfileScreenBase extends AnchorPane {
     protected final ImageView imageView1;
     protected final Rectangle rectangle;
     protected final ImageView imageView2;
-    protected static Text emailText;
+    protected final Text emailText;
     protected final Text text;
     protected final ImageView imageView3;
-    protected static Text userNameText;
+    protected final Text userNameText;
     protected final Text text0;
     protected final ImageView imageView4;
-    protected static Text playedGamesText;
+    protected final Text playedGamesText;
     protected final Text text1;
     protected final Button gamesRecordBtn;
     protected final ImageView imageView5;

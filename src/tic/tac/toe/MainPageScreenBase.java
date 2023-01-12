@@ -113,7 +113,7 @@ public  class MainPageScreenBase extends AnchorPane {
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new LevelScreenBase());
+             TicTacToe.scene.setRoot(new LevelScreenBase());
             
         });
 
@@ -157,7 +157,7 @@ public  class MainPageScreenBase extends AnchorPane {
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }
-            TicTacToe.player.stop();
+             TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
 
@@ -205,8 +205,9 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPickOnBounds(true);
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
-
-            if(LoginFXMLBase.playerData!=null)
+        onlineImageView.setOnMouseClicked(e->{
+        
+          if(LoginFXMLBase.playerData!=null)
             {
                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
               
@@ -214,28 +215,14 @@ public  class MainPageScreenBase extends AnchorPane {
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }
-            TicTacToe.player.stop();
-             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
-             TicTacToe.player.play();
-        
-            
-
-            
-            
-            if(LoginFXMLBase.playerData==null)
-            {
-                 TicTacToe.scene.setRoot(new LoginFXMLBase());
-            }
-            else
-            {
-                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
-
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
-             TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new  LoginFXMLBase());
-            }
-
+             TicTacToe.player.play();  
+            
+        
+        });
+        
+            
         localText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         localText.setLayoutX(340.0);
         localText.setLayoutY(357.0);
