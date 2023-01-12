@@ -14,8 +14,8 @@
         <URL value="@gamesrecorditemsceen.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#305bc3" height="123.0" layoutX="14.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="170.0" />
-      <Button fx:id="showGameItem1Btn" layoutX="34.0" layoutY="81.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" styleClass="showbtn" stylesheets="@gamesrecorditemsceen.css" text="Show Game" textFill="#305bc3">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#305bc3" height="123.0" layoutX="4.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="409.0" />
+      <Button fx:id="showGameItem1Btn" layoutX="298.0" layoutY="40.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" styleClass="showbtn" stylesheets="@gamesrecorditemsceen.css" text="Show Game" textFill="#305bc3">
          <font>
             <Font name="Serif Regular" size="16.0" />
          </font>
@@ -26,45 +26,17 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Text fx:id="player2Item1Text" fill="WHITE" layoutX="73.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with X" textAlignment="CENTER">
+      <Text fx:id="player2Item1Text" fill="WHITE" layoutX="68.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with X" textAlignment="CENTER">
          <font>
             <Font name="Serif Regular" size="22.0" />
          </font>
       </Text>
-      <Text fx:id="timeItem1Text" fill="WHITE" layoutX="22.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/10/2022.10:33Am" textAlignment="CENTER">
+      <Text fx:id="timeItem1Text" fill="WHITE" layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/10/2022.10:33Am" textAlignment="CENTER">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="winnerItem1Text" fill="WHITE" layoutX="77.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X win" textAlignment="CENTER">
-         <font>
-            <Font name="Serif Regular" size="22.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#305bc3" height="123.0" layoutX="231.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="170.0" />
-      <Button fx:id="showGameItem2Btn" layoutX="255.0" layoutY="80.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="131.0" styleClass="showbtn" stylesheets="@gamesrecorditemsceen.css" text="Show Game" textFill="#305bc3">
-         <font>
-            <Font name="Serif Regular" size="16.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="31.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Photos/buttonbackground.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Text fx:id="player2Item2Text" fill="WHITE" layoutX="290.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with X" textAlignment="CENTER">
-         <font>
-            <Font name="Serif Regular" size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="timeItem2Text" fill="WHITE" layoutX="243.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/10/2022.10:33Am" textAlignment="CENTER">
-         <font>
-            <Font name="Serif Regular" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="winnerItem2Text" fill="WHITE" layoutX="294.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X win" textAlignment="CENTER">
+      <Text fx:id="winnerItem1Text" fill="WHITE" layoutX="69.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X win" textAlignment="CENTER">
          <font>
             <Font name="Serif Regular" size="22.0" />
          </font>

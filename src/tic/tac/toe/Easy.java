@@ -19,9 +19,18 @@ public class Easy {
     public Easy()
     { boardScreen =new BoardScreenBase();
     boardScreen.player2Text.setWrappingWidth(100);
+    boardScreen.levelText.setLayoutX(330.0);
     boardScreen.player2Text.setLayoutX(435);
         boardScreen.player1Text.setText("You");
-        boardScreen.player2Text.setText("Computer");
+         if(LevelScreenBase.randomFlag)
+         {
+             boardScreen.levelText.setLayoutX(320.0);
+             boardScreen.levelText.setText("Random");
+         
+         }
+        else   
+       {boardScreen.levelText.setLayoutX(335.0);
+           boardScreen.levelText.setText("Easy");}
         boardScreen.scorePlayer1.setText(String.valueOf(playerScore));
         boardScreen.scorePlayer2.setText(String.valueOf(computerScore));
        
