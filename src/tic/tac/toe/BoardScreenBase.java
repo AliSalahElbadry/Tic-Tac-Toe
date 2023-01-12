@@ -89,8 +89,6 @@ public  class BoardScreenBase extends AnchorPane {
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
             TicTacToe.player.play();
         }
-
-        
         
         setId("AnchorPane");
         setPrefHeight(480.0);
