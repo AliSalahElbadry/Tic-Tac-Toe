@@ -1,6 +1,8 @@
 package tic.tac.toe;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -54,12 +56,26 @@ public class TicTacToe extends Application {
         }).start();
         primaryStage.setOnCloseRequest(e->{
            try{ 
-               if(AvailablePlayersBase.boardGameOnline.isPalying)
-                LoginFXMLBase.playerConnection.sendMessage("endGame,"+AvailablePlayersBase.boardGameOnline.oponentID);
-                LoginFXMLBase.playerConnection.stop();
-           }catch (Exception ex)
+               if(AvailablePlayersBase.boardGameOnline!=null){
+                if(AvailablePlayersBase.boardGameOnline.isPalying)
+                 LoginFXMLBase.playerConnection.sendMessage("endGame,"+AvailablePlayersBase.boardGameOnline.oponentID);
+               }
+               if(LoginFXMLBase.playerConnection!=null){
+                    if(!LoginFXMLBase.playerConnection.socket.isClosed()){
+                        LoginFXMLBase.playerConnection.sendMessage("Close,");
+                        LoginFXMLBase.playerConnection.socket.close();
+                    }
+               }
+
+           }catch (SocketException ex)
            {
                System.out.println(ex.getCause());
+               
+           } catch (IOException ex) {
+                Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+               if(LoginFXMLBase.playerConnection!=null)
+               LoginFXMLBase.playerConnection.stop();
            }
         });
         

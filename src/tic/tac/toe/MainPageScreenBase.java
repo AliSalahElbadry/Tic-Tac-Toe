@@ -72,7 +72,7 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setImage(new Image(getClass().getResource("Photos/profile.png").toExternalForm()));
         prifileImage.setOnMouseClicked(event ->{
 
-            if(LoginFXMLBase.playerData!=null)
+            if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
             {
                ProfileScreenBase base = new ProfileScreenBase();
                base.emailText.setText(LoginFXMLBase.playerData.email);
@@ -80,7 +80,7 @@ public  class MainPageScreenBase extends AnchorPane {
                base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
                TicTacToe.scene.setRoot(base);
               
-            }else if(LoginFXMLBase.playerData==null)
+            }else 
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }
@@ -113,7 +113,7 @@ public  class MainPageScreenBase extends AnchorPane {
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new LevelScreenBase());
+             TicTacToe.scene.setRoot(new LevelScreenBase());
             
         });
 
@@ -149,15 +149,19 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
-             if(LoginFXMLBase.playerData!=null)
+            if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
             {
-                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+                AvailablePlayersBase.availablePlayerslistView=null;
+                AvailablePlayersBase.avaliable=null;
+                AvailablePlayersBase base=new AvailablePlayersBase();
+                
+                TicTacToe.scene.setRoot(base);
               
-            }else if(LoginFXMLBase.playerData==null)
+            }else 
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }
-            TicTacToe.player.stop();
+             TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
 
@@ -180,7 +184,21 @@ public  class MainPageScreenBase extends AnchorPane {
             TicTacToe.scene.setRoot(new LevelScreenBase());
             
         });
-
+        computerText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
+        computerText.setLayoutX(90.0);
+        computerText.setLayoutY(357.0);
+        computerText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
+        computerText.setStrokeWidth(0.0);
+        computerText.setText("Computer");
+        computerText.setFont(new Font("Serif Regular", 30.0));
+        computerText.setOnMouseClicked(event ->{
+           
+            TicTacToe.player.stop();
+             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+             TicTacToe.player.play();
+        
+            TicTacToe.scene.setRoot(new LevelScreenBase());
+        });
         lacalImageView.setFitHeight(100.0);
         lacalImageView.setFitWidth(100.0);
         lacalImageView.setLayoutX(329.0);
@@ -205,37 +223,28 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPickOnBounds(true);
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
-
-            if(LoginFXMLBase.playerData!=null)
-            {
-                TicTacToe.scene.setRoot(new AvailablePlayersBase());
-              
-            }else if(LoginFXMLBase.playerData==null)
-            {
-                 TicTacToe.scene.setRoot(new LoginFXMLBase());
-            }
-            TicTacToe.player.stop();
-             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
-             TicTacToe.player.play();
+        onlineImageView.setOnMouseClicked(e->{
         
-            
-
-            
-            
-            if(LoginFXMLBase.playerData==null)
+          if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
+            {
+               AvailablePlayersBase.availablePlayerslistView=null;
+                AvailablePlayersBase.avaliable=null;
+                AvailablePlayersBase base=new AvailablePlayersBase();
+                
+                TicTacToe.scene.setRoot(base);
+              
+            }else 
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }
-            else
-            {
-                 TicTacToe.scene.setRoot(new AvailablePlayersBase());
-
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
-             TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new  LoginFXMLBase());
-            }
-
+             TicTacToe.player.play();  
+            
+        
+        });
+        
+            
         localText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         localText.setLayoutX(340.0);
         localText.setLayoutY(357.0);
@@ -261,11 +270,15 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setFont(new Font("Serif Regular", 30.0));
         onlineText.setOnMouseClicked(event ->{
 
-            if(LoginFXMLBase.playerData!=null)
+            if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
             {
-                TicTacToe.scene.setRoot(new AvailablePlayersBase());
+               AvailablePlayersBase.availablePlayerslistView=null;
+                AvailablePlayersBase.avaliable=null;
+                AvailablePlayersBase base=new AvailablePlayersBase();
+                
+                TicTacToe.scene.setRoot(base);
               
-            }else if(LoginFXMLBase.playerData==null)
+            }else
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
             }

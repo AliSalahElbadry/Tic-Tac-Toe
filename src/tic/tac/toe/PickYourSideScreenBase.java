@@ -47,7 +47,13 @@ public class PickYourSideScreenBase extends AnchorPane {
         text = new Text();
         imageView3 = new ImageView();
         recordRadioButton = new RadioButton();
-        
+        recordRadioButton.setOnAction(e->{
+            if(AvailablePlayersBase.boardGameOnline!=null)
+              AvailablePlayersBase.boardGameOnline.isRecording=true;
+            
+            BoardScreenBase.record = true;
+            LevelHardClass.isRecording=true;
+        });
         
 
         setId("pickYourSide");
