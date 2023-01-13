@@ -53,7 +53,7 @@ public class PlayerConnection extends Thread{
                     
                             LoginFXMLBase.playerData = new PlayerData(Integer.valueOf(dbResult[1]), dbResult[2], dbResult[3], dbResult[4], dbResult[5], Integer.valueOf(dbResult[6]), Integer.valueOf(dbResult[7]));
                             TicTacToe.scene.setRoot(new AvailablePlayersBase());
-
+                            System.err.println("login alv sasa");
                         } 
                         else {
                              
@@ -97,12 +97,13 @@ public class PlayerConnection extends Thread{
                         TicTacToe.scene.setRoot(winner);
                     }
                     else if(dbResult[0].equals("invite")){
-                         AvailablePlayersBase.boardGameOnline.oponentName=dbResult[2];
+                        
                          AvailablePlayersBase.showDialog(dbResult[2],dbResult[1]);
                     }
                     else if(dbResult[0].equals("startGame")){
                         boardGameOnline=new OnLineGameBoard();
                         boardGameOnline.PlayerName=LoginFXMLBase.playerData.userName;
+                        boardGameOnline.oponentName="Player2";
                         PickYourSideScreenBase.level=4;
                         boardGameOnline.isPalying=true;
                         boardGameOnline.oponentID=Integer.valueOf(dbResult[1]);
@@ -143,25 +144,27 @@ public class PlayerConnection extends Thread{
                            isRunning=false;
                            boardGameOnline.isPalying=true;
                     }else if(dbResult[0].equals("UpdateAddAv")){
-                          try{
-                                if(dbResult.length>=2){
-                                    AvailablePlayersBase.avaliable.add(dbResult[1]+","+dbResult[2]);
+                          Platform.runLater(()->{
+                                if(dbResult.length>=2&&AvailablePlayersBase.avaliable!=null){
+                                    
+                                    AvailablePlayersBase.avaliable.add(dbResult[1]);
+                                    AvailablePlayersBase.avaliable.add(dbResult[2]);
+                                    System.err.println(AvailablePlayersBase.avaliable.get(AvailablePlayersBase.avaliable.size()-1));
                                     AvailablePlayersBase.preperList(dbResult[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
                                 }
-                           }catch(Exception e){
-                           
-                           }
+                           });
                     }
                     else if(dbResult[0].equals("UpdateRemAv")){
-                        try{
+                        Platform.runLater(()->{
                                 if(dbResult.length>=2){
-                                    AvailablePlayersBase.avaliable.remove(dbResult[1]+","+dbResult[2]);
+                                    AvailablePlayersBase.avaliable.remove(dbResult[1]);
+                                    AvailablePlayersBase.avaliable.remove(dbResult[2]);
                                     AvailablePlayersBase.removeFromList(dbResult[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
 
                                 }
-                        }catch(Exception e){}
+                        });
                            
                      }
                 }

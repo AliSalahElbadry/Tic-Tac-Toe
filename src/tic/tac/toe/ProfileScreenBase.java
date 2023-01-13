@@ -109,14 +109,14 @@ public class ProfileScreenBase extends AnchorPane {
         logoutBtn.setOnAction(e->{
             if(LoginFXMLBase.playerConnection.isAlive())
             {
-                LoginFXMLBase.playerConnection.sendMessage("Close,");
-                LoginFXMLBase.playerConnection.isRunning=false;
+                LoginFXMLBase.playerConnection.sendMessage("Clear,");
+                LoginFXMLBase.playerData=null;
             }
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LoginFXMLBase());
-            LoginFXMLBase.playerData=null;
+            
         
         });
         imageView0.setFitHeight(70.0);

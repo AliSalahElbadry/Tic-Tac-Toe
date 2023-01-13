@@ -71,6 +71,7 @@ public class ItemBase extends AnchorPane {
                             break;
                         }
                     }
+                    
                     LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
                     Thread.sleep(4000);
                 } catch (InterruptedException ex) {
