@@ -46,14 +46,14 @@ public class LoginFXMLBase extends AnchorPane {
 
 
     public LoginFXMLBase() {
+       
+            try {
+                mySocket = new Socket(InetAddress.getLocalHost(), 5005);
+                playerConnection = new PlayerConnection(mySocket);
+            } catch (Exception ex) {
+                isConnected = false;
 
-        try {
-            mySocket = new Socket(InetAddress.getLocalHost(), 5005);
-            playerConnection = new PlayerConnection(mySocket);
-        } catch (Exception ex) {
-            isConnected = false;
-
-        }
+            }
 backButton = new ImageView();
         imageView = new ImageView();
         rectangle = new Rectangle();

@@ -2,6 +2,7 @@ package tic.tac.toe;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -26,15 +27,15 @@ public class AvailablePlayersBase extends AnchorPane {
     protected final ImageView imageView0;
     protected final Rectangle rectangle0;
     protected final Text text;
-    protected static ListView availablePlayerslistView;
-    public  static String [] avaliable ;
+    protected static ListView availablePlayerslistView=new ListView();
+    public  static ArrayList<String> avaliable ;
 
     public AvailablePlayersBase() {
         
         TicTacToe.player.stop();
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/serveronline.mp3").toExternalForm()));
         TicTacToe.player.play();
-        
+        avaliable=new ArrayList<>();
         imageView = new ImageView();
         rectangle = new Rectangle();
         backBtn = new Button();
@@ -121,6 +122,7 @@ public class AvailablePlayersBase extends AnchorPane {
         getChildren().add(rectangle0);
         getChildren().add(text);
         getChildren().add(availablePlayerslistView);
+        
 
     }
     
@@ -151,4 +153,16 @@ public class AvailablePlayersBase extends AnchorPane {
         }
     });
     }
+    public static void removeFromList(String name)
+    {
+        for (Object item : availablePlayerslistView.getItems()) {
+            if(((ItemBase)item).playerNameText.getText().equals(name))
+            {
+                availablePlayerslistView.getItems().remove(item);
+                break;
+            }
+        }
+    }
+   
+
 }

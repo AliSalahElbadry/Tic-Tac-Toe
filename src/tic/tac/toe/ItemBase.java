@@ -60,20 +60,22 @@ public class ItemBase extends AnchorPane {
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
         inviteBtn.setOnAction(event ->{
-            OnLineGameBoard.myTurn=true;
-            try {
-                String playerIdToBeInvite="";
-                for(int i=2;i<AvailablePlayersBase.avaliable.length;i+=2){
-                    if(playerNameText.getText().equals(AvailablePlayersBase.avaliable[i])){
-                        playerIdToBeInvite=AvailablePlayersBase.avaliable[i-1];
-                        playerNameToBeInvite=playerNameText.getText();
-                        break;
+            if(LoginFXMLBase.playerConnection!=null){
+                OnLineGameBoard.myTurn=true;
+                try {
+                    String playerIdToBeInvite="";
+                    for(int i=2;i<AvailablePlayersBase.avaliable.size();i+=2){
+                        if(playerNameText.getText().equals(AvailablePlayersBase.avaliable.get(i))){
+                            playerIdToBeInvite=AvailablePlayersBase.avaliable.get(i-1);
+                            playerNameToBeInvite=playerNameText.getText();
+                            break;
+                        }
                     }
+                    LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
+                    Thread.sleep(4000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
                 }
-                LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
-                Thread.sleep(4000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
             }
         });
 
