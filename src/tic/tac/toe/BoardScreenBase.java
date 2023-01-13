@@ -8,6 +8,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -45,7 +47,7 @@ public  class BoardScreenBase extends AnchorPane {
     protected final ImageView imageView2;
     protected final Text player2Text;
     protected final ImageView imageView3;
-
+    public static boolean record = false;
     
 
     public BoardScreenBase() {
@@ -81,9 +83,13 @@ public  class BoardScreenBase extends AnchorPane {
         imageView2 = new ImageView();
         player2Text = new Text();
         imageView3 = new ImageView();
+        if(PickYourSideScreenBase.level<=3)
+        {
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/gameStart.mp3").toExternalForm()));
+            TicTacToe.player.play();
+        }
         
-        
-
         setId("AnchorPane");
         setPrefHeight(480.0);
         setPrefWidth(750.0);
@@ -117,20 +123,24 @@ public  class BoardScreenBase extends AnchorPane {
         backButton.setOnMouseClicked(event ->{
 
             
-            Medium.player = 0;
-            Medium.computer = 0;
-           
-
-           Easy.computerScore=0;
-           Easy.playerScore=0;
+            
             if (GamesRecordItemSceenBase.flag == false ){
                 Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
                 alert.setTitle("Attention");
                 alert.setContentText("If you leave ,you will be the looser");
                 alert.showAndWait().ifPresent(rs->{
 
-                    if(rs==ButtonType.OK)
-                        TicTacToe.scene.setRoot(new MainPageScreenBase());
+                    if(rs==ButtonType.OK){
+                       Medium.player = 0;
+                       Medium.computer = 0;
+                       LevelHardClass.computerRes=0;
+                       LevelHardClass.playerRes=0;
+                       Easy.computerScore=0;
+                       Easy.playerScore=0;
+                       LocalMode.player1Score=0;
+                       LocalMode.player2Score=0;
+                       TicTacToe.scene.setRoot(new MainPageScreenBase());
+                    }
                 });
             }else {
             
@@ -194,12 +204,6 @@ public  class BoardScreenBase extends AnchorPane {
         box02.setLayoutY(69.0);
         box02.setPickOnBounds(true);
         box02.setPreserveRatio(true);
-       // box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-//        box02.setOnMouseClicked(e->{
-//            Medium medium = new Medium();
-//            medium.printSides(02);
-//            
-//        });
 
         rectangle2.setArcHeight(70.0);
         rectangle2.setArcWidth(70.0);
@@ -335,7 +339,7 @@ public  class BoardScreenBase extends AnchorPane {
         imageView0.setImage(new Image(getClass().getResource("Photos/Title2.png").toExternalForm()));
 
         levelText.setFill(javafx.scene.paint.Color.valueOf("#2a47ad"));
-        levelText.setLayoutX(344.0);
+        levelText.setLayoutX(320.0);
         levelText.setLayoutY(39.0);
         levelText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         levelText.setStrokeWidth(0.0);

@@ -4,6 +4,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -18,13 +20,13 @@ public class ProfileScreenBase extends AnchorPane {
     protected final ImageView imageView1;
     protected final Rectangle rectangle;
     protected final ImageView imageView2;
-    protected final Text emailText;
+    protected static Text emailText;
     protected final Text text;
     protected final ImageView imageView3;
-    protected final Text userNameText;
+    protected static Text userNameText;
     protected final Text text0;
     protected final ImageView imageView4;
-    protected final Text playedGamesText;
+    protected static Text playedGamesText;
     protected final Text text1;
     protected final Button gamesRecordBtn;
     protected final ImageView imageView5;
@@ -106,8 +108,11 @@ public class ProfileScreenBase extends AnchorPane {
         imageView7.setImage(new Image(getClass().getResource("Photos/back_logout.png").toExternalForm()));
         logoutBtn.setGraphic(imageView7);
         logoutBtn.setOnAction(e->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LoginFXMLBase());
+            LoginFXMLBase.playerData=null;
         
         });
         imageView0.setFitHeight(70.0);
@@ -117,7 +122,9 @@ public class ProfileScreenBase extends AnchorPane {
         imageView0.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
         backBtn.setGraphic(imageView0);
         backBtn.setOnAction(event ->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
         });
@@ -151,12 +158,12 @@ public class ProfileScreenBase extends AnchorPane {
         imageView2.setImage(new Image(getClass().getResource("Photos/Figame_Titile_Back.png").toExternalForm()));
 
         emailText.setFill(javafx.scene.paint.Color.WHITE);
-        emailText.setLayoutX(313.0);
+        emailText.setLayoutX(308.0);
         emailText.setLayoutY(213.0);
         emailText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         emailText.setStrokeWidth(0.0);
         emailText.setText("Email");
-        emailText.setFont(new Font("Serif Regular", 22.0));
+        emailText.setFont(new Font("Serif Regular", 18.0));
 
         text.setFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         text.setLayoutX(188.0);
@@ -178,7 +185,7 @@ public class ProfileScreenBase extends AnchorPane {
         imageView3.setImage(new Image(getClass().getResource("Photos/Figame_Titile_Back.png").toExternalForm()));
 
         userNameText.setFill(javafx.scene.paint.Color.WHITE);
-        userNameText.setLayoutX(313.0);
+        userNameText.setLayoutX(308.0);
         userNameText.setLayoutY(166.0);
         userNameText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         userNameText.setStrokeWidth(0.0);
@@ -204,7 +211,7 @@ public class ProfileScreenBase extends AnchorPane {
         imageView4.setImage(new Image(getClass().getResource("Photos/Figame_Titile_Back.png").toExternalForm()));
 
         playedGamesText.setFill(javafx.scene.paint.Color.WHITE);
-        playedGamesText.setLayoutX(313.0);
+        playedGamesText.setLayoutX(308.0);
         playedGamesText.setLayoutY(254.0);
         playedGamesText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         playedGamesText.setStrokeWidth(0.0);
@@ -243,7 +250,9 @@ public class ProfileScreenBase extends AnchorPane {
         gamesRecordBtn.setTextFill(javafx.scene.paint.Color.valueOf("#2949ae"));
         gamesRecordBtn.setFont(new Font("Serif Regular", 15.0));
         gamesRecordBtn.setOnAction(event ->{
-        
+            TicTacToe.player.stop();
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player.play();
             TicTacToe.scene.setRoot(new GamesRecordScreenBase());
             
         });

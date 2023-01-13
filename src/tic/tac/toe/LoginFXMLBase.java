@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.geometry.Side;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -35,7 +36,7 @@ public class LoginFXMLBase extends AnchorPane {
     protected final Button loginBtn;
     protected final ImageView imageView1;
     protected final Text dontHaveAnAccountText;
-
+ protected final ImageView backButton;
     protected final ContextMenu emailValidator;
     protected final ContextMenu passValidator;
     public Socket mySocket;
@@ -53,7 +54,7 @@ public class LoginFXMLBase extends AnchorPane {
             isConnected = false;
 
         }
-
+backButton = new ImageView();
         imageView = new ImageView();
         rectangle = new Rectangle();
         imageView0 = new ImageView();
@@ -69,6 +70,21 @@ public class LoginFXMLBase extends AnchorPane {
         getStyleClass().add("mainFxmlClass");
         getStylesheets().add("/tic/tac/toe/css/loginfxml.css");
 
+        
+         backButton.setAccessibleRole(javafx.scene.AccessibleRole.BUTTON);
+        backButton.setFitHeight(70.0);
+        backButton.setFitWidth(70.0);
+        backButton.setLayoutX(2.0);
+        backButton.setLayoutY(407.0);
+        backButton.setPickOnBounds(true);
+        backButton.setPreserveRatio(true);
+        backButton.setImage(new Image(getClass().getResource("Photos/back.png").toExternalForm()));
+        backButton.setOnMouseClicked(event ->{
+        
+            TicTacToe.scene.setRoot(new MainPageScreenBase());
+            
+        });
+        
         imageView.setFitHeight(480.0);
         imageView.setFitWidth(750.0);
         imageView.setPickOnBounds(true);
@@ -218,6 +234,7 @@ public class LoginFXMLBase extends AnchorPane {
         getChildren().add(passwordTextField);
         getChildren().add(loginBtn);
         getChildren().add(dontHaveAnAccountText);
+         getChildren().add(backButton);
 
     }
     
@@ -227,10 +244,15 @@ public class LoginFXMLBase extends AnchorPane {
       .matches();
 }
     public static void showAlert()
-    {
-        Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
+    {Platform.runLater(new Runnable() {
+        @Override
+        public void run() {
+           Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
                             alert.setTitle("Wrong Data");
                             alert.setContentText("Sorry! Invalid Email or Password .\n Please,check data and try again");
-                            alert.show();
+                            alert.show();  
+        }
+    });
+       
     }
 }

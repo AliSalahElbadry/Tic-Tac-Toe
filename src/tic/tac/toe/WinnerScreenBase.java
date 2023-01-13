@@ -2,7 +2,6 @@ package tic.tac.toe;
 
 
 
-import java.io.File;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,8 +15,6 @@ import javafx.scene.text.Text;
 public  class WinnerScreenBase extends AnchorPane {
 
     protected final MediaView mediaView;
-    protected final ImageView imageView;
-    protected final Text winnerText;
     protected final Button playAgainButtton;
     protected final ImageView imageView0;
     protected final Button mainPageButton;
@@ -26,8 +23,6 @@ public  class WinnerScreenBase extends AnchorPane {
     public WinnerScreenBase() {
 
         mediaView = new MediaView();
-        imageView = new ImageView();
-        winnerText = new Text();
         playAgainButtton = new Button();
         imageView0 = new ImageView();
         mainPageButton = new Button();
@@ -41,22 +36,8 @@ public  class WinnerScreenBase extends AnchorPane {
         mediaView.setFitHeight(480.0);
         mediaView.setFitWidth(750.0);
 
-        imageView.setFitHeight(183.0);
-        imageView.setFitWidth(313.0);
-        imageView.setLayoutX(238.0);
-        imageView.setLayoutY(-2.0);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
-        imageView.setStyle("-fx-rotate: 3;");
-        imageView.setImage(new Image(getClass().getResource("Photos/Title_image.png").toExternalForm()));
-
-        winnerText.setFill(javafx.scene.paint.Color.WHITE);
-        winnerText.setLayoutX(310.0);
-        winnerText.setLayoutY(102.0);
-        winnerText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        winnerText.setStrokeWidth(0.0);
-        winnerText.setText("X Wins");
-        winnerText.setFont(new Font("Serif Regular", 39.0));
+       
+       
 
         playAgainButtton.setLayoutX(14.0);
         playAgainButtton.setLayoutY(390.0);
@@ -94,6 +75,10 @@ public  class WinnerScreenBase extends AnchorPane {
                     TicTacToe.scene.setRoot(localMode.boardScreenBase);
                     break;
                 case 4:
+                    LoginFXMLBase.playerConnection.sendMessage("playing,"+
+                            AvailablePlayersBase.boardGameOnline.oponentID);
+                    AvailablePlayersBase.boardGameOnline.prepare();
+                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
                     break;
             }
         
@@ -141,21 +126,14 @@ public  class WinnerScreenBase extends AnchorPane {
         mainPageButton.setGraphic(imageView1);
 
         getChildren().add(mediaView);
-        getChildren().add(imageView);
-        getChildren().add(winnerText);
         getChildren().add(playAgainButtton);
         getChildren().add(mainPageButton);
 
     }
      public void PrepareWinnerScreen(String Name,int mode)
      {
-         if(PickYourSideScreenBase.level==0||PickYourSideScreenBase.level==1||PickYourSideScreenBase.level==2)
-         {
-             winnerText.setVisible(false);
-             imageView.setVisible(false);
-         }
+         
         
-        winnerText.setText(Name);
         String path="";
 
 
@@ -179,10 +157,10 @@ public  class WinnerScreenBase extends AnchorPane {
         if(mode==0)
         {
             mediaView.setScaleX(1.19);
-            mediaView.setScaleY(1.5);
+            mediaView.setScaleY(1.7);
         }else 
         {
-          mediaView.setScaleY(1.2);
+          mediaView.setScaleY(1.4);
         }
         mediaPlayer.setAutoPlay(true);
         TicTacToe.scene.setRoot(this);
