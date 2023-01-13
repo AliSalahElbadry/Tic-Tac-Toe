@@ -1,7 +1,6 @@
 
 package tic.tac.toe;
 
-
 import com.google.gson.Gson;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,12 +19,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import static tic.tac.toe.Medium.side;
 
-/**
- *
- * @author alisa
- */
 public class OnLineGameBoard {//0 means the woner of comuter 1 means the other player
     
     public BoardScreenBase boardScreenBase;
@@ -38,6 +32,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     public  boolean isPalying=false;
     private ArrayList<Move>moveList=new ArrayList<>();
     public boolean isRecording=false;
+
     public OnLineGameBoard ()
     {
         board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
@@ -243,7 +238,6 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     }
     public  void reciveMove(String location)
     {
-        
         String col=""+location.charAt(0);playSound();
         String row=""+location.charAt(1);
         moveList.add(new Move((playerSide=='X'?"o":"x"),col,row));//record move
@@ -256,7 +250,6 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     private void showWinner(int ev) {
      if(ev==0||ev==1)
      {
-         
          recordGame(ev);
          if(ev==0)playerRes++;
          else if(ev==1) oponentRes++;
@@ -310,6 +303,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
       boardScreenBase.box12.setImage(null);
       boardScreenBase.box22.setImage(null);
       board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+
       moveList=new ArrayList<>();isRecording=false;
     }
     public void recordGame(int winner){

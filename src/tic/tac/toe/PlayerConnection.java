@@ -17,6 +17,7 @@ import static tic.tac.toe.AvailablePlayersBase.boardGameOnline;
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
     public static DataOutputStream send;
+
     public volatile boolean isRunning=false;
     Socket socket;
     String message;
@@ -57,7 +58,9 @@ public class PlayerConnection extends Thread{
                         } 
                         else {
                              
+
                            LoginFXMLBase.showAlert();
+
 
                         }
                         
@@ -78,7 +81,9 @@ public class PlayerConnection extends Thread{
                            AvailablePlayersBase.boardGameOnline.reciveMove(message);
                     }
                     else if(dbResult[0].equals("Avaliable")){
+
                         AvailablePlayersBase.avaliable.addAll(Arrays.asList(dbResult));
+
                         System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
                         for(int i=2;i<dbResult.length;i+=2){
                             AvailablePlayersBase.preperList(dbResult[i]);
@@ -95,6 +100,7 @@ public class PlayerConnection extends Thread{
                         LoginFXMLBase.playerData.countGames++;
                         sendMessage(message);
                         TicTacToe.scene.setRoot(winner);
+
                     }
                     else if(dbResult[0].equals("invite")){
                         
@@ -167,6 +173,7 @@ public class PlayerConnection extends Thread{
                         });
                            
                      }
+
                 }
                 else{
                     System.out.println("recieve is null");
@@ -175,6 +182,7 @@ public class PlayerConnection extends Thread{
 
             } catch (Exception ex) {
                 System.out.print(ex.getMessage());
+
                    Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -185,6 +193,7 @@ public class PlayerConnection extends Thread{
                         }
                     });
                    break;
+
             }
         }
         try {

@@ -1,5 +1,6 @@
 package tic.tac.toe;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -54,7 +55,6 @@ public class LoginFXMLBase extends AnchorPane {
                 isConnected=true;
             } catch (Exception ex) {
                 isConnected = false;
-
             }
            }
         backButton = new ImageView();

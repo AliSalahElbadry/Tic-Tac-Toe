@@ -1,8 +1,5 @@
 package tic.tac.toe;
 
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,6 +57,7 @@ public class ItemBase extends AnchorPane {
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
         inviteBtn.setOnAction(event ->{
+
             if(LoginFXMLBase.playerConnection!=null){
                 OnLineGameBoard.myTurn=true;
                 try {
@@ -77,6 +75,7 @@ public class ItemBase extends AnchorPane {
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
+
             }
         });
 

@@ -35,7 +35,9 @@ public class AvailablePlayersBase extends AnchorPane {
         TicTacToe.player.stop();
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/serveronline.mp3").toExternalForm()));
         TicTacToe.player.play();
+
         avaliable=new ArrayList<>();
+
         imageView = new ImageView();
         rectangle = new Rectangle();
         backBtn = new Button();
@@ -153,6 +155,7 @@ public class AvailablePlayersBase extends AnchorPane {
         }
     });
     }
+
     public static void removeFromList(String name)
     {
         for (Object item : availablePlayerslistView.getItems()) {

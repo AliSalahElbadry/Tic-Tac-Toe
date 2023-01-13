@@ -73,6 +73,7 @@ public  class MainPageScreenBase extends AnchorPane {
         prifileImage.setOnMouseClicked(event ->{
 
             if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
+
             {
                ProfileScreenBase base = new ProfileScreenBase();
                base.emailText.setText(LoginFXMLBase.playerData.email);
@@ -80,6 +81,7 @@ public  class MainPageScreenBase extends AnchorPane {
                base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
                TicTacToe.scene.setRoot(base);
               
+
             }else 
             {
                  TicTacToe.scene.setRoot(new LoginFXMLBase());
@@ -113,8 +115,9 @@ public  class MainPageScreenBase extends AnchorPane {
              TicTacToe.player.stop();
              TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
              TicTacToe.player.play();
+
              TicTacToe.scene.setRoot(new LevelScreenBase());
-            
+
         });
 
         localRectangle.setArcHeight(5.0);
@@ -149,6 +152,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineRectangle.getStyleClass().add("rect");
         onlineRectangle.setWidth(185.0);
         onlineRectangle.setOnMouseClicked(event ->{
+
             if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
             {
                 AvailablePlayersBase.availablePlayerslistView=null;
@@ -223,6 +227,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineImageView.setPickOnBounds(true);
         onlineImageView.setPreserveRatio(true);
         onlineImageView.setImage(new Image(getClass().getResource("Photos/onlinegame.png").toExternalForm()));
+
         onlineImageView.setOnMouseClicked(e->{
         
           if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
@@ -245,6 +250,7 @@ public  class MainPageScreenBase extends AnchorPane {
         });
         
             
+
         localText.setFill(javafx.scene.paint.Color.valueOf("#293b9f"));
         localText.setLayoutX(340.0);
         localText.setLayoutY(357.0);
@@ -269,6 +275,7 @@ public  class MainPageScreenBase extends AnchorPane {
         onlineText.setText("Online");
         onlineText.setFont(new Font("Serif Regular", 30.0));
         onlineText.setOnMouseClicked(event ->{
+
 
             if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
             {

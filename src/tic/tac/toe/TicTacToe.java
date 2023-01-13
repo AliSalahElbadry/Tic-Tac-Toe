@@ -55,7 +55,7 @@ public class TicTacToe extends Application {
             }
         }).start();
         primaryStage.setOnCloseRequest(e->{
-           try{ 
+//           try{ 
                if(AvailablePlayersBase.boardGameOnline!=null){
                 if(AvailablePlayersBase.boardGameOnline.isPalying)
                  LoginFXMLBase.playerConnection.sendMessage("endGame,"+AvailablePlayersBase.boardGameOnline.oponentID);
@@ -63,20 +63,24 @@ public class TicTacToe extends Application {
                if(LoginFXMLBase.playerConnection!=null){
                     if(!LoginFXMLBase.playerConnection.socket.isClosed()){
                         LoginFXMLBase.playerConnection.sendMessage("Close,");
-                        LoginFXMLBase.playerConnection.socket.close();
+                        try {
+                            LoginFXMLBase.playerConnection.socket.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                }
 
-           }catch (SocketException ex)
-           {
-               System.out.println(ex.getCause());
-               
-           } catch (IOException ex) {
-                Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-               if(LoginFXMLBase.playerConnection!=null)
-               LoginFXMLBase.playerConnection.stop();
-           }
+//           }catch (SocketException ex)
+//           {
+//               System.out.println(ex.getCause());
+//               
+//           } catch (IOException ex) {
+//                Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+//            }finally{
+//               if(LoginFXMLBase.playerConnection!=null)
+//               LoginFXMLBase.playerConnection.stop();
+//           }
         });
         
     }

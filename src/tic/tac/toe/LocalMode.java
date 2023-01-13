@@ -7,13 +7,11 @@ import java.io.Writer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import static tic.tac.toe.Medium.side;
 
 public class LocalMode  {
     
