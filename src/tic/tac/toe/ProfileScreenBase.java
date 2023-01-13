@@ -9,7 +9,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import tic.tac.toe.TicTacToe;
 
 public class ProfileScreenBase extends AnchorPane {
 
@@ -108,6 +107,13 @@ public class ProfileScreenBase extends AnchorPane {
         imageView7.setImage(new Image(getClass().getResource("Photos/back_logout.png").toExternalForm()));
         logoutBtn.setGraphic(imageView7);
         logoutBtn.setOnAction(e->{
+
+            if(LoginFXMLBase.playerConnection.isAlive())
+            {
+                LoginFXMLBase.playerConnection.sendMessage("Close,");
+                LoginFXMLBase.playerConnection.isRunning=false;
+            }
+
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
             TicTacToe.player.play();

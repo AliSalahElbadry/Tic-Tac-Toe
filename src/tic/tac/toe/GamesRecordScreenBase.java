@@ -27,7 +27,7 @@ public class GamesRecordScreenBase extends AnchorPane {
     public static ArrayList<Record> listRecord;
 
     public GamesRecordScreenBase() {
-
+        
         imageView = new ImageView();
         container = new Rectangle();
         hestoryGamesRecordListView = new ListView();
@@ -35,6 +35,7 @@ public class GamesRecordScreenBase extends AnchorPane {
         imageView0 = new ImageView();
         imageView1 = new ImageView();
         listRecord = new ArrayList<>();
+
 
         try {
             String paths[];
@@ -98,9 +99,10 @@ public class GamesRecordScreenBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
-        backBtn.setOnAction(event -> {
+
+        backBtn.setOnAction(event ->{
             TicTacToe.player.stop();
-            TicTacToe.player = new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
+            TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new ProfileScreenBase());
 

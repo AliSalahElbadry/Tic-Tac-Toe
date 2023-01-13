@@ -25,7 +25,6 @@ public class ShowGame implements Runnable{
         }else{
             boardScreenBase.scorePlayer2.setText("x");
         }
-                
 
     }
     
