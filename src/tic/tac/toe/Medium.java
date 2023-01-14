@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
@@ -27,10 +29,11 @@ public class Medium {
 
     int board[][] = {{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
     boolean win = false;
-    ArrayList<Move> list ;
-    
-    public Medium(){
-        
+    ArrayList<Move> list;
+    Timer timer;
+
+    public Medium() {
+        timer = new Timer();
         list = new ArrayList<>();
         boardScreenBase = new BoardScreenBase();
         boardScreenBase.levelText.setLayoutX(330);
@@ -53,12 +56,12 @@ public class Medium {
 
     }
 
-    
-    public void click(){
-        boardScreenBase.box00.setOnMouseClicked(e->{ 
-            if(isEmpty(board[0][0]) && !win){
-                printSides(00);playSound();
-                board[0][0]=1;
+    public void click() {
+        boardScreenBase.box00.setOnMouseClicked(e -> {
+            if (isEmpty(board[0][0]) && !win) {
+                printSides(00);
+                playSound();
+                board[0][0] = 1;
                 winner();
                 if (isMovesLeft(board)) {
                     if (!win) {
@@ -69,119 +72,126 @@ public class Medium {
             }
         });
 
-        boardScreenBase.box01.setOnMouseClicked(e->{ 
-            if(isEmpty(board[0][1]) && !win){
-                    printSides(01);playSound();
-                    board[0][1]=1;
-                    winner();
-                if(isMovesLeft(board)){
-                    if(!win){
-                        computer();
-                        winner();
-                    }
-                }
-            }
-
-        });
-
-        
-        boardScreenBase.box02.setOnMouseClicked(e->{ 
-            if(isEmpty(board[0][2])&& !win){
-                printSides(02);playSound();
-                board[0][2]=1;
-                winner();
-                if(isMovesLeft(board)){
-                    if(!win){
-                        computer();
-                        winner();
-                    }
-                    }
-               
-                }
-        });
-        
-        boardScreenBase.box10.setOnMouseClicked(e->{  
-            if(isEmpty(board[1][0])&& !win){
-                printSides(10);playSound();
-                board[1][0]=1;
-                winner();
-                if(isMovesLeft(board)){
-                    if(!win){
-                        computer();
-                        winner();
-                    }
-                    }
-                
-                }
-        });
-        boardScreenBase.box11.setOnMouseClicked(e->{  
-            if(isEmpty(board[1][1])&& !win){
-            printSides(11);playSound();
-            board[1][1]=1;
-            winner();
-            if(isMovesLeft(board)){
-                if(!win){
-                        computer();
-                        winner();
-                    }
-                }
-            }
-        });
-        
-        boardScreenBase.box12.setOnMouseClicked(e->{       
-                if(isEmpty(board[1][2])&& !win){
-                    printSides(12);playSound();
-                    board[1][2]=1;
-                    winner();
-                if(isMovesLeft(board)){
-                    if(!win){
-
-                        computer();
-                        winner();
-                    }
-                }
-
-            }
-        });
-        
-        boardScreenBase.box20.setOnMouseClicked(e->{     
-                if(isEmpty(board[2][0])&& !win){
-                    printSides(20);playSound();
-                    board[2][0]=1;
-                    winner();
-                if(isMovesLeft(board)){
-                    if(!win){
-
-                        computer();
-                        winner();
-                    }
-                }
-
-            }
-        });
-
-        boardScreenBase.box21.setOnMouseClicked(e->{ 
-                if(isEmpty(board[2][1])&& !win){
-                printSides(21);playSound();
-                board[2][1]=1;
+        boardScreenBase.box01.setOnMouseClicked(e -> {
+            if (isEmpty(board[0][1]) && !win) {
+                printSides(01);
+                playSound();
+                board[0][1] = 1;
                 winner();
                 if (isMovesLeft(board)) {
                     if (!win) {
                         computer();
                         winner();
                     }
+                }
+            }
+
+        });
+
+        boardScreenBase.box02.setOnMouseClicked(e -> {
+            if (isEmpty(board[0][2]) && !win) {
+                printSides(02);
+                playSound();
+                board[0][2] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+                        computer();
+                        winner();
                     }
                 }
+
+            }
         });
-        
-        boardScreenBase.box22.setOnMouseClicked(e->{    
-            if(isEmpty(board[2][2])&& !win){
-            printSides(22); playSound();
-            board[2][2]=1;
-            winner();
-            if(isMovesLeft(board)){
-                computer();
+
+        boardScreenBase.box10.setOnMouseClicked(e -> {
+            if (isEmpty(board[1][0]) && !win) {
+                printSides(10);
+                playSound();
+                board[1][0] = 1;
                 winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+                        computer();
+                        winner();
+                    }
+                }
+
+            }
+        });
+        boardScreenBase.box11.setOnMouseClicked(e -> {
+            if (isEmpty(board[1][1]) && !win) {
+                printSides(11);
+                playSound();
+                board[1][1] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+                        computer();
+                        winner();
+                    }
+                }
+            }
+        });
+
+        boardScreenBase.box12.setOnMouseClicked(e -> {
+            if (isEmpty(board[1][2]) && !win) {
+                printSides(12);
+                playSound();
+                board[1][2] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+
+                        computer();
+                        winner();
+                    }
+                }
+
+            }
+        });
+
+        boardScreenBase.box20.setOnMouseClicked(e -> {
+            if (isEmpty(board[2][0]) && !win) {
+                printSides(20);
+                playSound();
+                board[2][0] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+
+                        computer();
+                        winner();
+                    }
+                }
+
+            }
+        });
+
+        boardScreenBase.box21.setOnMouseClicked(e -> {
+            if (isEmpty(board[2][1]) && !win) {
+                printSides(21);
+                playSound();
+                board[2][1] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    if (!win) {
+                        computer();
+                        winner();
+                    }
+                }
+            }
+        });
+
+        boardScreenBase.box22.setOnMouseClicked(e -> {
+            if (isEmpty(board[2][2]) && !win) {
+                printSides(22);
+                playSound();
+                board[2][2] = 1;
+                winner();
+                if (isMovesLeft(board)) {
+                    computer();
+                    winner();
                 }
             }
         });
@@ -250,54 +260,54 @@ public class Medium {
 
                 case 00:
                     boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move = new Move(side,"0","0");
+                    Move move = new Move(side, "0", "0");
                     list.add(move);
                     break;
 
                 case 01:
                     boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move1 = new Move(side,"0","1");
+                    Move move1 = new Move(side, "0", "1");
                     list.add(move1);
                     break;
 
                 case 02:
                     boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move2 = new Move(side,"0","2");
+                    Move move2 = new Move(side, "0", "2");
                     list.add(move2);
                     break;
 
                 case 10:
                     boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move3 = new Move(side,"1","0");
+                    Move move3 = new Move(side, "1", "0");
                     list.add(move3);
                     break;
 
                 case 11:
                     boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move4 = new Move(side,"1","1");
+                    Move move4 = new Move(side, "1", "1");
                     list.add(move4);
                     break;
 
                 case 12:
                     boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move5 = new Move(side,"1","2");
+                    Move move5 = new Move(side, "1", "2");
                     list.add(move5);
                     break;
 
                 case 20:
                     boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move6 = new Move(side,"2","0");
+                    Move move6 = new Move(side, "2", "0");
                     list.add(move6);
                     break;
 
                 case 21:
                     boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move7 = new Move(side,"2","1");
+                    Move move7 = new Move(side, "2", "1");
                     list.add(move7);
-                    break;  
+                    break;
                 case 22:
                     boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/X.png").toExternalForm()));
-                    Move move8 = new Move(side,"2","2");
+                    Move move8 = new Move(side, "2", "2");
                     list.add(move8);
                     break;
                 default:
@@ -310,55 +320,55 @@ public class Medium {
 
                 case 00:
                     boardScreenBase.box00.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move = new Move(side,"0","0");
+                    Move move = new Move(side, "0", "0");
                     list.add(move);
                     break;
 
                 case 01:
                     boardScreenBase.box01.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move1 = new Move(side,"0","1");
+                    Move move1 = new Move(side, "0", "1");
                     list.add(move1);
                     break;
 
                 case 02:
                     boardScreenBase.box02.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move2 = new Move(side,"0","2");
+                    Move move2 = new Move(side, "0", "2");
                     list.add(move2);
                     break;
 
                 case 10:
                     boardScreenBase.box10.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move3 = new Move(side,"1","0");
+                    Move move3 = new Move(side, "1", "0");
                     list.add(move3);
                     break;
 
                 case 11:
                     boardScreenBase.box11.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move4 = new Move(side,"1","1");
+                    Move move4 = new Move(side, "1", "1");
                     list.add(move4);
                     break;
 
                 case 12:
                     boardScreenBase.box12.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move5 = new Move(side,"1","2");
+                    Move move5 = new Move(side, "1", "2");
                     list.add(move5);
                     break;
 
                 case 20:
                     boardScreenBase.box20.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move6 = new Move(side,"2","0");
+                    Move move6 = new Move(side, "2", "0");
                     list.add(move6);
                     break;
 
                 case 21:
                     boardScreenBase.box21.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move7 = new Move(side,"2","1");
+                    Move move7 = new Move(side, "2", "1");
                     list.add(move7);
-                    break;  
-                    
+                    break;
+
                 case 22:
                     boardScreenBase.box22.setImage(new Image(getClass().getResource("Photos/O.png").toExternalForm()));
-                    Move move8 = new Move(side,"2","2");
+                    Move move8 = new Move(side, "2", "2");
                     list.add(move8);
                     break;
                 default:
@@ -369,32 +379,44 @@ public class Medium {
 
     }
 
-    public void winner(){
-    
-        if(pridectWinner(board)==1){
-            player+=1;
-            
-            winner.PrepareWinnerScreen("win",1);
+    public void winner() {
+
+        if (pridectWinner(board) == 1) {
+            player += 1;
+            colorRectangles(board);
+             timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        winner.PrepareWinnerScreen("win", 1);
+                        timer.cancel();
+                    }
+                }, 2000, 2000);
+           
             recordGame("you");
             win = true;
-        
-        }else if(pridectWinner(board)==0){
-            computer+=1;
-            
-            winner.PrepareWinnerScreen("lose",-1);
+
+        } else if (pridectWinner(board) == 0) {
+            computer += 1;
+            colorRectangles(board);
+             timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                         winner.PrepareWinnerScreen("lose", -1);
+                        timer.cancel();
+                    }
+                }, 2000, 2000);
             recordGame("Computer");
-            if(side =="x"){
+            if (side == "x") {
                 side = "o";
             } else {
                 side = "x";
             }
             win = true;
 
-        }else if(! isMovesLeft(board)){
-           
-            winner.PrepareWinnerScreen("draw",0);
+        } else if (!isMovesLeft(board)) {
+            winner.PrepareWinnerScreen("draw", 0);
             recordGame("Draw");
-            win = true; 
+            win = true;
 
         }
     }
@@ -406,14 +428,15 @@ public class Medium {
             return true;
         }
     }
-    
-    public void computer(){
-        int counter = 0;playSound();
-        int []move  = new int[2]; 
-        
-        for (int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                if(board[i][j]==0){
+
+    public void computer() {
+        int counter = 0;
+        playSound();
+        int[] move = new int[2];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == 0) {
                     counter++;
                 }
             }
@@ -675,7 +698,7 @@ public class Medium {
         return depth;
     }
 
-    
+
     private int pridectWinner(int[][] board){
       
       for(int i=0;i<3;i++)
@@ -747,14 +770,63 @@ public class Medium {
             }
         }
     }
-    
-    
+
+
+     public int colorRectangles(int[][] board) {
+
+        for (int i = 0; i < 3; i++) {
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[2][i] != -1) {
+                if (i == 0) {
+                    boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 1) {
+                    boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 2) {
+                    boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                }
+                return board[0][i];
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][2] != -1) {
+                 if (i == 0) {
+                    boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 1) {
+                    boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 2) {
+                    boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                }
+                return board[i][0];
+            }
+        }
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[2][2] != -1) {
+             boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            return board[1][1];
+        }
+        if (board[2][0] == board[1][1] && board[1][1] == board[0][2] && board[0][2] != -1) {
+            boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            return board[2][0];
+        }
+
+        return -1;
+    }
+
     
     
 
 }
-
-
-
-
-

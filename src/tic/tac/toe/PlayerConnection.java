@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -69,7 +70,13 @@ public class PlayerConnection extends Thread{
                         System.out.println(dbResult[1]);
                          
                         if(dbResult[1].equals("true")){
-                             TicTacToe.scene.setRoot(new LoginFXMLBase());
+                            Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
+                            alert.setTitle("Attention");
+                            alert.setContentText("you Signed successfully");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == ButtonType.OK){
+                               TicTacToe.scene.setRoot(new LoginFXMLBase());
+                            }
                         }
                         else{
                              Platform.runLater(() -> {
