@@ -72,7 +72,12 @@ public class PlayerConnection extends Thread{
                              TicTacToe.scene.setRoot(new LoginFXMLBase());
                         }
                         else{
-                            System.out.println("no insert happened");
+                             Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("You Aleady Have Account !!");
+                                alert.show(); 
+                            });
                         }
                         
                     }
@@ -148,15 +153,23 @@ public class PlayerConnection extends Thread{
                     {
                            System.out.println("Server is Closed");
                            isRunning=false;
-                           boardGameOnline.isPalying=true;
+                           boardGameOnline.isPalying=false;
+                           Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("Server Closed !!");
+                                alert.show(); 
+                            });
+                           TicTacToe.scene.setRoot(new MainPageScreenBase()); 
+                           break;
                     }else if(dbResult[0].equals("UpdateAddAv")){
                           Platform.runLater(()->{
                                 if(dbResult.length>=2&&AvailablePlayersBase.avaliable!=null){
                                     
                                     AvailablePlayersBase.avaliable.add(dbResult[1]);
-                                    AvailablePlayersBase.avaliable.add(dbResult[2]);
+                                    AvailablePlayersBase.avaliable.add(message.split(",")[2]);
                                     System.err.println(AvailablePlayersBase.avaliable.get(AvailablePlayersBase.avaliable.size()-1));
-                                    AvailablePlayersBase.preperList(dbResult[2]);
+                                    AvailablePlayersBase.preperList(message.split(",")[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
                                 }
                            });
@@ -165,13 +178,21 @@ public class PlayerConnection extends Thread{
                         Platform.runLater(()->{
                                 if(dbResult.length>=2){
                                     AvailablePlayersBase.avaliable.remove(dbResult[1]);
-                                    AvailablePlayersBase.avaliable.remove(dbResult[2]);
-                                    AvailablePlayersBase.removeFromList(dbResult[2]);
+                                    AvailablePlayersBase.avaliable.remove(message.split(",")[2]);
+                                    AvailablePlayersBase.removeFromList(message.split(",")[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
 
                                 }
                         });
                            
+                     }else if(dbResult[0].equals("lBefo"))
+                     {
+                          Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("You Aleady LogedIn In Different Device !!");
+                                alert.show(); 
+                            });
                      }
 
                 }
@@ -186,9 +207,9 @@ public class PlayerConnection extends Thread{
                    Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Attention",ButtonType.OK);
+                            Alert alert = new Alert(Alert.AlertType.ERROR,"Attention",ButtonType.OK);
                             alert.setTitle("Information");
-                            alert.setContentText("Server Offline !!!");
+                            alert.setContentText("Lost Connection !!!");
                             alert.showAndWait();
                         }
                     });
@@ -215,6 +236,4 @@ public class PlayerConnection extends Thread{
             Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-   
 }
