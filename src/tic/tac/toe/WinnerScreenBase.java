@@ -113,6 +113,13 @@ public  class WinnerScreenBase extends AnchorPane {
             LevelHardClass.computerRes=0;
             LocalMode.player1Score=0;
             LocalMode.player2Score=0;
+            if(PickYourSideScreenBase.level==4)
+            {
+                if(LoginFXMLBase.playerConnection!=null)
+                {
+                    LoginFXMLBase.playerConnection.sendMessage("EndGameSession,");
+                }
+            }
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
 
