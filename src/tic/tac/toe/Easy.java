@@ -2,6 +2,7 @@
 package tic.tac.toe;
 
 import com.google.gson.Gson;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -546,17 +547,34 @@ public class Easy {
             sidee= "x";
         }
         if(BoardScreenBase.record == true){
-            Gson gson = new Gson();
-            String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
-            String date = timeStamp.replace(":", "-");
-            Record record = new Record(0, "Computer", winner,"Easy", list, new Date(),sidee);
-            try {
-                Writer writer = new FileWriter("Game//"+date.toString()+".json");
-                gson.toJson(record,writer);
-                writer.close();
+            File file = new File("Game.//"+LoginFXMLBase.playerData.getPlayerID());
+            if (!file.exists()){
+                file.mkdirs();
+                Gson gson = new Gson();
+                String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+                String date = timeStamp.replace(":", "-");
+                Record record = new Record(0, "Computer", winner,"Easy", list, new Date(),sidee);
+                try {
+                    Writer writer = new FileWriter("Game//"+LoginFXMLBase.playerData.getPlayerID()+"//"+date.toString()+".json");
+                    gson.toJson(record,writer);
+                    writer.close();
 
-            } catch (IOException ex) {
-                Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                Gson gson = new Gson();
+                String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+                String date = timeStamp.replace(":", "-");
+                Record record = new Record(0, "Computer", winner,"Easy", list, new Date(),sidee);
+                try {
+                    Writer writer = new FileWriter("Game//"+LoginFXMLBase.playerData.getPlayerID()+"//"+date.toString()+".json");
+                    gson.toJson(record,writer);
+                    writer.close();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

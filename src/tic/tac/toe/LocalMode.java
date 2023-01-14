@@ -1,6 +1,7 @@
 package tic.tac.toe;
 
 import com.google.gson.Gson;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -462,19 +463,38 @@ public class LocalMode {
     public void recordGame(String winner,String player2Name){
 
         if(BoardScreenBase.record == true){
-            Gson gson = new Gson();
-            String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
-            String date = timeStamp.replace(":", "-");
+            File file = new File("Game.//"+LoginFXMLBase.playerData.getPlayerID());
+            if (!file.exists()){
+                file.mkdirs();
+                Gson gson = new Gson();
+                String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+                String date = timeStamp.replace(":", "-");
 
-            Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
-            try {
-                Writer writer = new FileWriter("Game//" + date.toString() + ".json");
-                gson.toJson(record, writer);
-                writer.close();
+                Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
+                try {
+                    Writer writer = new FileWriter("Game//"+LoginFXMLBase.playerData.getPlayerID()+"//"+date.toString() + ".json");
+                    gson.toJson(record, writer);
+                    writer.close();
 
-            } catch (IOException ex) {
-                Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
 
+                }
+            }else{
+                Gson gson = new Gson();
+                String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+                String date = timeStamp.replace(":", "-");
+
+                Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
+                try {
+                    Writer writer = new FileWriter("Game//"+LoginFXMLBase.playerData.getPlayerID()+"//"+ date.toString() + ".json");
+                    gson.toJson(record, writer);
+                    writer.close();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
             }
         }
     }
