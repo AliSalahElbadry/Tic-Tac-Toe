@@ -25,7 +25,7 @@ public class GamesRecordScreenBase extends AnchorPane {
     protected final ImageView imageView0;
     protected final ImageView imageView1;
     public static ArrayList<Record> listRecord;
-    
+
     public GamesRecordScreenBase() {
         
         imageView = new ImageView();
@@ -35,27 +35,27 @@ public class GamesRecordScreenBase extends AnchorPane {
         imageView0 = new ImageView();
         imageView1 = new ImageView();
         listRecord = new ArrayList<>();
-        
+
+
         try {
-            String paths[] ;
+            String paths[];
             File file = new File("Game");
-            
+
             paths = file.list();
             System.err.println(paths[0]);
             Gson gson = new Gson();
-            
-            for(int i=0 ; i<paths.length; i++){
-            System.err.println("enter");
-            Record record = gson.fromJson(new FileReader("Game\\" +paths[i]), Record.class);
-            System.err.println(i);
-            listRecord.add(record);
-            GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
-            gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);
-            gamesRecordItemSceenBase.winnerItem1Text.setText(record.Winner);
-            gamesRecordItemSceenBase.timeItem1Text.setText(record.date.toString());
-            gamesRecordItemSceenBase.listId=i;
-            hestoryGamesRecordListView.getItems().add(gamesRecordItemSceenBase);
-            } 
+            for (int i = 0; i < paths.length; i++) {
+                System.err.println("enter");
+                Record record = gson.fromJson(new FileReader("Game\\" + paths[i]), Record.class);
+                System.err.println(i);
+                listRecord.add(record);
+                GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
+                gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);
+                gamesRecordItemSceenBase.winnerItem1Text.setText(record.Winner);
+                gamesRecordItemSceenBase.timeItem1Text.setText(record.date.toString());
+                gamesRecordItemSceenBase.listId = i;
+                hestoryGamesRecordListView.getItems().add(gamesRecordItemSceenBase);
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GamesRecordScreenBase.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,8 +90,7 @@ public class GamesRecordScreenBase extends AnchorPane {
         hestoryGamesRecordListView.setPrefWidth(414.0);
         hestoryGamesRecordListView.getStylesheets().add("/tic/tac/toe/css/gamesrecordsceen.css");
         hestoryGamesRecordListView.getStyleClass().add("mylistview");
-        
-       
+
         backBtn.setId("obtn");
         backBtn.setLayoutX(14.0);
         backBtn.setLayoutY(384.0);
@@ -100,15 +99,15 @@ public class GamesRecordScreenBase extends AnchorPane {
         backBtn.setPrefWidth(70.0);
         backBtn.getStyleClass().add("backbtn");
         backBtn.getStylesheets().add("/tic/tac/toe/css/ProfileScreen.css");
+
         backBtn.setOnAction(event ->{
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new ProfileScreenBase());
-            
+
         });
 
-        
         imageView0.setFitHeight(70.0);
         imageView0.setFitWidth(70.0);
         imageView0.setPickOnBounds(true);

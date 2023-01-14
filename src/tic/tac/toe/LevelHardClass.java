@@ -1,27 +1,37 @@
 package tic.tac.toe;
 
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author alisa
- */
 public class LevelHardClass  {
  
     BoardScreenBase boardScreen;
     int[][]board;
     public static int playerSide=0;
     private boolean win=false;
+
+    public static boolean isRecording=false;
+
     public static String PlayerName="YOU";
     public static  int computerRes=0,playerRes=0;
+    private ArrayList<Move>recordMoveList;
     public LevelHardClass()
     {   
        boardScreen=new BoardScreenBase();
        board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+
+       recordMoveList=new ArrayList<>();
+
        if(LevelScreenBase.randomFlag)
        {
            boardScreen.levelText.setLayoutX(320.0);
@@ -41,6 +51,9 @@ public class LevelHardClass  {
           if(board[0][0]==-1&&win==false&&isMovesLeft(board))
           {
               board[0][0]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","0","0"));
+
               setMoveOnScreen("00",""+(playerSide==0?'X':'O'));
               int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -53,6 +66,8 @@ public class LevelHardClass  {
             if(board[1][0]==-1&&win==false&&isMovesLeft(board))
           {
               board[1][0]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","1","0"));
               setMoveOnScreen("10",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -64,6 +79,8 @@ public class LevelHardClass  {
          if(board[2][0]==-1&&win==false&&isMovesLeft(board))
           {
               board[2][0]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","2","0"));
               setMoveOnScreen("20",""+(playerSide==0?'X':'O'));
             int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -75,6 +92,8 @@ public class LevelHardClass  {
            if(board[0][1]==-1&&win==false&&isMovesLeft(board))
            {
               board[0][1]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","0","1"));
               setMoveOnScreen("01",""+(playerSide==0?'X':'O'));
             int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -86,6 +105,8 @@ public class LevelHardClass  {
            if(board[1][1]==-1&&win==false&&isMovesLeft(board))
           {
               board[1][1]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","1","1"));
               setMoveOnScreen("11",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -98,6 +119,9 @@ public class LevelHardClass  {
            if(board[2][1]==-1&&win==false&&isMovesLeft(board))
           {
               board[2][1]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","2","1"));
+
               setMoveOnScreen("21",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -110,6 +134,9 @@ public class LevelHardClass  {
          if(board[0][2]==-1&&win==false&&isMovesLeft(board))
           {
               board[0][2]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","0","2"));
+
               setMoveOnScreen("02",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -123,6 +150,9 @@ public class LevelHardClass  {
          if(board[1][2]==-1&&win==false&&isMovesLeft(board))
           {
               board[1][2]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","1","2"));
+
               setMoveOnScreen("12",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -134,6 +164,8 @@ public class LevelHardClass  {
           if(board[2][2]==-1&&win==false&&isMovesLeft(board))
           {
               board[2][2]=playerSide;playSound();
+
+              recordMoveList.add(new Move(playerSide==0?"x":"o","2","2"));
               setMoveOnScreen("22",""+(playerSide==0?'X':'O'));
              int ev= pridectWinner(board);
                     ShowWinner(ev);
@@ -149,11 +181,17 @@ public class LevelHardClass  {
        if(best[0]!=-1&&best[1]!=-1)
        {
            board[best[0]][best[1]]=playerSide==0?1:0;
+           recordMoveList.add(new Move(playerSide==0?"o":"x",""+best[0],""+best[1]));
            int winner=pridectWinner(board);
+            try {
+                 Thread.sleep(100);
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(LevelHardClass.class.getName()).log(Level.SEVERE, null, ex);
+             }
            setMoveOnScreen(""+best[0]+""+best[1],playerSide==0?"O":"X");
              
              try {
-                 Thread.sleep(10);
+                 Thread.sleep(100);
              } catch (InterruptedException ex) {
                  Logger.getLogger(LevelHardClass.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -296,12 +334,12 @@ public class LevelHardClass  {
 }
 
     private int gominimax(int[][] board,int side) {
-        int h=pridectWinner(board);
+        int res=pridectWinner(board);
         int depth=1;
-        if(h==(playerSide==0?1:0))
+        if(res==(playerSide==0?1:0))
         {
             return depth;
-        }else if(h==playerSide)
+        }else if(res==playerSide)
         {
             return -depth;
         }
@@ -328,7 +366,10 @@ public class LevelHardClass  {
     private void ShowWinner(int ev) {
      if(ev==0||ev==1)
      {
-         
+         if(BoardScreenBase.record)
+         {
+             recordGame(ev);
+         }
          if(playerSide==ev)playerRes++;
          else computerRes++;
          
@@ -339,6 +380,10 @@ public class LevelHardClass  {
      }else if(ev==-1&&!isMovesLeft(board))
      {
          win=true;
+         if(BoardScreenBase.record)
+         {
+             recordGame(ev);
+         }
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
      }
@@ -349,4 +394,21 @@ public class LevelHardClass  {
         TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/x.mp3").toExternalForm()));
         TicTacToe.player.play();
     }
+
+     public void recordGame(int winner){
+    
+        Gson gson = new Gson();
+        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+        String date = timeStamp.replace(":", "-");
+        Record record = new Record(2, "YOU", winner==-1?"Draw":(winner==playerSide?PlayerName:"Computer"),"Hard", recordMoveList, new Date(),playerSide==0?"x":"o");
+        try {
+            Writer writer = new FileWriter("Game//"+date.toString()+".json");
+            gson.toJson(record,writer);
+            writer.close();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

@@ -4,6 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -14,14 +17,15 @@ import static tic.tac.toe.AvailablePlayersBase.boardGameOnline;
 public class PlayerConnection extends Thread{
     public DataInputStream recive;
     public static DataOutputStream send;
- 
+
+    public volatile boolean isRunning=false;
     Socket socket;
     String message;
 
     public PlayerConnection(Socket s) {
         try {
             message = "";
-            socket = s;
+            socket = s;isRunning=true;
             recive = new DataInputStream(socket.getInputStream());
             send = new DataOutputStream(socket.getOutputStream());
             start();
@@ -34,8 +38,8 @@ public class PlayerConnection extends Thread{
 
     @Override
     public void run() {
-        super.run();
-        while (true) {
+        
+        while (isRunning) {
             try {
 
                 if (recive != null) {
@@ -50,11 +54,13 @@ public class PlayerConnection extends Thread{
                     
                             LoginFXMLBase.playerData = new PlayerData(Integer.valueOf(dbResult[1]), dbResult[2], dbResult[3], dbResult[4], dbResult[5], Integer.valueOf(dbResult[6]), Integer.valueOf(dbResult[7]));
                             TicTacToe.scene.setRoot(new AvailablePlayersBase());
-
+                            System.err.println("login alv sasa");
                         } 
                         else {
                              
-                          // LoginFXMLBase.showAlert();
+
+                           LoginFXMLBase.showAlert();
+
 
                         }
                         
@@ -66,7 +72,12 @@ public class PlayerConnection extends Thread{
                              TicTacToe.scene.setRoot(new LoginFXMLBase());
                         }
                         else{
-                            System.out.println("no insert happened");
+                             Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("You Aleady Have Account !!");
+                                alert.show(); 
+                            });
                         }
                         
                     }
@@ -75,7 +86,9 @@ public class PlayerConnection extends Thread{
                            AvailablePlayersBase.boardGameOnline.reciveMove(message);
                     }
                     else if(dbResult[0].equals("Avaliable")){
-                        AvailablePlayersBase.avaliable = dbResult;
+
+                        AvailablePlayersBase.avaliable.addAll(Arrays.asList(dbResult));
+
                         System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
                         for(int i=2;i<dbResult.length;i+=2){
                             AvailablePlayersBase.preperList(dbResult[i]);
@@ -92,23 +105,26 @@ public class PlayerConnection extends Thread{
                         LoginFXMLBase.playerData.countGames++;
                         sendMessage(message);
                         TicTacToe.scene.setRoot(winner);
+
                     }
                     else if(dbResult[0].equals("invite")){
+                        
                          AvailablePlayersBase.showDialog(dbResult[2],dbResult[1]);
                     }
                     else if(dbResult[0].equals("startGame")){
                         boardGameOnline=new OnLineGameBoard();
                         boardGameOnline.PlayerName=LoginFXMLBase.playerData.userName;
+                        boardGameOnline.oponentName="Player2";
                         PickYourSideScreenBase.level=4;
                         boardGameOnline.isPalying=true;
                         boardGameOnline.oponentID=Integer.valueOf(dbResult[1]);
                         
-                        for(int i=1;i<AvailablePlayersBase.avaliable.length;i+=2)
+                        for(int i=1;i<AvailablePlayersBase.avaliable.size();i+=2)
                         {
-                            if(AvailablePlayersBase.avaliable[i].equals(dbResult[1]))
+                            if(AvailablePlayersBase.avaliable.get(i).equals(dbResult[1]))
                             {
                                boardGameOnline.oponentName=
-                                        AvailablePlayersBase.avaliable[i+1];
+                                        AvailablePlayersBase.avaliable.get(i+1);
                                 break;
                             }
                         }
@@ -135,20 +151,50 @@ public class PlayerConnection extends Thread{
                         }
                     }else if(dbResult[0].equals("Close"))
                     {
-                        try{
-                         Platform.runLater(() -> {
-                            boardGameOnline.isPalying=true;
-                            Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK);
-                            alert.setTitle("Attention");
-                            alert.setContentText("Server Is Off !!!");
-                            alert.show();
-                        });
-                        }catch(Exception e){
-                        
-                        }
-                    TicTacToe.scene.setRoot(new MainPageScreenBase());
-                    this.stop();
+                           System.out.println("Server is Closed");
+                           isRunning=false;
+                           boardGameOnline.isPalying=false;
+                           Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("Server Closed !!");
+                                alert.show(); 
+                            });
+                           TicTacToe.scene.setRoot(new MainPageScreenBase()); 
+                           break;
+                    }else if(dbResult[0].equals("UpdateAddAv")){
+                          Platform.runLater(()->{
+                                if(dbResult.length>=2&&AvailablePlayersBase.avaliable!=null){
+                                    
+                                    AvailablePlayersBase.avaliable.add(dbResult[1]);
+                                    AvailablePlayersBase.avaliable.add(message.split(",")[2]);
+                                    System.err.println(AvailablePlayersBase.avaliable.get(AvailablePlayersBase.avaliable.size()-1));
+                                    AvailablePlayersBase.preperList(message.split(",")[2]);
+                                    AvailablePlayersBase.availablePlayerslistView.refresh();
+                                }
+                           });
                     }
+                    else if(dbResult[0].equals("UpdateRemAv")){
+                        Platform.runLater(()->{
+                                if(dbResult.length>=2){
+                                    AvailablePlayersBase.avaliable.remove(dbResult[1]);
+                                    AvailablePlayersBase.avaliable.remove(message.split(",")[2]);
+                                    AvailablePlayersBase.removeFromList(message.split(",")[2]);
+                                    AvailablePlayersBase.availablePlayerslistView.refresh();
+
+                                }
+                        });
+                           
+                     }else if(dbResult[0].equals("lBefo"))
+                     {
+                          Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("You Aleady LogedIn In Different Device !!");
+                                alert.show(); 
+                            });
+                     }
+
                 }
                 else{
                     System.out.println("recieve is null");
@@ -157,9 +203,29 @@ public class PlayerConnection extends Thread{
 
             } catch (Exception ex) {
                 System.out.print(ex.getMessage());
-               
+
+                   Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Alert alert = new Alert(Alert.AlertType.ERROR,"Attention",ButtonType.OK);
+                            alert.setTitle("Information");
+                            alert.setContentText("Lost Connection !!!");
+                            alert.showAndWait();
+                        }
+                    });
+                   break;
+
             }
         }
+        try {
+            socket.close();
+        } catch (SocketException ex) {
+          System.out.print(ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.stop();
+        
     }
 
 
@@ -170,6 +236,4 @@ public class PlayerConnection extends Thread{
             Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-   
 }

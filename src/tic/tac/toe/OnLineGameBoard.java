@@ -1,7 +1,13 @@
 
 package tic.tac.toe;
 
-
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
@@ -14,10 +20,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-/**
- *
- * @author alisa
- */
 public class OnLineGameBoard {//0 means the woner of comuter 1 means the other player
     
     public BoardScreenBase boardScreenBase;
@@ -28,6 +30,9 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     public  char playerSide='X';
     public  static boolean myTurn=false;
     public  boolean isPalying=false;
+    private ArrayList<Move>moveList=new ArrayList<>();
+    public boolean isRecording=false;
+
     public OnLineGameBoard ()
     {
         board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
@@ -225,6 +230,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         try {
             playSound();
             String message="Move,"+oponentID+","+location;
+            moveList.add(new Move((playerSide=='X'?"x":"o"),""+location.charAt(0),""+location.charAt(1)));
             LoginFXMLBase.playerConnection.sendMessage(message);
         } catch (Exception ex) {
             Logger.getLogger(OnLineGameBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,6 +240,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     {
         String col=""+location.charAt(0);playSound();
         String row=""+location.charAt(1);
+        moveList.add(new Move((playerSide=='X'?"o":"x"),col,row));//record move
         board[Integer.valueOf(col)][Integer.valueOf(row)]=1;
         setMoveOnScreen(location,playerSide=='X'?"O":"X");
         int winner=pridectWinner(board);
@@ -243,6 +250,7 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     private void showWinner(int ev) {
      if(ev==0||ev==1)
      {
+         recordGame(ev);
          if(ev==0)playerRes++;
          else if(ev==1) oponentRes++;
          try {
@@ -295,6 +303,23 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
       boardScreenBase.box12.setImage(null);
       boardScreenBase.box22.setImage(null);
       board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+
+      moveList=new ArrayList<>();isRecording=false;
+    }
+    public void recordGame(int winner){
+    
+        Gson gson = new Gson();
+        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+        String date = timeStamp.replace(":", "-");
+        Record record = new Record(LoginFXMLBase.playerData.playerID,oponentName, winner==0?PlayerName:(winner==1?oponentName:"Draw"),"Online", moveList, new Date(),(""+playerSide).toLowerCase());
+        try {
+            Writer writer = new FileWriter("Game//"+date.toString()+".json");
+            gson.toJson(record,writer);
+            writer.close();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
   
 }

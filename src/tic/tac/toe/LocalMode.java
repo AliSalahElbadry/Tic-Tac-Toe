@@ -20,8 +20,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import static tic.tac.toe.Medium.side;
+
 
 public class LocalMode {
 
@@ -460,12 +459,14 @@ public class LocalMode {
         TicTacToe.player.play();
     }
 
-    public void recordGame(String winner, String player2Name) {
+    public void recordGame(String winner,String player2Name){
 
+    
         Gson gson = new Gson();
         String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
         String date = timeStamp.replace(":", "-");
-        Record record = new Record(0, player2Name, winner, "Local", list, new Date(), PickYourSideScreenBase.player1Side.toLowerCase());
+
+        Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
         try {
             Writer writer = new FileWriter("Game//" + date.toString() + ".json");
             gson.toJson(record, writer);
