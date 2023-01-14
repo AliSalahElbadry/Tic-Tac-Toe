@@ -16,7 +16,7 @@ public class ShowGame implements Runnable{
         move = new ArrayList<>();
         this.move = record.recordList;
         boardScreenBase.levelText.setText(record.level);
-        boardScreenBase.player1Text.setText(record.player2Name);
+        boardScreenBase.player1Text.setText(LoginFXMLBase.playerData.getUserName());
         boardScreenBase.player2Text.setText(record.player2Name);
         boardScreenBase.scorePlayer1.setText(record.getPlayer1_side());
 

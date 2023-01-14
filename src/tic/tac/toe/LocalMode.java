@@ -397,20 +397,21 @@ public class LocalMode  {
     
     public void recordGame(String winner,String player2Name){
 
-    
-        Gson gson = new Gson();
-        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
-        String date = timeStamp.replace(":", "-");
+        if(BoardScreenBase.record == true){
+            Gson gson = new Gson();
+            String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+            String date = timeStamp.replace(":", "-");
 
-        Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
+            Record record = new Record(0, player2Name, winner,"Local", list, new Date(),PickYourSideScreenBase.player1Side.toLowerCase());
 
-        try {
-            Writer writer = new FileWriter("Game//"+date.toString()+".json");
-            gson.toJson(record,writer);
-            writer.close();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                Writer writer = new FileWriter("Game//"+date.toString()+".json");
+                gson.toJson(record,writer);
+                writer.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

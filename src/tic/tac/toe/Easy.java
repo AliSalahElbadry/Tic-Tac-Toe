@@ -545,17 +545,19 @@ public class Easy {
         }else{
             sidee= "x";
         }
-        Gson gson = new Gson();
-        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
-        String date = timeStamp.replace(":", "-");
-        Record record = new Record(0, "Computer", winner,"Easy", list, new Date(),sidee);
-        try {
-            Writer writer = new FileWriter("Game//"+date.toString()+".json");
-            gson.toJson(record,writer);
-            writer.close();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        if(BoardScreenBase.record == true){
+            Gson gson = new Gson();
+            String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+            String date = timeStamp.replace(":", "-");
+            Record record = new Record(0, "Computer", winner,"Easy", list, new Date(),sidee);
+            try {
+                Writer writer = new FileWriter("Game//"+date.toString()+".json");
+                gson.toJson(record,writer);
+                writer.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

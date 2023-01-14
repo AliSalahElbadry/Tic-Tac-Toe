@@ -711,7 +711,7 @@ public class Medium {
     }
     
     public void recordGame(String winner){
-    
+    if(BoardScreenBase.record == true){
         Gson gson = new Gson();
         String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
         String date = timeStamp.replace(":", "-");
@@ -724,6 +724,7 @@ public class Medium {
         } catch (IOException ex) {
             Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
     }
     
     

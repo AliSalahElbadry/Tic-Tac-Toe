@@ -55,6 +55,10 @@ public class PickYourSideScreenBase extends AnchorPane {
             LevelHardClass.isRecording=true;
         });
         
+        if(LoginFXMLBase.playerData==null){
+            recordRadioButton.setVisible(false);
+        }
+        
 
         setId("pickYourSide");
         setMaxHeight(480.0);
@@ -88,9 +92,7 @@ public class PickYourSideScreenBase extends AnchorPane {
         recordRadioButton.setText("Record The Game");
         recordRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         recordRadioButton.setFont(new Font("System Bold", 18.0));
-        if(recordRadioButton.isFocused()){
-            BoardScreenBase.record = true;
-        }
+        
         
         if (GamesRecordItemSceenBase.flag == true){
             recordRadioButton.setVisible(false);
