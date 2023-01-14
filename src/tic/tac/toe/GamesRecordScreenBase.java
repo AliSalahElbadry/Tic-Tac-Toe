@@ -36,28 +36,28 @@ public class GamesRecordScreenBase extends AnchorPane {
         imageView1 = new ImageView();
         listRecord = new ArrayList<>();
 
+        if(BoardScreenBase.record == true){
 
-        try {
-            String paths[];
-            File file = new File("Game");
-
-            paths = file.list();
-            System.err.println(paths[0]);
-            Gson gson = new Gson();
-            for (int i = 0; i < paths.length; i++) {
-                System.err.println("enter");
-                Record record = gson.fromJson(new FileReader("Game\\" + paths[i]), Record.class);
-                System.err.println(i);
-                listRecord.add(record);
-                GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
-                gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);
-                gamesRecordItemSceenBase.winnerItem1Text.setText(record.Winner);
-                gamesRecordItemSceenBase.timeItem1Text.setText(record.date.toString());
-                gamesRecordItemSceenBase.listId = i;
-                hestoryGamesRecordListView.getItems().add(gamesRecordItemSceenBase);
+            try {
+                String paths[];
+                File file = new File("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"");
+                paths = file.list();
+                System.err.println(paths[0]);
+                Gson gson = new Gson();
+                for (int i = 0; i < paths.length; i++) {
+                    Record record = gson.fromJson(new FileReader("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"\\" + paths[i]), Record.class);
+                    System.err.println(i);
+                    listRecord.add(record);
+                    GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
+                    gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);
+                    gamesRecordItemSceenBase.winnerItem1Text.setText(record.Winner);
+                    gamesRecordItemSceenBase.timeItem1Text.setText(record.date.toString());
+                    gamesRecordItemSceenBase.listId = i;
+                    hestoryGamesRecordListView.getItems().add(gamesRecordItemSceenBase);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(GamesRecordScreenBase.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GamesRecordScreenBase.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         setMaxHeight(480.0);
