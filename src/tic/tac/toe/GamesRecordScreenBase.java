@@ -104,7 +104,19 @@ public class GamesRecordScreenBase extends AnchorPane {
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
             TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new ProfileScreenBase());
+             ProfileScreenBase base = new ProfileScreenBase();
+            if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
+
+            {
+              
+               base.emailText.setText(LoginFXMLBase.playerData.email);
+               base.userNameText.setText(LoginFXMLBase.playerData.userName);
+               base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
+               TicTacToe.scene.setRoot(base);
+              
+
+            }
+            TicTacToe.scene.setRoot( base);
 
         });
 
