@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -67,9 +67,9 @@ public class PlayerConnection extends Thread{
                         
                     }
                     else if(dbResult[0].equals("signUp")){
-                        System.out.println(dbResult[1]);
                          
                         if(dbResult[1].equals("true")){
+                           Platform.runLater(() -> {
                             Alert alert = new Alert(Alert.AlertType.NONE, "Attention", ButtonType.OK);
                             alert.setTitle("Attention");
                             alert.setContentText("you Signed successfully");
@@ -77,6 +77,7 @@ public class PlayerConnection extends Thread{
                             if (result.get() == ButtonType.OK){
                                TicTacToe.scene.setRoot(new LoginFXMLBase());
                             }
+                            });
                         }
                         else{
                              Platform.runLater(() -> {
@@ -96,7 +97,6 @@ public class PlayerConnection extends Thread{
 
                         AvailablePlayersBase.avaliable.addAll(Arrays.asList(dbResult));
 
-                        System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
                         for(int i=2;i<dbResult.length;i+=2){
                             AvailablePlayersBase.preperList(dbResult[i]);
                         }
@@ -136,7 +136,9 @@ public class PlayerConnection extends Thread{
                             }
                         }
                         AvailablePlayersBase.boardGameOnline.prepare();
-                        TicTacToe.scene.setRoot(new PickYourSideScreenBase());
+                        PickYourSideScreenBase pickYourSideScreenBase =new PickYourSideScreenBase();
+                        pickYourSideScreenBase.backBtn.setVisible(false);
+                        TicTacToe.scene.setRoot(pickYourSideScreenBase);
                     }
                     else if(dbResult[0].equals("rejectInvitation")){
                        Platform.runLater(() -> {
@@ -158,7 +160,6 @@ public class PlayerConnection extends Thread{
                         }
                     }else if(dbResult[0].equals("Close"))
                     {
-                           System.out.println("Server is Closed");
                            isRunning=false;
                            boardGameOnline.isPalying=false;
                            Platform.runLater(() -> {

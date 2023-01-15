@@ -41,11 +41,10 @@ public class GamesRecordScreenBase extends AnchorPane {
                 String paths[];
                 File file = new File("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"");
                 paths = file.list();
-                System.err.println(paths[0]);
                 Gson gson = new Gson();
                 for (int i = 0; i < paths.length; i++) {
                     Record record = gson.fromJson(new FileReader("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"\\" + paths[i]), Record.class);
-                    System.err.println(i);
+                    
                     listRecord.add(record);
                     GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
                     gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);
@@ -103,7 +102,19 @@ public class GamesRecordScreenBase extends AnchorPane {
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
             TicTacToe.player.play();
-            TicTacToe.scene.setRoot(new ProfileScreenBase());
+             ProfileScreenBase base = new ProfileScreenBase();
+            if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
+
+            {
+              
+               base.emailText.setText(LoginFXMLBase.playerData.email);
+               base.userNameText.setText(LoginFXMLBase.playerData.userName);
+               base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
+               TicTacToe.scene.setRoot(base);
+              
+
+            }
+            TicTacToe.scene.setRoot( base);
 
         });
 

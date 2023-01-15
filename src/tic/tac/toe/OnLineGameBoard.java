@@ -9,6 +9,8 @@ import java.io.Writer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
@@ -33,9 +35,11 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
     public  boolean isPalying=false;
     private ArrayList<Move>moveList=new ArrayList<>();
     public boolean isRecording=false;
+    private Timer timer;
 
     public OnLineGameBoard ()
     {
+        timer=new Timer();
         board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
         boardScreenBase=new BoardScreenBase();
         boardScreenBase.levelText.fontProperty().set(Font.font("ARIAL", FontWeight.LIGHT, FontPosture.REGULAR, 16));
@@ -268,15 +272,28 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
         } catch (Exception ex) {
             Logger.getLogger(OnLineGameBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
+         colorRectangles(board);
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                     WinnerScreenBase winner=new WinnerScreenBase();
+                     winner.PrepareWinnerScreen(ev==0?PlayerName:oponentName, ev==0?1:-1);
          
-         WinnerScreenBase winner=new WinnerScreenBase();
-         winner.PrepareWinnerScreen(ev==0?PlayerName:oponentName, ev==0?1:-1);
-         
+                     timer.cancel();
+                }
+            }, 2000, 2000);
+        
      }else if(ev==-1&&!isMovesLeft(board))
      {
         isPalying=false;
+         timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
           WinnerScreenBase winner=new WinnerScreenBase();
           winner.PrepareWinnerScreen("Draw",0);
+                     timer.cancel();
+                }
+            }, 2000, 2000);
      }
     }
      private void playSound()
@@ -303,6 +320,15 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
       boardScreenBase.box02.setImage(null);
       boardScreenBase.box12.setImage(null);
       boardScreenBase.box22.setImage(null);
+      boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.WHITE);
       board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
 
       moveList=new ArrayList<>();isRecording=false;
@@ -339,5 +365,56 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
             }
         }
     }
+    public void colorRectangles(int[][] board) {
+
+        for (int i = 0; i < 3; i++) {
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[2][i] != -1) {
+                if (i == 0) {
+                    boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 1) {
+                    boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 2) {
+                    boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][2] != -1) {
+                if (i == 0) {
+                    boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 1) {
+                    boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                } else if (i == 2) {
+                    boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                    boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+                }
+            }
+        }
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[2][2] != -1) {
+            boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            
+        }
+        if (board[2][0] == board[1][1] && board[1][1] == board[0][2] && board[0][2] != -1) {
+            boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.AQUAMARINE);
+            
+        }
+
+    }
+
   
 }
