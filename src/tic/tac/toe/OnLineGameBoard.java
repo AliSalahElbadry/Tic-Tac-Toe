@@ -320,6 +320,15 @@ public class OnLineGameBoard {//0 means the woner of comuter 1 means the other p
       boardScreenBase.box02.setImage(null);
       boardScreenBase.box12.setImage(null);
       boardScreenBase.box22.setImage(null);
+      boardScreenBase.rectangle.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle0.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle1.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle2.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle3.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle4.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle5.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle6.setFill(javafx.scene.paint.Color.WHITE);
+      boardScreenBase.rectangle7.setFill(javafx.scene.paint.Color.WHITE);
       board=new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
 
       moveList=new ArrayList<>();isRecording=false;
