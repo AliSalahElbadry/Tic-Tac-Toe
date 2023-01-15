@@ -144,7 +144,7 @@ public class PlayerConnection extends Thread{
                        Platform.runLater(() -> {
                         Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
                         alert.setTitle("Attention");
-                        alert.setContentText("Player "+boardGameOnline.oponentName+" rijects your Invetation");
+                        alert.setContentText(" your Invetation Rejected");
                         alert.show(); 
                        });
                     }else if(dbResult[0].equals("playing"))
@@ -172,11 +172,10 @@ public class PlayerConnection extends Thread{
                            break;
                     }else if(dbResult[0].equals("UpdateAddAv")){
                           Platform.runLater(()->{
-                                if(dbResult.length>=2&&AvailablePlayersBase.avaliable!=null){
+                                if(dbResult.length>=3&&AvailablePlayersBase.avaliable!=null){
                                     
                                     AvailablePlayersBase.avaliable.add(dbResult[1]);
                                     AvailablePlayersBase.avaliable.add(message.split(",")[2]);
-                                    System.err.println(AvailablePlayersBase.avaliable.get(AvailablePlayersBase.avaliable.size()-1));
                                     AvailablePlayersBase.preperList(message.split(",")[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
                                 }
@@ -184,16 +183,33 @@ public class PlayerConnection extends Thread{
                     }
                     else if(dbResult[0].equals("UpdateRemAv")){
                         Platform.runLater(()->{
-                                if(dbResult.length>=2){
+                                if(dbResult.length>=3){
                                     AvailablePlayersBase.avaliable.remove(dbResult[1]);
                                     AvailablePlayersBase.avaliable.remove(message.split(",")[2]);
+                                    AvailablePlayersBase.availablePlayerslistView.refresh();
                                     AvailablePlayersBase.removeFromList(message.split(",")[2]);
                                     AvailablePlayersBase.availablePlayerslistView.refresh();
 
                                 }
                         });
                            
-                     }else if(dbResult[0].equals("lBefo"))
+                     }else if(dbResult[0].equals("GameRemAv")){
+                            
+                         Platform.runLater(()->{
+                                if(dbResult.length>=3){
+                                    AvailablePlayersBase.avaliable.remove(dbResult[1]);
+                                    AvailablePlayersBase.avaliable.remove(message.split(",")[2]);
+                                    AvailablePlayersBase.removeFromList(message.split(",")[2]);
+                                    AvailablePlayersBase.availablePlayerslistView.refresh();
+                                    AvailablePlayersBase.avaliable.remove(dbResult[3]);
+                                    AvailablePlayersBase.avaliable.remove(message.split(",")[4]);
+                                    AvailablePlayersBase.removeFromList(message.split(",")[4]);
+                                    AvailablePlayersBase.availablePlayerslistView.refresh();
+
+                                }
+                        });
+                     }
+                     else if(dbResult[0].equals("lBefo"))
                      {
                           Platform.runLater(() -> {
                                 Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
@@ -221,6 +237,7 @@ public class PlayerConnection extends Thread{
                             alert.showAndWait();
                         }
                     });
+                   this.stop();
                    break;
 
             }

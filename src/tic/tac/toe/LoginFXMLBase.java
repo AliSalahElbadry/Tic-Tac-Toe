@@ -3,8 +3,11 @@ package tic.tac.toe;
 
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.util.regex.Pattern;
 import javafx.application.Platform;
@@ -140,7 +143,14 @@ public class LoginFXMLBase extends AnchorPane {
         loginBtn.setText("Log In");
         loginBtn.setFont(new Font("Serif Regular", 20.0));
         loginBtn.setOnAction(e -> {
-
+         if(playerConnection==null||playerConnection.socket.isClosed())
+         {
+             try {
+                 playerConnection=new PlayerConnection(new Socket(InetAddress.getLocalHost(),5005));
+             } catch (Exception ex) {
+                 Logger.getLogger(LoginFXMLBase.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }else{
             if (EmailTextField.getText().equals("")) {
                 emailValidator.hide();
                 passValidator.hide();
@@ -201,8 +211,10 @@ public class LoginFXMLBase extends AnchorPane {
                 String email = EmailTextField.getText();
                 String pass = passwordTextField.getText();
                 String msg = "login" + "," + email + "," + pass;
+                
                 playerConnection.sendMessage(msg);
             }
+         }
             
         });
         

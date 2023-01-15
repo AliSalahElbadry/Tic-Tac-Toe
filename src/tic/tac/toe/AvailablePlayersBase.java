@@ -2,11 +2,14 @@ package tic.tac.toe;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -28,7 +31,8 @@ public class AvailablePlayersBase extends AnchorPane {
     protected final Text text;
     protected static ListView availablePlayerslistView=new ListView();
     public  static ArrayList<String> avaliable ;
-
+    public static boolean closeInvite=false,checkforclose=false;
+    
     public AvailablePlayersBase() {
         
         TicTacToe.player.stop();
@@ -132,26 +136,48 @@ public class AvailablePlayersBase extends AnchorPane {
         ItemBase itemBase = new ItemBase();
         itemBase.playerNameText.setText(name);
         availablePlayerslistView.getItems().add(itemBase);
+        availablePlayerslistView.refresh();
     }
     
     public static void showDialog(String name ,String PlayerIdOfTheInvitation){
-    Platform.runLater(new Runnable() {
-    @Override
-    public void run() { Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
+    Platform.runLater(() -> {
+        Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK,ButtonType.CANCEL); 
         alert.setTitle("Attention");
         alert.setContentText("you are invited to play with "+name+"\n"+"if you accept the invitation press ok button");
+         Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+                if (alert.isShowing()) {
+                    if(!checkforclose){
+                        Platform.runLater(() -> alert.close());
+                       checkforclose=true;
+                    }
+                }
+            } catch (Exception exp) {
+                exp.printStackTrace();
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
         alert.showAndWait().ifPresent(rs->{
             if(rs==ButtonType.OK){
-                String repleyMessage="acceptInvitation,"+PlayerIdOfTheInvitation;
-                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+                if(!checkforclose){
+                    String repleyMessage="acceptInvitation,"+PlayerIdOfTheInvitation;
+                    LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+                    checkforclose=true;
+                }else checkforclose=false;
+                        
             }
             else{
-                String repleyMessage="rejectInvitation,"+PlayerIdOfTheInvitation;
-                LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+                if(!checkforclose){
+                    String repleyMessage="rejectInvitation,"+PlayerIdOfTheInvitation;
+                    LoginFXMLBase.playerConnection.sendMessage(repleyMessage);
+                    checkforclose=true;
+                }else checkforclose=false;
             }
+           
 
         });
-        }
     });
     }
 
@@ -161,10 +187,10 @@ public class AvailablePlayersBase extends AnchorPane {
             if(((ItemBase)item).playerNameText.getText().equals(name))
             {
                 availablePlayerslistView.getItems().remove(item);
+                availablePlayerslistView.refresh();
                 break;
             }
         }
     }
-   
 
 }
