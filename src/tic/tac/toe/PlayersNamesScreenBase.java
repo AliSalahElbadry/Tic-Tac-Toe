@@ -1,9 +1,6 @@
 package tic.tac.toe;
 
-import java.net.URL;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -15,7 +12,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+
 import tic.tac.toe.TicTacToe;
 
 public class PlayersNamesScreenBase extends AnchorPane {
