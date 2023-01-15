@@ -1,15 +1,11 @@
 package tic.tac.toe;
 
-import java.io.IOException;
+
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import java.util.regex.Pattern;
 import javafx.application.Platform;
 import javafx.geometry.Side;

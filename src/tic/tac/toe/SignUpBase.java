@@ -1,13 +1,8 @@
 package tic.tac.toe;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
+
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import java.util.regex.Matcher;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

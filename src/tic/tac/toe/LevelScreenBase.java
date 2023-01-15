@@ -10,7 +10,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import tic.tac.toe.TicTacToe;
+
 
 public  class LevelScreenBase extends AnchorPane {
 

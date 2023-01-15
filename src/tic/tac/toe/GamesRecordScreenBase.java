@@ -42,11 +42,10 @@ public class GamesRecordScreenBase extends AnchorPane {
                 String paths[];
                 File file = new File("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"");
                 paths = file.list();
-                System.err.println(paths[0]);
                 Gson gson = new Gson();
                 for (int i = 0; i < paths.length; i++) {
                     Record record = gson.fromJson(new FileReader("Game\\"+LoginFXMLBase.playerData.getPlayerID()+"\\" + paths[i]), Record.class);
-                    System.err.println(i);
+                    
                     listRecord.add(record);
                     GamesRecordItemSceenBase gamesRecordItemSceenBase = new GamesRecordItemSceenBase();
                     gamesRecordItemSceenBase.player2Item1Text.setText(record.player2Name);

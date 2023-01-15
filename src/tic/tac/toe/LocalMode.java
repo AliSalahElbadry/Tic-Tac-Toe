@@ -12,13 +12,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+
 import javafx.scene.image.Image;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -390,7 +386,6 @@ public class LocalMode {
 
     void endGame(int winnerSide) {
         if (winnerSide == 1) {//X
-            System.out.println("X won");
             if (pickYourSideScreenBase.player1Side == "X") {
                 player1Score += 1;
                 timer.scheduleAtFixedRate(new TimerTask() {
@@ -415,7 +410,7 @@ public class LocalMode {
                 recordGame(PlayersNamesScreenBase.player2Name, PlayersNamesScreenBase.player2Name);
             }
         } else if (winnerSide == 0) {//O
-            System.out.println("O won");
+            
             if (pickYourSideScreenBase.player1Side == "O") {
                 player1Score += 1;
                 timer.scheduleAtFixedRate(new TimerTask() {
@@ -440,7 +435,6 @@ public class LocalMode {
                 recordGame(PlayersNamesScreenBase.player2Name, PlayersNamesScreenBase.player2Name);
             }
         } else if (winnerSide == 2) {
-            System.out.println("Both players won");
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
