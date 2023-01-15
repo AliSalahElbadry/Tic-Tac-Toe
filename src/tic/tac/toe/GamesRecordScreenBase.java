@@ -36,7 +36,6 @@ public class GamesRecordScreenBase extends AnchorPane {
         imageView1 = new ImageView();
         listRecord = new ArrayList<>();
 
-        if(BoardScreenBase.record == true){
 
             try {
                 String paths[];
@@ -58,7 +57,7 @@ public class GamesRecordScreenBase extends AnchorPane {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GamesRecordScreenBase.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
 
         setMaxHeight(480.0);
         setMaxWidth(750.0);
