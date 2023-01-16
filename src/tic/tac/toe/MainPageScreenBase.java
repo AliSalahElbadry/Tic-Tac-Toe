@@ -76,9 +76,9 @@ public  class MainPageScreenBase extends AnchorPane {
 
             {
                ProfileScreenBase base = new ProfileScreenBase();
-               base.emailText.setText(LoginFXMLBase.playerData.email);
-               base.userNameText.setText(LoginFXMLBase.playerData.userName);
-               base.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
+               ProfileScreenBase.emailText.setText(LoginFXMLBase.playerData.email);
+               ProfileScreenBase.userNameText.setText(LoginFXMLBase.playerData.userName);
+               ProfileScreenBase.playedGamesText.setText(LoginFXMLBase.playerData.wins+"/"+LoginFXMLBase.playerData.countGames);
                TicTacToe.scene.setRoot(base);
               
 

@@ -162,6 +162,7 @@ public class PlayerConnection extends Thread{
                     {
                            isRunning=false;
                            boardGameOnline.isPalying=false;
+                           LoginFXMLBase.isConnected=false;
                            Platform.runLater(() -> {
                                 Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
                                 alert.setTitle("Attention");
@@ -234,9 +235,16 @@ public class PlayerConnection extends Thread{
                             Alert alert = new Alert(Alert.AlertType.ERROR,"Attention",ButtonType.OK);
                             alert.setTitle("Information");
                             alert.setContentText("Lost Connection !!!");
-                            alert.showAndWait();
+                            alert.show();
                         }
                     });
+                   Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                                alert.setTitle("Attention");
+                                alert.setContentText("Server Closed !!");
+                                alert.show(); 
+                            });
+                           TicTacToe.scene.setRoot(new MainPageScreenBase()); 
                    this.stop();
                    break;
 

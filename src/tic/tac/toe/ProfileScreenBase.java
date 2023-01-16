@@ -111,8 +111,12 @@ public class ProfileScreenBase extends AnchorPane {
             if(LoginFXMLBase.playerConnection.isAlive())
             {
                 LoginFXMLBase.playerConnection.sendMessage("Clear,");
-                LoginFXMLBase.playerData=null;
+                
             }
+                LoginFXMLBase.playerData=null;
+                ProfileScreenBase.playedGamesText.setText("");
+                ProfileScreenBase.emailText.setText("");
+                ProfileScreenBase.playedGamesText.setText("");
 
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
