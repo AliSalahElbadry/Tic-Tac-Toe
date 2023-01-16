@@ -102,7 +102,7 @@ public class GamesRecordScreenBase extends AnchorPane {
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/tic.mp3").toExternalForm()));
             TicTacToe.player.play();
-             ProfileScreenBase base = new ProfileScreenBase();
+            ProfileScreenBase base = new ProfileScreenBase();
             if(LoginFXMLBase.playerData!=null&&!LoginFXMLBase.playerConnection.socket.isClosed())
 
             {

@@ -141,7 +141,7 @@ public  class BoardScreenBase extends AnchorPane {
                 });
             }else {
             
-                TicTacToe.scene.setRoot(new ProfileScreenBase());
+                TicTacToe.scene.setRoot(new GamesRecordScreenBase());
             
             }
         });
