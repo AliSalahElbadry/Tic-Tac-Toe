@@ -75,10 +75,12 @@ public  class WinnerScreenBase extends AnchorPane {
                     TicTacToe.scene.setRoot(localMode.boardScreenBase);
                     break;
                 case 4:
-                    LoginFXMLBase.playerConnection.sendMessage("playing,"+
-                            AvailablePlayersBase.boardGameOnline.oponentID);
-                    AvailablePlayersBase.boardGameOnline.prepare();
-                    TicTacToe.scene.setRoot(AvailablePlayersBase.boardGameOnline.boardScreenBase);
+                        if(LoginFXMLBase.playerConnection!=null)
+                        {
+                            LoginFXMLBase.playerConnection.sendMessage("EndGameSession,");
+                        }
+                        TicTacToe.scene.setRoot(new AvailablePlayersBase());
+                        
                     break;
             }
         
@@ -113,6 +115,13 @@ public  class WinnerScreenBase extends AnchorPane {
             LevelHardClass.computerRes=0;
             LocalMode.player1Score=0;
             LocalMode.player2Score=0;
+            if(PickYourSideScreenBase.level==4)
+            {
+                if(LoginFXMLBase.playerConnection!=null)
+                {
+                    LoginFXMLBase.playerConnection.sendMessage("EndGameSession,");
+                }
+            }
             TicTacToe.scene.setRoot(new MainPageScreenBase());
             
 

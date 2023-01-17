@@ -1,14 +1,13 @@
 package tic.tac.toe;
 
-import java.net.InetAddress;
+
 import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import java.util.regex.Pattern;
 import javafx.application.Platform;
 import javafx.geometry.Side;
@@ -36,25 +35,27 @@ public class LoginFXMLBase extends AnchorPane {
     protected final Button loginBtn;
     protected final ImageView imageView1;
     protected final Text dontHaveAnAccountText;
- protected final ImageView backButton;
+    protected final ImageView backButton;
     protected final ContextMenu emailValidator;
     protected final ContextMenu passValidator;
     public Socket mySocket;
     public static PlayerData playerData;
     public static PlayerConnection playerConnection;
-    boolean isConnected = true;
+    static boolean isConnected = false;
 
 
     public LoginFXMLBase() {
-       
+           
+           if(!isConnected){
             try {
-                mySocket = new Socket(InetAddress.getLocalHost(), 5005);
+                mySocket = new Socket("10.145.17.155", 5005);
                 playerConnection = new PlayerConnection(mySocket);
+                isConnected=true;
             } catch (Exception ex) {
                 isConnected = false;
-
             }
-backButton = new ImageView();
+           }
+        backButton = new ImageView();
         imageView = new ImageView();
         rectangle = new Rectangle();
         imageView0 = new ImageView();
@@ -71,7 +72,7 @@ backButton = new ImageView();
         getStylesheets().add("/tic/tac/toe/css/loginfxml.css");
 
         
-         backButton.setAccessibleRole(javafx.scene.AccessibleRole.BUTTON);
+        backButton.setAccessibleRole(javafx.scene.AccessibleRole.BUTTON);
         backButton.setFitHeight(70.0);
         backButton.setFitWidth(70.0);
         backButton.setLayoutX(2.0);
@@ -141,7 +142,14 @@ backButton = new ImageView();
         loginBtn.setText("Log In");
         loginBtn.setFont(new Font("Serif Regular", 20.0));
         loginBtn.setOnAction(e -> {
-
+         if(playerConnection==null||playerConnection.socket.isClosed())
+         {
+             try {
+                 playerConnection=new PlayerConnection(new Socket("10.145.17.155",5005));
+             } catch (Exception ex) {
+                 Logger.getLogger(LoginFXMLBase.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }else{
             if (EmailTextField.getText().equals("")) {
                 emailValidator.hide();
                 passValidator.hide();
@@ -152,23 +160,23 @@ backButton = new ImageView();
                 
             }
              else if(EmailTextField.getText().contains(","))
-            {
-                emailValidator.hide();
-                passValidator.hide();
-               emailValidator.getItems().clear();
-                emailValidator.getItems().add(
-                        new MenuItem("email shouldn't contain \",\""));
-                emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
-            }
+                {
+                    emailValidator.hide();
+                    passValidator.hide();
+                   emailValidator.getItems().clear();
+                    emailValidator.getItems().add(
+                            new MenuItem("email shouldn't contain \",\""));
+                    emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
+                }
              else if(!emailPattern(EmailTextField.getText(), "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
-             {
-                 emailValidator.hide();
-                passValidator.hide();
-                 emailValidator.getItems().clear();
-                emailValidator.getItems().add(
-                        new MenuItem("Invalid email \nshould be like:yas@gmail.com"));
-                emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
-             }
+                {
+                    emailValidator.hide();
+                   passValidator.hide();
+                    emailValidator.getItems().clear();
+                   emailValidator.getItems().add(
+                           new MenuItem("Invalid email \nshould be like:yas@gmail.com"));
+                   emailValidator.show(EmailTextField, Side.RIGHT, 10, 0); 
+                }
             else if (passwordTextField.getText().equals("")) {
                 emailValidator.hide();
                 passValidator.hide();
@@ -202,10 +210,11 @@ backButton = new ImageView();
                 String email = EmailTextField.getText();
                 String pass = passwordTextField.getText();
                 String msg = "login" + "," + email + "," + pass;
+                
                 playerConnection.sendMessage(msg);
             }
-
-            // TicTacToe.scene.setRoot(new AvailablePlayersBase());
+         }
+            
         });
         
         imageView1.setFitHeight(37.0);

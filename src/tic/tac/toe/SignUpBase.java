@@ -1,13 +1,9 @@
 package tic.tac.toe;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
+
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.util.regex.Matcher;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -153,6 +149,13 @@ public class SignUpBase extends AnchorPane {
                 alert.setContentText("your username can't have comma(,)");
                 alert.showAndWait();
                 usernameTextField.setText("");
+            }else if(!isValidPassword(password)){
+                Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
+                alert.setTitle("Attention");
+                alert.setContentText("Password must have at least one numeric character ,one lowercase character,one lowercase character,one special symbol among @#$% and Password length should be between 8 and 20.");
+                alert.showAndWait();
+                passwordTextField.setText("");
+                repasswordTextField.setText("");
             }
             else if(!password.equals(repassword)){
                 Alert alert = new Alert(Alert.AlertType.NONE,"Attention",ButtonType.OK); 
@@ -228,6 +231,13 @@ public class SignUpBase extends AnchorPane {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
+    }
+    public static boolean isValidPassword(String password)
+    {
+        String regex= "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
   
 }

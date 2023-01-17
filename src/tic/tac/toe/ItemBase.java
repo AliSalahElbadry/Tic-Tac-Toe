@@ -1,8 +1,7 @@
 package tic.tac.toe;
 
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +11,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ItemBase extends AnchorPane {
-
+    
     protected final Rectangle rectangle;
     protected final Text playerNameText;
+    protected final Text playerScoreText;
     protected final Button inviteBtn;
     protected final ImageView imageView;
     static String playerNameToBeInvite="";
@@ -24,6 +24,7 @@ public class ItemBase extends AnchorPane {
 
         rectangle = new Rectangle();
         playerNameText = new Text();
+        playerScoreText = new Text();
         inviteBtn = new Button();
         imageView = new ImageView();
 
@@ -49,6 +50,17 @@ public class ItemBase extends AnchorPane {
         playerNameText.setText("text");
         playerNameText.setWrappingWidth(95.6708984375);
         playerNameText.setFont(new Font("Serif Regular", 24.0));
+        playerNameText.autosize();
+        
+        playerScoreText.setFill(javafx.scene.paint.Color.valueOf("#f8f8f8"));
+        playerScoreText.setLayoutX(40.0);
+        playerScoreText.setLayoutY(33.0);
+        playerScoreText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
+        playerScoreText.setStrokeWidth(0.0);
+        playerScoreText.setText("text");
+        playerScoreText.setWrappingWidth(95.6708984375);
+        playerScoreText.setFont(new Font("Serif Regular", 24.0));
+        playerScoreText.autosize();
 
         inviteBtn.setLayoutX(297.0);
         inviteBtn.setLayoutY(8.0);
@@ -60,24 +72,32 @@ public class ItemBase extends AnchorPane {
         inviteBtn.setText("Invite");
         inviteBtn.setFont(new Font("Serif Regular", 20.0));
         inviteBtn.setOnAction(event ->{
-            if(LoginFXMLBase.playerConnection!=null){
-                OnLineGameBoard.myTurn=true;
-                try {
-                    String playerIdToBeInvite="";
-                    for(int i=2;i<AvailablePlayersBase.avaliable.size();i+=2){
-                        if(playerNameText.getText().equals(AvailablePlayersBase.avaliable.get(i))){
-                            playerIdToBeInvite=AvailablePlayersBase.avaliable.get(i-1);
-                            playerNameToBeInvite=playerNameText.getText();
-                            break;
-                        }
+            if(!AvailablePlayersBase.closeInvite){
+                AvailablePlayersBase.closeInvite=true;
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                      AvailablePlayersBase.closeInvite=false;  
                     }
-                    LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
-                    Thread.sleep(4000);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                }, 6000);
+                if(LoginFXMLBase.playerConnection!=null){
+                    OnLineGameBoard.myTurn=true;
+                  
+                        String playerIdToBeInvite="";
+                        for(int i=2;i<AvailablePlayersBase.avaliable.size();i+=2){
+                            if(playerNameText.getText().equals(AvailablePlayersBase.avaliable.get(i))){
+                                playerIdToBeInvite=AvailablePlayersBase.avaliable.get(i-1);
+                                playerNameToBeInvite=playerNameText.getText();
+                                break;
+                            }
+                        }
+
+                        LoginFXMLBase.playerConnection.sendMessage("invite,"+playerIdToBeInvite+","+LoginFXMLBase.playerData.userName);
+                       
                 }
             }
         });
+        
 
         imageView.setFitHeight(33.0);
         imageView.setFitWidth(77.0);

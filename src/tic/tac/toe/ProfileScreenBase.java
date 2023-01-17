@@ -19,13 +19,13 @@ public class ProfileScreenBase extends AnchorPane {
     protected final ImageView imageView1;
     protected final Rectangle rectangle;
     protected final ImageView imageView2;
-    protected final Text emailText;
+    protected static Text emailText;
     protected final Text text;
     protected final ImageView imageView3;
-    protected final Text userNameText;
+    protected static Text userNameText;
     protected final Text text0;
     protected final ImageView imageView4;
-    protected final Text playedGamesText;
+    protected static Text playedGamesText;
     protected final Text text1;
     protected final Button gamesRecordBtn;
     protected final ImageView imageView5;
@@ -107,16 +107,22 @@ public class ProfileScreenBase extends AnchorPane {
         imageView7.setImage(new Image(getClass().getResource("Photos/back_logout.png").toExternalForm()));
         logoutBtn.setGraphic(imageView7);
         logoutBtn.setOnAction(e->{
+
             if(LoginFXMLBase.playerConnection.isAlive())
             {
-                LoginFXMLBase.playerConnection.sendMessage("Close,");
-                LoginFXMLBase.playerConnection.isRunning=false;
+                LoginFXMLBase.playerConnection.sendMessage("Clear,");
+                
             }
+                LoginFXMLBase.playerData=null;
+                ProfileScreenBase.playedGamesText.setText("");
+                ProfileScreenBase.emailText.setText("");
+                ProfileScreenBase.playedGamesText.setText("");
+
             TicTacToe.player.stop();
             TicTacToe.player=new MediaPlayer(new Media(getClass().getResource("/sounds/logout.m4a").toExternalForm()));
             TicTacToe.player.play();
             TicTacToe.scene.setRoot(new LoginFXMLBase());
-            LoginFXMLBase.playerData=null;
+            
         
         });
         imageView0.setFitHeight(70.0);
