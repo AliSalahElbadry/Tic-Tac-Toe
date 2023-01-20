@@ -48,7 +48,7 @@ public class LoginFXMLBase extends AnchorPane {
            
            if(!isConnected){
             try {
-                mySocket = new Socket("10.145.17.155", 5005);
+                mySocket = new Socket(InetAddress.getLocalHost(), 5005);
                 playerConnection = new PlayerConnection(mySocket);
                 isConnected=true;
             } catch (Exception ex) {
@@ -145,7 +145,7 @@ public class LoginFXMLBase extends AnchorPane {
          if(playerConnection==null||playerConnection.socket.isClosed())
          {
              try {
-                 playerConnection=new PlayerConnection(new Socket("10.145.17.155",5005));
+                 playerConnection=new PlayerConnection(new Socket(InetAddress.getLocalHost(),5005));
              } catch (Exception ex) {
                  Logger.getLogger(LoginFXMLBase.class.getName()).log(Level.SEVERE, null, ex);
              }
